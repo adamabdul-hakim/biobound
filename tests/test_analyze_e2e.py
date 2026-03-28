@@ -278,7 +278,9 @@ def test_analyze_returns_400_for_invalid_input_type() -> None:
 
     assert response.status_code == 422
     body = response.json()
-    assert "detail" in body
+    assert body["error"]["code"] == "VALIDATION_ERROR"
+    assert body["error"]["message"] == "Request validation failed"
+    assert "request_id" in body["error"]
 
 
 def test_analyze_returns_500_on_ocr_failure() -> None:
@@ -290,4 +292,6 @@ def test_analyze_returns_500_on_ocr_failure() -> None:
 
     assert response.status_code == 500
     body = response.json()
-    assert body["detail"] == "OCR processing failed"
+    assert body["error"]["code"] == "INTERNAL_ERROR"
+    assert body["error"]["message"] == "OCR processing failed"
+    assert "request_id" in body["error"]

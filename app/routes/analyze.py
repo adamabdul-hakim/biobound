@@ -3,8 +3,10 @@ import logging
 import uuid
 from typing import Any
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 
+from app.core.config import settings
+from app.core.rate_limit import analyze_rate_limiter
 from app.models.schemas import AnalyzeMeta, AnalyzeRequest, AnalyzeResponse
 from app.services.decay import evaluate_medical_warnings, simulate_decay
 from app.services.ocr import extract_text_from_image
@@ -44,12 +46,30 @@ def _log_error(request_id: str, stage: str, error_message: str, error_type: str)
 
 
 @router.post("", response_model=AnalyzeResponse)
-def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
+def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
     """Unified /analyze endpoint: OCR -> Detection -> Risk -> Decay -> Warnings.
 
     Phase 5 implementation with orchestration, request correlation, and error handling.
     """
-    request_id = str(uuid.uuid4())
+    request_id = getattr(request.state, "request_id", str(uuid.uuid4()))
+
+    client_host = request.client.host if request.client else "unknown"
+    if not analyze_rate_limiter.allow(
+        key=client_host,
+        limit=settings.analyze_rate_limit_per_minute,
+        window_seconds=60,
+    ):
+        _log_error(
+            request_id,
+            "rate_limit",
+            f"Rate limit exceeded for client={client_host}",
+            "RateLimitExceeded",
+        )
+        raise HTTPException(
+            status_code=429,
+            detail="Rate limit exceeded. Please retry later.",
+        )
+
     _log_request(request_id, "analyze_start", "started")
 
     try:
@@ -191,6 +211,6 @@ def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
 
 
 @router.post("/process-image", response_model=AnalyzeResponse)
-def process_image(payload: AnalyzeRequest) -> AnalyzeResponse:
+def process_image(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
     # Alias endpoint for backwards compatibility with design doc
-    return analyze(payload)
+    return analyze(payload, request)

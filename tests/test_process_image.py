@@ -39,7 +39,10 @@ def test_process_image_rejects_invalid_base64() -> None:
     )
 
     assert response.status_code == 422
-    assert "Invalid base64" in response.json()["detail"]
+    body = response.json()
+    assert body["error"]["code"] == "VALIDATION_ERROR"
+    assert "Invalid base64" in body["error"]["message"]
+    assert "request_id" in body["error"]
 
 
 def test_process_image_rejects_unsupported_mime_type() -> None:
@@ -54,7 +57,10 @@ def test_process_image_rejects_unsupported_mime_type() -> None:
     )
 
     assert response.status_code == 422
-    assert "Unsupported mime_type" in response.json()["detail"]
+    body = response.json()
+    assert body["error"]["code"] == "VALIDATION_ERROR"
+    assert "Unsupported mime_type" in body["error"]["message"]
+    assert "request_id" in body["error"]
 
 
 def test_process_image_integration_fixture_payload() -> None:
