@@ -73,6 +73,7 @@ interface AppState {
   setCurrentStep: (step: number) => void;
   nextStep: () => void;
   prevStep: () => void;
+  setReiScore: (score: number | null) => void;
 }
 
 // ── Store ────────────────────────────────────────────────────────────────────
@@ -115,4 +116,5 @@ export const useAppStore = create<AppState>((set) => ({
   setCurrentStep: (step) => set({ currentStep: step }),
   nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 5) })),
   prevStep: () => set((s) => ({ currentStep: Math.max(s.currentStep - 1, 1) })),
+  setReiScore: (score) => set({ reiScore: score }),
 }));
