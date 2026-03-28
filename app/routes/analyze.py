@@ -18,13 +18,14 @@ def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
     ocr_result = extract_text_from_image(payload.image_base64)
     chemicals = detect_chemicals(ocr_result, payload.product_name_hint)
     risk_result = calculate_risk_score(chemicals)
+    decay_result = simulate_decay()
 
     return AnalyzeResponse(
         product_name=payload.product_name_hint or "Unknown Product",
         detected_chemicals=risk_result.top_contributors,
         risk_score=risk_result.risk_score,
         confidence_interval=risk_result.confidence_interval,
-        decay_data=simulate_decay(),
+        decay_data=decay_result.decay_data,
         medical_warnings=[PHASE_0_WARNING],
         meta=AnalyzeMeta(),
     )
