@@ -14,6 +14,20 @@
   - `meta.contract_version`
   - `meta.request_id`
 
+- Standardized error envelope for non-2xx:
+  - `error.code`
+  - `error.message`
+  - `error.request_id`
+  - `error.details` (optional)
+
+- Observability endpoint:
+  - `GET /metrics`
+  - Returns request counts, error rate, latency aggregates, and status/path breakdown.
+
+- Analyze endpoint protection:
+  - `POST /analyze` has per-client in-memory rate limiting.
+  - Exceeded requests return `429` with `error.code = RATE_LIMITED`.
+
 ## Versioning Policy
 
 - Contract version is declared in `meta.contract_version`.
@@ -32,7 +46,25 @@
 3. Update this document with behavior details.
 4. Mark API impact in PR template and request Team A review.
 
-## Error Envelope (Planned)
+## Error Envelope
 
-Phase 0 provides baseline success payloads.
-Standardized error envelope and stable error codes are planned for later phases.
+Current non-2xx responses use this JSON shape:
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Request validation failed",
+    "request_id": "uuid",
+    "details": []
+  }
+}
+```
+
+Known error codes:
+- `INVALID_INPUT` (`400`)
+- `VALIDATION_ERROR` (`422`)
+- `RATE_LIMITED` (`429`)
+- `INTERNAL_ERROR` (`500`)
+
+Additional codes may be returned for other status classes (`401/403/404/409`).
