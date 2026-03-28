@@ -1,0 +1,12 @@
+[
+  {
+    "request": {
+      "image_base64": "data:image/png;base64,UEZBUy1yZXNpc3RhbnQgY29va3dhcmUgbGFiZWw=",
+      "ocr_provider": "mock"
+    },
+    "expected": {
+      "provider": "mock",
+      "normalized_contains": "pfas-resistant cookware label"
+    }
+  }
+]
