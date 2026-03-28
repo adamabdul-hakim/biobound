@@ -119,6 +119,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
         width="100%"
         role="img"
         aria-label={`REI Score: ${score} out of 100. Status: ${STATUS_LABELS[status] ?? status}`}
+        suppressHydrationWarning={true}
       >
         {/* Background track */}
         <path
@@ -148,6 +149,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
             x2={t.x2} y2={t.y2}
             stroke="var(--color-border-secondary)"
             strokeWidth={t.major ? 1.5 : 0.75}
+            suppressHydrationWarning={true}
           />
         ))}
 
