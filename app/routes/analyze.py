@@ -6,7 +6,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 
 from app.models.schemas import AnalyzeMeta, AnalyzeRequest, AnalyzeResponse
-from app.services.decay import simulate_decay
+from app.services.decay import evaluate_medical_warnings, simulate_decay
 from app.services.ocr import extract_text_from_image
 from app.services.pfas_hunter import detect_chemicals_scored
 from app.services.risk import calculate_risk_score
@@ -143,15 +143,20 @@ def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
         # Stage 5: Medical Warnings
         _log_request(request_id, "warnings_start", "processing")
         try:
-            # Medical warnings placeholder; currently static
-            medical_warnings = [
-                "Risk assessment complete. Consult healthcare provider for guidance."
-            ]
+            warnings_result = evaluate_medical_warnings(
+                detected_chemicals=risk_result.top_contributors,
+                risk_score=risk_result.risk_score,
+                contraindication=None,
+            )
+            medical_warnings = warnings_result.warnings
             _log_request(
                 request_id,
                 "warnings_success",
                 "completed",
-                {"warnings_count": len(medical_warnings)},
+                {
+                    "warnings_count": len(medical_warnings),
+                    "recommendation_safe": warnings_result.recommendation_safe,
+                },
             )
         except Exception as e:
             _log_error(request_id, "warnings", str(e), type(e).__name__)

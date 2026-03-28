@@ -3,6 +3,7 @@
 Tests the full pipeline: OCR -> Detection -> Risk -> Decay -> Warnings.
 """
 
+from unittest.mock import patch
 from uuid import UUID
 
 from fastapi.testclient import TestClient
@@ -58,7 +59,6 @@ def test_analyze_with_valid_product_hint() -> None:
 
     # Verify medical warnings
     assert isinstance(body["medical_warnings"], list)
-    assert len(body["medical_warnings"]) > 0
 
     # Verify metadata with request correlation
     assert body["meta"]["contract_version"] == "v1"
@@ -230,9 +230,7 @@ def test_analyze_full_orchestration_sequence() -> None:
     assert 0 <= body["risk_score"] <= 100
     assert 0.0 <= body["confidence_interval"] <= 1.0
     assert isinstance(body["decay_data"], list) and len(body["decay_data"]) > 0
-    assert isinstance(body["medical_warnings"], list) and len(
-        body["medical_warnings"]
-    ) > 0
+    assert isinstance(body["medical_warnings"], list)
     assert "request_id" in body["meta"]
     assert "contract_version" in body["meta"]
 
@@ -252,3 +250,44 @@ def test_analyze_backwards_compatibility_alias() -> None:
     assert "meta" in body
     assert "request_id" in body["meta"]
     assert body["meta"]["contract_version"] == "v1"
+
+
+def test_analyze_uses_phase4_warning_logic() -> None:
+    """Test Phase 5 wiring to Phase 4 medical warning evaluator."""
+    client = TestClient(app)
+
+    response = client.post(
+        "/analyze",
+        json={"product_name_hint": "PFOA PFOS PTFE"},
+    )
+
+    assert response.status_code == 200
+    warnings = response.json()["medical_warnings"]
+    assert isinstance(warnings, list)
+    assert any("informational" in warning.lower() for warning in warnings)
+
+
+def test_analyze_returns_400_for_invalid_input_type() -> None:
+    """Test 4xx validation response shape for malformed payload type."""
+    client = TestClient(app)
+
+    response = client.post(
+        "/analyze",
+        json={"image_base64": {"not": "a string"}},
+    )
+
+    assert response.status_code == 422
+    body = response.json()
+    assert "detail" in body
+
+
+def test_analyze_returns_500_on_ocr_failure() -> None:
+    """Test standardized 5xx response when OCR stage raises runtime error."""
+    client = TestClient(app)
+
+    with patch("app.routes.analyze.extract_text_from_image", side_effect=RuntimeError("boom")):
+        response = client.post("/analyze", json={"product_name_hint": "Test"})
+
+    assert response.status_code == 500
+    body = response.json()
+    assert body["detail"] == "OCR processing failed"
