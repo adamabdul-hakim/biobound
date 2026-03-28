@@ -1,7 +1,7 @@
 """PFAS Detection Engine - identifies PFAS and PFAS-adjacent terms from OCR text."""
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Literal
 
 

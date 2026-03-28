@@ -1,15 +1,13 @@
 """Unit tests for PFAS Detection Engine (Phase 2)."""
 
-import pytest
-
+from app.services.ocr import OCRResult, OCRTextLine
+from app.services.parser import detect_chemicals
 from app.services.pfas_hunter import (
     ChemicalMatch,
     detect_chemicals_scored,
     normalize_text,
     rank_top_risk_contributors,
 )
-from app.services.parser import detect_chemicals
-from app.services.ocr import OCRResult, OCRTextLine
 
 
 class TestNormalization:
