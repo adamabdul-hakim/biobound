@@ -78,9 +78,10 @@ Team A is responsible for collecting all five user inputs and passing them to Te
 |---|---|---|---|
 | `zipCode` | `string` | Text field | Must match `/^\d{5}$/` |
 | `productScan` | `string` (image or barcode) | Camera / OCR upload or barcode scan | Must return a parseable product ID |
-| `AmountOfNonStickCookware` | `object` | Form: percentage ranges + years-of-use number input | Years must be `>= 0`, percentage required |
+| `amountOfNonStickCookware` | `object` | Form: percentage ranges + years-of-use number input | Years must be `>= 0`, percentage required |
 | `filterModel` | `object` | Dropdown: brand + type (maps to NSF cert lookup) | At minimum, "None" must be selectable |
 | `dietHabits` | `object` | Multi-select checklist: fiber sources, food categories, current medications | At least one selection required |
+| `makeUpUse` | `object` | Multi-select checklist: Water Proof Mascara, liquid lipsticks, foundations, eye shadow, eye liners, none + how often number input | At least one selection required |
 
 **Data shape sent to Team B (single API call):**
 
@@ -100,6 +101,10 @@ interface UserInputPayload {
     fiberSources: string[];        // e.g. ["oats", "beans"]
     foods: string[];
     medications: string[];
+  };
+  makeUpUse: {
+    type: string[];        // e.g. ["eye liners", "Water Proof Mascara"]
+    frequency: int;
   };
 }
 ```
