@@ -16,7 +16,7 @@ PHASE_0_WARNING = (
 @router.post("", response_model=AnalyzeResponse)
 def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
     ocr_result = extract_text_from_image(payload.image_base64)
-    chemicals = detect_chemicals(ocr_result)
+    chemicals = detect_chemicals(ocr_result, payload.product_name_hint)
     risk_score, confidence = calculate_risk_score(chemicals)
 
     return AnalyzeResponse(
@@ -28,3 +28,9 @@ def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
         medical_warnings=[PHASE_0_WARNING],
         meta=AnalyzeMeta(),
     )
+
+
+@router.post("/process-image", response_model=AnalyzeResponse)
+def process_image(payload: AnalyzeRequest) -> AnalyzeResponse:
+    # Alias endpoint for backwards compatibility with design doc
+    return analyze(payload)
