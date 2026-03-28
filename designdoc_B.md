@@ -55,7 +55,7 @@ Team B owns the core analysis engine for product PFAS risk detection and biologi
 
 Each phase must end in a releasable state and include a demo to Team A.
 
-## Phase 0: Project Setup and Contracts (Day 1)
+## Phase 0: Project Setup and Contracts
 
 ### Goals
 - Establish repository conventions and baseline service skeleton.
@@ -81,7 +81,7 @@ Each phase must end in a releasable state and include a demo to Team A.
 - Team A validates schema shape against frontend mock.
 - PR template + contribution rules documented.
 
-## Phase 1: Scanner Pipeline MVP (Day 2-3)
+## Phase 1: Scanner Pipeline MVP
 
 ### Goals
 - Ingest image input and return extracted raw text reliably.
@@ -106,7 +106,7 @@ Each phase must end in a releasable state and include a demo to Team A.
 - P95 OCR endpoint latency target met for test payloads.
 - Graceful error response for unreadable/invalid images.
 
-## Phase 2: PFAS Detection Engine v1 (Day 4-5)
+## Phase 2: PFAS Detection Engine v1
 
 ### Goals
 - Detect PFAS and PFAS-adjacent terms from OCR text.
@@ -132,7 +132,7 @@ Each phase must end in a releasable state and include a demo to Team A.
 - All baseline fixture cases pass.
 - False positive regression suite added and green.
 
-## Phase 3: Risk Scoring and REI Model (Day 6-7)
+## Phase 3: Risk Scoring and REI Model
 
 ### Goals
 - Convert detections into stable 0-100 risk scoring and REI.
@@ -154,7 +154,7 @@ Each phase must end in a releasable state and include a demo to Team A.
   - Same input yields same score.
   - Missing optional fields do not crash processing.
 
-## Phase 4: Biological Decay Simulator (Day 8-9)
+## Phase 4: Biological Decay Simulator
 
 ### Goals
 - Provide exposure reduction projections with intervention logic.
@@ -176,7 +176,7 @@ Each phase must end in a releasable state and include a demo to Team A.
 - Medical warning behavior verified by contract tests.
 - Decay curve output format stable and consumed by Team A mock.
 
-## Phase 5: Unified `/analyze` Endpoint (Day 10)
+## Phase 5: Unified `/analyze` Endpoint
 
 ### Goals
 - Orchestrate end-to-end pipeline behind one stable endpoint.
@@ -196,7 +196,7 @@ Each phase must end in a releasable state and include a demo to Team A.
 - Team A integration smoke test passes.
 - No P1 defects in combined path.
 
-## Phase 6: Hardening and Release Readiness (Day 11-12)
+## Phase 6: Hardening and Release Readiness
 
 ### Goals
 - Improve reliability, maintainability, and release confidence.
