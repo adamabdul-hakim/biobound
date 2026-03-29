@@ -2,6 +2,7 @@
 
 import { useAppStore } from "@/store/appStore";
 import { useState } from "react";
+import { Sparkles, CheckCircle } from "lucide-react";
 
 const frequencyOptions = ["never", "rarely", "weekly", "daily"] as const;
 
@@ -36,20 +37,25 @@ export default function MakeUpUseForm() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4">
-      <label className="block text-sm font-medium text-gray-700">Makeup Use</label>
+    <div className="w-full max-w-md mx-auto space-y-6">
+      <label className="block text-sm font-bold text-gray-100 flex items-center gap-2">
+        <Sparkles className="w-4 h-4 text-teal-400" />
+        Makeup Use
+      </label>
 
       <div>
-        <label className="block text-sm text-gray-600 mb-2 font-medium">Frequency:</label>
-        <div className="grid grid-cols-2 gap-2">
+        <label className="block text-sm font-semibold text-gray-100 mb-3">
+          How often do you use makeup?
+        </label>
+        <div className="grid grid-cols-2 gap-3">
           {frequencyOptions.map((option) => (
             <button
               key={option}
               onClick={() => setFrequency(option)}
-              className={`py-2 px-3 border rounded-lg transition capitalize ${
+              className={`py-3 px-3 border-2 rounded-lg transition-all font-bold capitalize active:scale-95 ${
                 frequency === option
-                  ? "bg-blue-500 text-white border-blue-500"
-                  : "border-gray-300 text-gray-700 hover:border-blue-400"
+                  ? "bg-teal-600 text-white border-teal-500"
+                  : "border-teal-700/30 text-gray-300 hover:border-teal-600 hover:bg-teal-900/30"
               }`}
             >
               {option}
@@ -59,19 +65,19 @@ export default function MakeUpUseForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-gray-600 mb-2 font-medium">
+        <label className="block text-sm font-semibold text-gray-100 mb-3">
           Product types you use:
         </label>
         <div className="space-y-2">
           {productTypeOptions.map((option) => (
-            <label key={option} className="flex items-center cursor-pointer">
+            <label key={option} className="flex items-center cursor-pointer p-2 rounded-lg hover:bg-teal-900/20 transition">
               <input
                 type="checkbox"
                 checked={productTypes.includes(option)}
                 onChange={() => toggleProductType(option)}
-                className="w-4 h-4 rounded border-gray-300"
+                className="w-5 h-5 rounded border-2 border-teal-700/50 text-teal-500 focus:ring-teal-400 accent-teal-500 bg-slate-600"
               />
-              <span className="ml-2 text-gray-700 capitalize">{option}</span>
+              <span className="ml-3 text-gray-300 font-medium capitalize">{option}</span>
             </label>
           ))}
         </div>
@@ -79,12 +85,17 @@ export default function MakeUpUseForm() {
 
       <button
         onClick={handleSave}
-        className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        className="w-full py-3 px-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-bold hover:from-teal-500 hover:to-emerald-500 transition-all active:scale-95"
       >
         Save Makeup Info
       </button>
 
-      {makeUpUse && <p className="text-sm text-green-600">✓ Makeup info saved</p>}
+      {makeUpUse && (
+        <p className="text-sm text-emerald-300 p-3 bg-emerald-900/30 rounded-lg border border-emerald-700/50 font-semibold flex items-center gap-2">
+          <CheckCircle className="w-4 h-4" />
+          ✓ Makeup info saved
+        </p>
+      )}
     </div>
   );
 }

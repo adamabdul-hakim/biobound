@@ -9,8 +9,8 @@ interface DecayChartProps {
 export default function DecayChart({ data }: DecayChartProps) {
   if (!data || data.length === 0) {
     return (
-      <div className="w-full h-64 bg-gray-50 border border-gray-300 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500">No data available</p>
+      <div className="w-full h-64 bg-gray-50 border-2 border-gray-200 rounded-xl flex items-center justify-center">
+        <p className="text-gray-600 font-semibold">No decay data available</p>
       </div>
     );
   }
@@ -36,8 +36,8 @@ export default function DecayChart({ data }: DecayChartProps) {
 
   return (
     <div className="w-full">
-      <h3 className="font-semibold text-gray-900 mb-4">PFAS Decay Over Time</h3>
-      <div className="bg-white border border-gray-300 rounded-lg p-4 overflow-x-auto">
+      <h3 className="font-bold text-gray-900 mb-6 text-xl">PFAS Body Load Decay</h3>
+      <div className="bg-gradient-to-br from-white to-emerald-50 border-2 border-emerald-100 rounded-xl p-6 overflow-x-auto shadow-sm">
         <svg
           width={chartWidth + 40}
           height={chartHeight}
@@ -108,8 +108,8 @@ export default function DecayChart({ data }: DecayChartProps) {
           <path
             d={pathData}
             fill="none"
-            stroke="#3b82f6"
-            strokeWidth="2.5"
+            stroke="#10b981"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -121,7 +121,7 @@ export default function DecayChart({ data }: DecayChartProps) {
               cx={p.x}
               cy={p.y}
               r="4"
-              fill="#3b82f6"
+              fill="#10b981"
               stroke="white"
               strokeWidth="2"
             />
@@ -129,16 +129,16 @@ export default function DecayChart({ data }: DecayChartProps) {
         </svg>
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
-        <div className="p-3 bg-blue-50 rounded-lg">
-          <p className="text-gray-600">Start Load</p>
-          <p className="text-lg font-semibold text-blue-700">
+      <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
+        <div className="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-200">
+          <p className="text-gray-700 font-semibold text-xs mb-1">Current Load</p>
+          <p className="text-2xl font-bold text-emerald-700">
             {data[0]?.bodyLoad ?? 0}%
           </p>
         </div>
-        <div className="p-3 bg-green-50 rounded-lg">
-          <p className="text-gray-600">End Load ({maxWeek}w)</p>
-          <p className="text-lg font-semibold text-green-700">
+        <div className="p-4 bg-gradient-to-br from-teal-50 to-emerald-50 rounded-xl border border-teal-200">
+          <p className="text-gray-700 font-semibold text-xs mb-1">After {maxWeek}w</p>
+          <p className="text-2xl font-bold text-teal-700">
             {data[data.length - 1]?.bodyLoad ?? 0}%
           </p>
         </div>

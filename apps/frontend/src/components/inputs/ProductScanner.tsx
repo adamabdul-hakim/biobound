@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppStore } from "@/store/appStore";
-import { Camera } from "lucide-react";
+import { Camera, FileText, CheckCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function ProductScanner() {
@@ -25,40 +25,53 @@ export default function ProductScanner() {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <label className="block text-sm font-medium text-gray-700 mb-4">
-        Product Scan (Optional)
+      <label className="block text-sm font-bold text-gray-100 mb-4">
+        Product Ingredients (Optional)
       </label>
 
       {method === null ? (
-        <div className="space-y-2">
+        <div className="space-y-3">
           <button
             onClick={() => setMethod("upload")}
-            className="w-full p-4 border border-gray-300 rounded-lg hover:border-blue-500 transition text-left"
+            className="w-full p-5 border-2 border-teal-700/30 rounded-xl hover:border-teal-600 hover:bg-teal-900/20 transition-all active:scale-95 text-left group"
           >
-            <Camera className="w-5 h-5 inline mr-2" />
-            <span className="font-medium">Upload Product Image</span>
+            <Camera className="w-5 h-5 inline mr-2 text-teal-400 group-hover:scale-110 transition-transform" />
+            <span className="font-bold text-gray-100">Upload Product Image</span>
+            <p className="text-sm text-gray-400 mt-1 ml-7">Scan product label for OCR analysis</p>
           </button>
           <button
             onClick={() => setMethod("text")}
-            className="w-full p-4 border border-gray-300 rounded-lg hover:border-blue-500 transition text-left"
+            className="w-full p-5 border-2 border-teal-700/30 rounded-xl hover:border-teal-600 hover:bg-teal-900/20 transition-all active:scale-95 text-left group"
           >
-            <span className="font-medium">Enter Product Name</span>
+            <FileText className="w-5 h-5 inline mr-2 text-teal-400 group-hover:scale-110 transition-transform" />
+            <span className="font-bold text-gray-100">Enter Product Name</span>
+            <p className="text-sm text-gray-400 mt-1 ml-7">Manually search product database</p>
           </button>
         </div>
       ) : method === "upload" ? (
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+        <div className="border-2 border-dashed border-teal-700/50 rounded-xl p-8 text-center bg-teal-900/20 backdrop-blur-sm">
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            className="w-full"
+            className="w-full cursor-pointer"
           />
-          <p className="text-sm text-gray-500 mt-2">
-            Upload a product image for OCR analysis
+          <Camera className="w-8 h-8 mx-auto mb-2 text-teal-400" />
+          <p className="text-sm text-gray-100 font-semibold mb-2">
+            Upload a product image for analysis
           </p>
+          <p className="text-xs text-gray-400 mb-4">
+            Supports JPG, PNG, WebP
+          </p>
+          {productScan && (
+            <p className="text-sm text-emerald-300 font-bold flex items-center gap-1 justify-center mb-4">
+              <CheckCircle className="w-4 h-4" />
+              Image uploaded
+            </p>
+          )}
           <button
             onClick={() => setMethod(null)}
-            className="text-sm text-blue-600 mt-2 hover:underline"
+            className="text-sm text-teal-400 hover:text-teal-300 font-semibold transition"
           >
             Change method
           </button>
@@ -68,21 +81,27 @@ export default function ProductScanner() {
           <textarea
             value={productScan || ""}
             onChange={handleTextInput}
-            placeholder="e.g., Teflon non-stick pan"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="e.g., Teflon non-stick pan, Nordic Ware bakeware"
+            className="w-full px-4 py-3 border-2 border-teal-700/30 bg-slate-600 text-gray-100 placeholder-gray-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-600 transition resize-none"
             rows={4}
           />
+          {productScan && (
+            <p className="text-sm text-emerald-300 font-bold mt-2 flex items-center gap-1">
+              <CheckCircle className="w-4 h-4" />
+              Product name entered
+            </p>
+          )}
           <button
             onClick={() => setMethod(null)}
-            className="text-sm text-blue-600 mt-2 hover:underline"
+            className="text-sm text-teal-400 hover:text-teal-300 font-semibold mt-3 transition"
           >
             Change method
           </button>
         </div>
       )}
 
-      <p className="text-gray-500 text-sm mt-4">
-        This step is optional. Your analysis will continue without it.
+      <p className="text-gray-600 text-sm mt-4 leading-relaxed">
+        PFAS is commonly found in waterproof and non-stick products. We&apos;ll cross-reference with known contamination sources.
       </p>
     </div>
   );
