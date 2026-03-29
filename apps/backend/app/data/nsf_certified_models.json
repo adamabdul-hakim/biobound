@@ -1,0 +1,5416 @@
+{
+  "metadata": {
+    "name": "NSF Certified Filter Models",
+    "generated_at": "2026-03-29T05:01:40.821971+00:00",
+    "retrieved_by": "adama",
+    "input_csv": "C:\\Users\\adama\\Downloads\\nfs_58.xlsx",
+    "standard_filter": "NSF-58",
+    "source_url": null,
+    "record_count": 310
+  },
+  "records": [
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "3MRO301",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "3MROM413",
+        "3MROP310",
+        "3MROP416"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.48
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "3MRO401",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "3MROM413",
+        "3MROP411",
+        "3MROP412"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.48
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "3MRO501",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Replacement Element: Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "3MROM413",
+        "3MROP411",
+        "3MROP412"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 23.92
+    },
+    {
+      "brand": "FRAKCO, INC.",
+      "model": "AM4QC",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "A.O. SMITH WATER TREATMENT (NORTH AMERICAN), INC.",
+      "model": "AORO-50",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "AQUA SYSTEMS",
+      "model": "AQPC-35",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "AQUA SYSTEMS",
+      "model": "AQPC-435",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "CAPITAL WATER SOFTENER, INC.",
+      "model": "Aqua Bella CP-TFC-M50-RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "CAPITAL WATER SOFTENER, INC.",
+      "model": "Aqua Bella CP-TFC-NM50-RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "CLOVER CO., LTD.",
+      "model": "AQVR10",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "AQV-CB AQV-CM AQV-RO100"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 30.64
+    },
+    {
+      "brand": "CLOVER CO., LTD.",
+      "model": "AQVR5",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "AQV-CB AQV-CM AQV-RO50"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 23.39
+    },
+    {
+      "brand": "AQUA TREATMENT SERVICE, INC.",
+      "model": "ATS-PRO50-4",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S357XX5"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "IHLAS EV ALETLERI IMALAT, SANAYI VE TICARET A.S",
+      "model": "Aura Cebilon 101 ME",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "340005Z06",
+        "350002Z",
+        "350003Z"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 75.15
+    },
+    {
+      "brand": "IHLAS EV ALETLERI IMALAT, SANAYI VE TICARET A.S",
+      "model": "Aura Cebilon 101 MF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "340005Z06",
+        "340069Z",
+        "340070Z"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 34.03
+    },
+    {
+      "brand": "IHLAS EV ALETLERI IMALAT, SANAYI VE TICARET A.S",
+      "model": "Aura Cebilon Platinum 101 PT",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "340005Z06",
+        "340069Z",
+        "340070Z"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 34.03
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "AvantaPure RO-450",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LE"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "BNT-RO122",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "BNT-RO125",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "BNT-RO131",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 18.12
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "BNT-RO133",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "BNT-RO221",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "BNT-RO301",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "BNT-RO309",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.29
+    },
+    {
+      "brand": "LANCASTER WATER TREATMENT",
+      "model": "Brita Pro BPLRO-35",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "Brita Total360 BRDROS",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "BRDROF BRDROM"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "CHARGER WATER TREATMENT PRODUCTS",
+      "model": "ClearConnect QC50",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "CLOUD WATER FILTER, LLC",
+      "model": "Cloud Version 1",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "02-200-0006",
+        "02-200-0007",
+        "02-200-0008",
+        "02-200-0009"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 42.07
+    },
+    {
+      "brand": "CLOVER CO., LTD.",
+      "model": "CLVR10",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "CLV-CB CLV-CM CLV-RO100 CLV-SED"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 30.64
+    },
+    {
+      "brand": "CLOVER CO., LTD.",
+      "model": "CLVR5",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "CLV-CB CLV-CM CLV-RO50 CLV-SED"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 23.39
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "CMTRO-3TFC",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "47-55706G2",
+        "66-4706G2"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "CMTRO-75",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "47-55706G2",
+        "47-55710G2",
+        "66-4710G2"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 23.59
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "CN-RO-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "CN-RO75",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "Conserv 75E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CB5",
+        "4CC",
+        "4FC5",
+        "GRO-75EN"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 50.51
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "Conserv 75S",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CC",
+        "4FC5",
+        "GRO-75EN"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 50.51
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "Conserv HE-3",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "MR-600F SEN SEN+"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 443.68
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "Conserv LT-S",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CC",
+        "4FC5",
+        "GRO-75EN"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 75.0
+    },
+    {
+      "brand": "LANCASTER WATER TREATMENT",
+      "model": "CRO-350",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "CHARGER WATER TREATMENT PRODUCTS",
+      "model": "CWQC50",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "SENWATER SYSTEMS, LLC.",
+      "model": "DRO512",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "Ecodyne ELXROTU",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "ELXRM14"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "Ecopure ECOP30",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "ECOROM"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "R.E. PRESCOTT CO., INC.",
+      "model": "ELP50-4",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "ERO-175",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7308297"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "ERO-385",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "ERO-385-BN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "ERO-385-CP",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "ERO-385E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "ERO-385E-BN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "ERO-385E-CP",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Everpure Residential ROM IV",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "ROM-G75 ROM-PFK ROM-PRE ROM-PST"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.66
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/10G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/10G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/16G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/16G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/2G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/2G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/5G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 200/5G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-200"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/10G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/10G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/16ATM",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/16ATM-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/16G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/16G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/2G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/2G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/30ATM",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/30ATM-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/50ATM",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/50ATM-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/5G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 375/5G-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "4CM",
+        "4FC5-S EZ-375"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 70.26
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 650/16ATM",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7CM",
+        "7FC5-S EZ-650"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 650/16ATM-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7CM",
+        "7FC5-S EZ-650"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 650/30ATM",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7CM",
+        "7FC5-S EZ-650"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 650/30ATM-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7CM",
+        "7FC5-S EZ-650"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 650/50ATM",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7CM",
+        "7FC5-S EZ-650"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "EZ-RO 650/50ATM-BL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7CM",
+        "7FC5-S EZ-650"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 268.39
+    },
+    {
+      "brand": "TAIWAN DOUBLE PLASTIC INJECTION INDUSTRIAL CO.,LTD.",
+      "model": "FRC-001-X",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "F-PC-FRC001"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 600.0
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "FSTM075",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Replacement Element: Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "ScaleGard Pre ScaleGard RO"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.87
+    },
+    {
+      "brand": "GUNG DAI TECHNOLIGY CO.,\nLTD.",
+      "model": "GDIZERO I",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "GDIZF-VPC"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 600.0
+    },
+    {
+      "brand": "GUNG DAI TECHNOLIGY CO.,\nLTD.",
+      "model": "GDIZERO II",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "GDIZF-PC"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 600.0
+    },
+    {
+      "brand": "GE APPLIANCES, A HAIER COMPANY",
+      "model": "GNRQ18NBN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FQ18MN FQ18PN"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "GE APPLIANCES, A HAIER COMPANY",
+      "model": "GXRQ18NBN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FQ18MN FQ18PN"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "GE APPLIANCES, A HAIER COMPANY",
+      "model": "GXRV40TBN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FQ18MN FQ18PN"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "HALO WATER SYSTEMS",
+      "model": "H-RO-PLUS",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "Stage 1",
+        "Stage 2",
+        "Stage 3",
+        "Stage 4"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 20.1
+    },
+    {
+      "brand": "HYDRONOVATION INC.",
+      "model": "HD-MRO1200C",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "PPGAC10BB RO600 UF10BB"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 600.0
+    },
+    {
+      "brand": "HYDRONOVATION INC.",
+      "model": "HD-MRO800C",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "PPGAC10BB RO400 UF10BB"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 400.0
+    },
+    {
+      "brand": "HYDRONIX WATER TECHNOLOGY",
+      "model": "HDGT-TW50 C",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Replacement Element: Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "N/A"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 17.0
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "HERO-385-BN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "HERO-385-CP",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ECOWATER SYSTEMS LLC",
+      "model": "HERO-385PLUS",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7380639"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.75
+    },
+    {
+      "brand": "ATLANTIC FILTER CORPORATION",
+      "model": "HR-35-TFC-4W",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "HYDRONIX WATER TECHNOLOGY",
+      "model": "Hydro Guard HDGT-45XX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "HDGT-CB5 HDGT-CB5P HDGT-SED5 HDGT-TW50 C"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 20.1
+    },
+    {
+      "brand": "WATERWORLD USA, INC.",
+      "model": "IntelliClear-800",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "IC-PCB-3012 MEM-IC-4111-800"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 800.0
+    },
+    {
+      "brand": "KINGWORKS (SHENZHEN) INDUSTRIAL CO., LTD.",
+      "model": "ITS100G-HW",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "ITLX100GHF ITLX100RO"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 100.0
+    },
+    {
+      "brand": "KAROFI GROUP JOINT STOCK COMPANY",
+      "model": "KAQ-P95",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "-"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 97.0
+    },
+    {
+      "brand": "KAROFI GROUP JOINT STOCK COMPANY",
+      "model": "KAQ-U95",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "-"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 97.0
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Excell + Mineral RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20002",
+        "20003",
+        "20012",
+        "20015",
+        "20018",
+        "20247"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent GMRO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Grand Plus Mineral RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Grand Plus ZWW",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Grand Star Mineral RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Grand Star ZWW",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Pearl Mineral RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Pearl ZWW",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Prime + Mineral RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Prime Plus ZWW",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Supreme + Mineral RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "KENT RO SYSTEMS LTD.",
+      "model": "Kent Supreme Plus ZWW",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "20003",
+        "20009",
+        "20010",
+        "20015",
+        "20529"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 19.8
+    },
+    {
+      "brand": "TAIWAN DOUBLE PLASTIC INJECTION INDUSTRIAL CO.,LTD.",
+      "model": "KRC-001-X",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "F-PC-KRC001"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 600.0
+    },
+    {
+      "brand": "TAIWAN DOUBLE PLASTIC INJECTION INDUSTRIAL CO.,LTD.",
+      "model": "KRC-002-X",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "F-PC-KRC002"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 600.0
+    },
+    {
+      "brand": "LANCASTER WATER TREATMENT",
+      "model": "LRO-35",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "LVRO-75HE",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "2CB5",
+        "2FC5-S GRO-75EN"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.66
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "LVRO-75HE+F",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "2CB5",
+        "2FC5-S GRO-75EN"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.66
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 3HA RO 100GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO100-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 35.09
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 3HA RO 50GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO50-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 35.09
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 3HA RO 75GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO75-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 35.09
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4HA RO 100GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO100-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 30.64
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4HA RO 50GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO50-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 23.39
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4HA RO 75GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO75-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 30.64
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4SS  RO 50GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 RO50-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 54.44
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4SS  RO 75GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 RO75-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 66.35
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4SS RO 100GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO100-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 64.92
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4SS RO 50GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO50-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 54.44
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 4SS RO 75GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 MC-FR M92512 RO75-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 66.35
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 5HA RO 100GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "K2010",
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 RO100-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 35.09
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 5HA RO 50GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "K2010",
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 RO50-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 35.09
+    },
+    {
+      "brand": "MICROFILTER CO., LTD.",
+      "model": "M9 5HA RO 75GPD",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "K2010",
+        "M92512 CB-FR M92512 GC-FR M92512 GM-FR M92512 RO75-FR M92512 SED-FR"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 35.09
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "MAYTAG DRINKING WATER SYSTEM MODEL M-550",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LEM"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "HELLENBRAND INC.",
+      "model": "Millennium MRO-35",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "HELLENBRAND INC.",
+      "model": "Millennium MRO-35GF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "HELLENBRAND INC.",
+      "model": "MILLENNIUM PRO S33101-PL6-HB",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35725C"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "HELLENBRAND INC.",
+      "model": "MILLENNIUM PRO S33201-PL6-HB",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35725C"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "FOSHAN MIDEA CHUNGHO WATER PURIFICATION EQUIPMENT CO., LTD.",
+      "model": "MRO1785-800G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "MF-3012-C1D1 MF-4111-M4D4"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 800.0
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "MRS-600HE-II\n(General Market)",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "MR-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 763.35
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "MRS-600HE-II\n(Starbucks)",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "MR-600-1"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 507.76
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "MRS-600HE-II-P\nGeneral Market",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7FC-P",
+        "7FS-BW MR-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 763.35
+    },
+    {
+      "brand": "EVERPURE LLC",
+      "model": "MRS-600HE-II-P\nStarbucks",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7FC-P",
+        "7FS-BW MR-600-1"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 507.76
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "North Star NSRO42C4",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "7287514"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "North Star NSROPS",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "NSROPF"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "OmniFilter RO2050",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "CB1 OM1",
+        "R200 Series A ROR2000 ROR2050 RS14"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.04
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Pentair GRO-2550",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "EPM-10 GRO-50EN GS10-RO P5"
+      ],
+      "claims": [
+        "Cyst Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 10.09
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Pentair GRO-2575",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "GRO-75EN"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 13.96
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Pentair GRO-350B",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "F1GC-RC FDF1-RC GRO50-RC"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.96
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Pentair GRO-475B",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "F1B1-RC F1GC-RC FDF1-RC GRO75-RC"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 30.57
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Pentair GRO-475BP",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "F1B1-RC F1GC-RC FDF1-RC GRO75-RC"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 94.38
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Pentair GRO-575B",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "F1GC-RC F2B1-RC F2B2-RC2 FDF1-RC GRO75-RC"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.08
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "Pentair RO-2550",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "EPM-10 GS-10RO P5",
+        "TLC-50"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=50 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 15.04
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "Pro Elite RO-450",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LE"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "Pro Elite RO-450 With Monitor",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LE"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "LANCASTER WATER TREATMENT",
+      "model": "PRO-50",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "PICOGRAM CO., LTD.",
+      "model": "Pureal Eco Click PPU-EC4RO50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate tap",
+      "replacement_modules": [
+        "-"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 50.0
+    },
+    {
+      "brand": "PICOGRAM CO., LTD.",
+      "model": "Pureal Eco Click PPU-EC4RO75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate tap",
+      "replacement_modules": [
+        "-"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 75.0
+    },
+    {
+      "brand": "PICOGRAM CO., LTD.",
+      "model": "Pureal EcoClick PPU-EC3RO50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate tap",
+      "replacement_modules": [
+        "-"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 50.0
+    },
+    {
+      "brand": "PICOGRAM CO., LTD.",
+      "model": "Pureal EcoClick PPU-EC3RO75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate tap",
+      "replacement_modules": [
+        "-"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 75.0
+    },
+    {
+      "brand": "MASTER WATER CONDITIONING, INC.",
+      "model": "Puro-35T",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "FRANKLIN WATER TREATMENT, LLC",
+      "model": "Puronics Micromax 6000 TFC",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "47-124001PRI",
+        "47-55730G2PRI",
+        "66-5706PRI"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 7.82
+    },
+    {
+      "brand": "FRANKLIN WATER TREATMENT, LLC",
+      "model": "Puronics Micromax 6500 TFC",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "47-125001PRI",
+        "47-126001PRI",
+        "47-55730G2PRI",
+        "66-5706PRI"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 7.82
+    },
+    {
+      "brand": "REYNOLDS WATER CONDITIONING",
+      "model": "QT-4",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "AQUION, INC.",
+      "model": "Rainsoft Ultrefiner Elite",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "51565"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 24.22
+    },
+    {
+      "brand": "RAYNE CORPORATION",
+      "model": "RaynePure Plus",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "ZHEJIANG LONSID HEALTHY DRINKING WATER EQUIPMENT CO., LTD",
+      "model": "RC200D3",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "3MR-2 PCT"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 98.96
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FC15 FG15 FP15 FT15 MC7"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.04
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7-BLK",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FC15 FG15 FP15 FT15 MC7"
+      ],
+      "claims": [
+        "Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.41
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7-BN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FC15 FG15 FP15 FT15 MC7"
+      ],
+      "claims": [
+        "Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.41
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7AK",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FC15 FG15 FP15 FT15 MC7"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.04
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7AK-BLK",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FA15 FC15 FG15 FP15 FT15 MC7"
+      ],
+      "claims": [
+        "Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.41
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7AK-BN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FA15 FC15 FG15 FP15 FT15 MC7"
+      ],
+      "claims": [
+        "Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.41
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7AK-UV",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FC15 FG15 FP15 FT15 MC7"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.04
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7AK-UVBLK",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FA15 FC15 FG15 FP15 FT15 MC7 UVF8"
+      ],
+      "claims": [
+        "Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.41
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7AK-UVBN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FA15 FC15 FG15 FP15 FT15 MC7 UVF8"
+      ],
+      "claims": [
+        "Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.41
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RCC7UV",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FC15 FG15 FP15 FT15 MC7 UVF8"
+      ],
+      "claims": [
+        "Asbestos Reduction Barium Reduction Cadmium Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 25.41
+    },
+    {
+      "brand": "IHLAS EV ALETLERI IMALAT, SANAYI VE TICARET A.S",
+      "model": "rexwat",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "340005Z06",
+        "340069Z",
+        "340070Z",
+        "340071Z",
+        "349004Z",
+        "349004Z02"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 34.03
+    },
+    {
+      "brand": "ZHEJIANG CANATURE RUNXIN ELECTRICAL APPLIANCE CO., LTD.",
+      "model": "RO-5-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "ZHEJIANG CANATURE RUNXIN ELECTRICAL APPLIANCE CO., LTD.",
+      "model": "RO-5-75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "ZHEJIANG CANATURE RUNXIN ELECTRICAL APPLIANCE CO., LTD.",
+      "model": "RO-7-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "ZHEJIANG CANATURE RUNXIN ELECTRICAL APPLIANCE CO., LTD.",
+      "model": "RO-8-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "ZHEJIANG CANATURE RUNXIN ELECTRICAL APPLIANCE CO., LTD.",
+      "model": "RO-9-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-B02-75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-B03-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.29
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-B03-75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 18.12
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-B04-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-B04-75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-B05-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-B05-75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI CN-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "LINTON & ASSOCIATES, INC DBA WATERTECH INDUSTRIES",
+      "model": "RO-PPQC",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "LINTON & ASSOCIATES, INC DBA WATERTECH INDUSTRIES",
+      "model": "RO-PPQC-M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S35715A-01"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-R05-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.29
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-R06-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-R07-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-R08-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "CANATURE HEALTH TECHNOLOGY GROUP CO., LTD.",
+      "model": "RO-R09-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI CN-1812-50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "EXPRESS WATER INC.",
+      "model": "RO10DX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FLTMEME100"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.89
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AB-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AB-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AB-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AB-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AB-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AG-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AG-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AG-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AG-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AG-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AW-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AW-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AW-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AW-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3AW-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BB-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BB-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BB-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BB-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BB-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BG-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BG-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BG-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BG-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BG-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BW-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BW-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BW-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BW-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3BW-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CB-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CB-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CB-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CB-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CB-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CG-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CG-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CG-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CG-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CG-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CW-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CW-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CW-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CW-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3CW-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DB-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DB-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DB-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DB-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DB-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DG-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DG-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DG-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DG-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DG-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DW-400E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DW-400M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-400 C8B-RO1-400"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DW-600E",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DW-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3DW-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3EB-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3EB-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3EG-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3EG-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3EW-600M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO1-600 C8B-RO1-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "XIAMEN FILTERTECH INDUSTRIAL CORPORATION",
+      "model": "RO3EW-600M-NF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "C6A-CB1 C6B-CB1 C7A-CF1 C7B-CF1 C8A-RO2-600 C8B-RO2-600"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RO500-BN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FCB500 FCF500 MRO500"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 500.0
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RO500-ORB",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FCB500 FCF500 MRO500"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 500.0
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RO500AK-BN",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FCA500 FCF500 MRO500"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 500.0
+    },
+    {
+      "brand": "ISPRING WATER SYSTEMS LLC",
+      "model": "RO500AK-ORB",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FCA500 FCF500 MRO500"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 500.0
+    },
+    {
+      "brand": "EXPRESS WATER INC.",
+      "model": "RO5DX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "FLTMEME50"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.22
+    },
+    {
+      "brand": "ROYAL GREEN SU ARITMA SISTEMLERI SAN DIS TIC. LTD. STI",
+      "model": "Royal Green Lux Plus",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "RG-BW60-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.22
+    },
+    {
+      "brand": "ROYAL GREEN SU ARITMA SISTEMLERI SAN DIS TIC. LTD. STI",
+      "model": "Royal Green Picasso",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "RG-BW60-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.22
+    },
+    {
+      "brand": "ROYAL GREEN SU ARITMA SISTEMLERI SAN DIS TIC. LTD. STI",
+      "model": "Royal Green Softlime",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "RG-BW60-1812-75"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 21.22
+    },
+    {
+      "brand": "AQUA SYSTEMS",
+      "model": "S33201-PL6-AS",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S357XX5"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.0
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "ScaleGard High Flux Reverse Osmosis",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Commercial Modular",
+      "replacement_modules": [
+        "2 - SG-HFRO M18 SG-HFRO P10-SI"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 1452.0
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "ScaleGard HP Reverse Osmosis System",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "HF90-CLX-RO HFRO-500"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 740.0
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "SGLP-RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Replacement Element: Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "ScaleGard Pre ScaleGard RO"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 53.0
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "SGLP-RO-NP",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Replacement Element: Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "ScaleGard RO"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 53.0
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "SGLP200-CLX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "CFS M HF65-CL"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 61.97
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "SGLP200-CLX-BP",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In",
+      "replacement_modules": [
+        "CFS M HF65-CL"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 61.97
+    },
+    {
+      "brand": "SOLVENTUM PURIFICATION INC.",
+      "model": "SQC4 Purificare",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "47-55702PC",
+        "47-55704PC",
+        "47-55710PC",
+        "66-4706PC"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.48
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-335",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-335FS",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-335FSX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-335X",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-3PL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-3PLX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-435",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-435FFSX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-435FSX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-435RC",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-435X",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-4PL",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-4PLF",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MICROLINE",
+      "model": "T.F.C.-4PLX",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "PENTAIR RESIDENTIAL FILTRATION, LLC",
+      "model": "T600RO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "CB-12M CF-12M ROM-24M"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 396.34
+    },
+    {
+      "brand": "MARLO INCORPORATED",
+      "model": "TFC-35",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "MARLO INCORPORATED",
+      "model": "TFC-35M",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "SHANGHAI INTOP INDUSTRY CO., LTD.",
+      "model": "TOP-RO-R05-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.29
+    },
+    {
+      "brand": "SHANGHAI INTOP INDUSTRY CO., LTD.",
+      "model": "TOP-RO-R05-75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 109.04
+    },
+    {
+      "brand": "SHANGHAI INTOP INDUSTRY CO., LTD.",
+      "model": "TOP-RO-UB-50G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-50-NPD",
+        "1812-50-NPI"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 89.01
+    },
+    {
+      "brand": "SHANGHAI INTOP INDUSTRY CO., LTD.",
+      "model": "TOP-RO-UB-75G",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "1812-75-NPD",
+        "1812-75-NPI"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 18.12
+    },
+    {
+      "brand": "SENWATER SYSTEMS, LLC.",
+      "model": "TRO508",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "SENWATER SYSTEMS, LLC.",
+      "model": "TRO510",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1229RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "WATER-RIGHT / WATERCARE",
+      "model": "UltroWater",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "WATER-RIGHT / WATERCARE",
+      "model": "Water-Right\u00ae WRO-35",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1448RS"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 11.0
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "Westinghouse Drinking Water System A-450",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LE"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "Westinghouse Drinking Water System D-550",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LE"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "Westinghouse Drinking Water System P-550",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LE"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "THE LEVEREDGE",
+      "model": "Westinghouse Drinking Water System R-450",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "S1340RSX-LE"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 12.0
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "Whirlpool WHAPSRO",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "WHEERF WHEERM"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "Whirlpool WHAROS5",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "WHEERF WHEERM"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "WATER CHANNEL PARTNERS",
+      "model": "Whirlpool WHER25",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "WHEERF WHEERM"
+      ],
+      "claims": [
+        "Arsenic (Pentavalent)<=300 ppb Reduction Barium Reduction Cadmium Reduction Chromium (Hexavalent) Reduction Chromium (Trivalent) Reduction",
+        "Copper Reduction Cyst Reduction Fluoride Reduction Lead Reduction Nitrate/Nitrite Reduction",
+        "Radium 226/228 Reduction",
+        "Selenium Reduction TDS Reduction Turbidity Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 14.76
+    },
+    {
+      "brand": "FUSHAN WATER PURIFICATION CO., LTD.",
+      "model": "WS-MIN\u2019O-R2",
+      "standard": "NSF-58",
+      "pfas_certified": true,
+      "product_type": "Plumbed-In to Separate Tap",
+      "replacement_modules": [
+        "WS-MIN\u2019O-F1 WS-MIN\u2019O-FR2"
+      ],
+      "claims": [
+        "TDS Reduction"
+      ],
+      "source_type": "xlsx",
+      "source_document": "nfs_58.xlsx",
+      "daily_production_rate_gpd": 600.0
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-"""Convert NSF product CSV exports into a normalized JSON dataset.
+"""Convert NSF product CSV/XLSX exports into a normalized JSON dataset.
 
 Usage example:
     python scripts/build_nsf_model_dataset.py \
@@ -16,6 +16,8 @@ import re
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+
+from openpyxl import load_workbook
 
 
 def _normalize_header(name: str) -> str:
@@ -54,17 +56,54 @@ def _standard_to_pfas_certified(standard: str) -> bool:
 
 
 def _read_rows(input_csv: Path) -> list[dict[str, str]]:
+    if input_csv.suffix.lower() == ".xlsx":
+        return _read_xlsx_rows(input_csv)
+
     with input_csv.open("r", encoding="utf-8-sig", newline="") as handle:
         sample = handle.read(4096)
-        handle.seek(0)
 
-        try:
-            dialect = csv.Sniffer().sniff(sample)
-        except csv.Error:
-            dialect = csv.excel
+    try:
+        dialect = csv.Sniffer().sniff(sample, delimiters=",;\t|")
+        delimiter = getattr(dialect, "delimiter", ",")
+        if not isinstance(delimiter, str) or len(delimiter) != 1:
+            raise csv.Error("invalid delimiter detected")
+    except csv.Error:
+        dialect = csv.excel
 
+    with input_csv.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle, dialect=dialect)
         return [row for row in reader if row]
+
+
+def _read_xlsx_rows(input_xlsx: Path) -> list[dict[str, str]]:
+    workbook = load_workbook(filename=input_xlsx, data_only=True, read_only=True)
+    try:
+        sheet = workbook.active
+        rows_iter = sheet.iter_rows(values_only=True)
+
+        headers_raw = next(rows_iter, None)
+        if not headers_raw:
+            return []
+
+        headers = [str(cell).strip() if cell is not None else "" for cell in headers_raw]
+        rows: list[dict[str, str]] = []
+
+        for row_values in rows_iter:
+            values = ["" if value is None else str(value).strip() for value in row_values]
+            if not any(values):
+                continue
+
+            row_dict = {
+                headers[i]: values[i] if i < len(values) else ""
+                for i in range(len(headers))
+                if headers[i]
+            }
+            if row_dict:
+                rows.append(row_dict)
+
+        return rows
+    finally:
+        workbook.close()
 
 
 def _value_from_candidates(row: dict[str, str], candidates: list[str]) -> str:
@@ -95,7 +134,19 @@ def _build_record(
     if not model:
         return None
 
+    # Some exports repeat table headers inside body rows (across pages); skip those.
+    header_markers = {
+        "brand name / trade name / model",
+        "brand name/trade name/model",
+        "model",
+    }
+    if model.strip().lower() in header_markers:
+        return None
+
     company = _value_from_candidates(row, ["company", "manufacturer", "brand"])
+    if company.strip().lower() in {"company", "manufacturer", "brand"}:
+        return None
+
     product_type = _value_from_candidates(row, ["producttype", "type"])
     replacement_module_raw = _value_from_candidates(row, ["replacementmodule", "replacementmodules"])
     claims_raw = _value_from_candidates(row, ["claims", "claim", "claimsreduction"])
@@ -103,6 +154,8 @@ def _build_record(
 
     replacements = _split_multiline_cell(replacement_module_raw)
     claims = _split_multiline_cell(claims_raw)
+
+    source_type = "xlsx" if source_document.lower().endswith(".xlsx") else "csv"
 
     record: dict[str, Any] = {
         "brand": company.upper() if company else "UNKNOWN",
@@ -112,7 +165,7 @@ def _build_record(
         "product_type": product_type,
         "replacement_modules": replacements,
         "claims": claims,
-        "source_type": "csv",
+        "source_type": source_type,
         "source_document": source_document,
     }
 
@@ -200,7 +253,7 @@ def _build_parser() -> argparse.ArgumentParser:
         "--standard",
         default="NSF-58",
         choices=["NSF-42", "NSF-53", "NSF-58"],
-        help="Certification standard represented by the CSV",
+        help="Certification standard represented by the input file",
     )
     parser.add_argument("--retrieved-by", required=True, help="Name/identifier of dataset retriever")
     parser.add_argument("--source-url", default=None, help="Official source URL for traceability")
