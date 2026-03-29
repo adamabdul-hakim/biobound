@@ -12,6 +12,16 @@
   --warm-sage: #6db599;
   --light-mint: #1f3f3f;
   --dark-forest: #051d1d;
+
+  /* Gauge / component design tokens */
+  --color-background-primary: transparent;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-border-primary: #0d9488;
+  --color-border-secondary: #334155;
+  --color-border-tertiary: #1e293b;
+  --border-radius-lg: 1rem;
+  --font-sans: 'Inter', 'Segoe UI', -apple-system, sans-serif;
 }
 
 @theme inline {

@@ -2,6 +2,7 @@
 
 import InputForm from "@/components/inputs/InputForm";
 import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
+import DemoProfiles from "@/components/inputs/DemoProfiles";
 import { useAppStore } from "@/store/appStore";
 import { Leaf, Shield, CheckCircle, Clock, Zap } from "lucide-react";
 
@@ -105,8 +106,15 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Demo Profiles */}
+      <div className="max-w-6xl mx-auto px-4 pb-10 md:pb-16">
+        <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-slate-700/50">
+          <DemoProfiles />
+        </div>
+      </div>
+
       {/* Footer */}
-      <footer className="border-t border-teal-700/30 bg-slate-900/40 backdrop-blur-sm mt-12 md:mt-20 py-6 md:py-8">
+      <footer className="border-t border-teal-700/30 bg-slate-900/40 backdrop-blur-sm mt-0 py-6 md:py-8">
         <div className="max-w-6xl mx-auto px-4 text-center text-xs md:text-sm text-gray-400">
           <p>Powered by EPA data • Science-backed insights • Private & anonymous</p>
         </div>

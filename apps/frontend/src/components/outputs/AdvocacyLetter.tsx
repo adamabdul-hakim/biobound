@@ -56,42 +56,42 @@ ${userEmail || "[Your Email]"}`;
 
   return (
     <div className="w-full">
-      <h3 className="font-bold text-gray-900 mb-6 text-xl flex items-center gap-2">
-        <Mail className="w-5 h-5 text-emerald-600" />
+      <h3 className="font-bold text-gray-100 mb-6 text-xl flex items-center gap-2">
+        <Mail className="w-5 h-5 text-emerald-400" />
         Advocacy Letter to Representatives
       </h3>
 
       <div className="space-y-4 mb-6">
         <div>
-          <label className="block text-sm font-bold text-gray-900 mb-2">
+          <label className="block text-sm font-bold text-gray-300 mb-2">
             Your Name
           </label>
           <input
             type="text"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition"
+            className="w-full px-4 py-3 bg-slate-700/60 border border-slate-500 text-gray-100 placeholder-gray-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition"
             placeholder="Jane Doe"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-bold text-gray-900 mb-2">
+          <label className="block text-sm font-bold text-gray-300 mb-2">
             Your Email
           </label>
           <input
             type="email"
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition"
+            className="w-full px-4 py-3 bg-slate-700/60 border border-slate-500 text-gray-100 placeholder-gray-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition"
             placeholder="jane@example.com"
           />
         </div>
       </div>
 
       {/* Letter Preview */}
-      <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-6 mb-6 max-h-48 overflow-y-auto">
-        <pre className="text-sm text-gray-700 font-mono whitespace-pre-wrap break-words">
+      <div className="bg-slate-900/60 border border-slate-600 rounded-xl p-6 mb-6 max-h-48 overflow-y-auto">
+        <pre className="text-sm text-gray-300 font-mono whitespace-pre-wrap break-words">
           {letterContent}
         </pre>
       </div>
@@ -116,14 +116,14 @@ ${userEmail || "[Your Email]"}`;
 
         <button
           onClick={handleEmail}
-          className="flex items-center gap-2 px-4 py-3 bg-gray-700 text-white rounded-xl font-bold hover:bg-gray-800 transition-all active:scale-95"
+          className="flex items-center gap-2 px-4 py-3 bg-slate-700 text-gray-100 rounded-xl font-bold hover:bg-slate-600 transition-all active:scale-95"
         >
           <Mail className="w-4 h-4" />
           Open in Mail App
         </button>
       </div>
 
-      <p className="text-xs text-gray-600 mt-4 italic leading-relaxed">
+      <p className="text-xs text-gray-400 mt-4 italic leading-relaxed">
         💡 Pro tip: Edit the letter to include your local representatives&apos; names and addresses for maximum impact.
       </p>
     </div>

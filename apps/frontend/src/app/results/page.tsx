@@ -9,6 +9,8 @@ import InterventionScenarios from "@/components/outputs/InterventionScenarios";
 import MedWarningList from "@/components/outputs/MedWarningList";
 import MitigationPlanTiles from "@/components/outputs/MitigationPlanTiles";
 import AdvocacyLetter from "@/components/outputs/AdvocacyLetter";
+import GeminiRecommendations from "@/components/outputs/GeminiRecommendations";
+import WeeklyGroceryScan from "@/components/outputs/WeeklyGroceryScan";
 import ErrorBanner from "@/components/ui/ErrorBanner";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -25,6 +27,9 @@ export default function ResultsPage() {
     mitigationPlan,
     zipCode,
     filterModel,
+    cookwareUse,
+    dietHabits,
+    makeUpUse,
     error,
     setError,
   } = useAppStore();
@@ -134,6 +139,24 @@ export default function ResultsPage() {
             {/* Mitigation Plan */}
             <section>
               <MitigationPlanTiles plan={mitigationPlan} />
+            </section>
+
+            {/* AI Recommendations */}
+            <section>
+              <GeminiRecommendations reiScore={reiScore} />
+            </section>
+
+            {/* Weekly Grocery Scan */}
+            <section>
+              <WeeklyGroceryScan
+                basePayload={{
+                  zipCode,
+                  filterModel,
+                  cookwareUse,
+                  dietHabits,
+                  makeUpUse,
+                }}
+              />
             </section>
 
             {/* Advocacy Letter */}

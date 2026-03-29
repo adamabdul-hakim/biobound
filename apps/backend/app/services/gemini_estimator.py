@@ -60,21 +60,22 @@ def _call_gemini_api(prompt: str) -> str:
     if not api_key:
         raise RuntimeError("No GEMINI_API_KEY configured")
 
-    # Use a v1beta2-like endpoint for text-bison style models (best-effort).
-    base = "https://generative.googleapis.com/v1beta2/models/text-bison-001:generateText"
+    # Try Gemini 1.5 Flash first (v1beta)
+    base = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
     url = f"{base}?key={urllib.parse.quote(api_key)}"
 
     body = {
-        "temperature": 0.2,
-        "maxOutputTokens": 200,
-        "prompt": {"text": prompt},
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"temperature": 0.2, "maxOutputTokens": 300},
     }
 
     data = json.dumps(body).encode("utf-8")
     req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=10) as resp:
+    with urllib.request.urlopen(req, timeout=12) as resp:
         resp_data = resp.read().decode("utf-8")
-        return resp_data
+        parsed = json.loads(resp_data)
+        # Extract text from Gemini response structure
+        return parsed["candidates"][0]["content"]["parts"][0]["text"]
 
 
 def estimate_pfas_by_zip(zip_code: str) -> Dict[str, Any]:
@@ -128,3 +129,90 @@ def estimate_pfas_by_zip(zip_code: str) -> Dict[str, Any]:
                 "confidence": "low",
             },
         }
+
+
+# Fallback recommendations when Gemini is unavailable, keyed by risk tier
+_FALLBACK_RECOMMENDATIONS: Dict[str, list] = {
+    "low": [
+        "Continue using filtered water for drinking and cooking.",
+        "Maintain a fiber-rich diet — oats, beans, and flaxseed support PFAS clearance.",
+        "Prefer stainless steel or cast iron cookware to limit PFAS migration.",
+        "Check shampoo and personal care products for PFAS (fluorine-based ingredients).",
+        "Review your home's dust levels — regular vacuuming reduces PFAS-laden dust.",
+        "Your risk is low — schedule a water quality check every 2 years.",
+    ],
+    "moderate": [
+        "Upgrade your water filter to NSF-53 or NSF-58 certified — this is the single highest-impact step.",
+        "Replace non-stick cookware older than 5 years with ceramic or stainless steel alternatives.",
+        "Increase daily soluble fiber intake (psyllium husk, oats, beans) to accelerate PFAS excretion.",
+        "Reduce fast food and microwave popcorn — PFAS-coated packaging is a major source.",
+        "If you have children under 5, damp-mop floors frequently to reduce dust ingestion.",
+        "Ask your water utility for their latest PFAS testing report.",
+    ],
+    "high": [
+        "Install an under-sink NSF-58 reverse osmosis filter — this removes up to 99% of PFAS from drinking water.",
+        "Replace ALL non-stick cookware immediately with PFAS-free alternatives (cast iron, stainless, ceramic).",
+        "Prioritize daily fiber supplementation (psyllium husk or cholestyramine with medical guidance).",
+        "Eliminate PFAS-packaged foods: fast food, microwave popcorn, and pizza boxes.",
+        "If young children are present, test home dust and increase damp-cleaning frequency.",
+        "Discuss PFAS biomonitoring with your healthcare provider — blood tests can measure PFAS levels.",
+        "Contact your local health department to report possible PFAS contamination in your area.",
+    ],
+}
+
+
+def get_pfas_recommendations(
+    rei_score: int,
+    filter_type: str | None,
+    cookware_pct: int,
+    cookware_years: int,
+    diet_raising_count: int,
+    diet_reducing_count: int,
+    has_children: bool,
+    children_crawl: bool,
+    zip_code: str | None = None,
+) -> Dict[str, Any]:
+    """Generate personalized PFAS reduction recommendations via Gemini.
+
+    Falls back to curated static recommendations if Gemini is unavailable.
+    """
+    tier = "high" if rei_score >= 67 else ("moderate" if rei_score >= 33 else "low")
+
+    prompt = (
+        f"You are a public health advisor specializing in PFAS (per- and polyfluoroalkyl substances) exposure.\n"
+        f"A user has a PFAS exposure score of {rei_score}/100 ({tier} risk).\n"
+        f"Profile:\n"
+        f"- Water filter: {filter_type or 'none'} (NSF-53/58 certified removes 99%+)\n"
+        f"- Non-stick cookware: {cookware_pct}% of cookware, used for {cookware_years} years\n"
+        f"- PFAS-raising foods per week: {diet_raising_count} categories\n"
+        f"- PFAS-reducing fiber sources: {diet_reducing_count} categories\n"
+        f"- Young children at home: {'Yes' + (', crawling on floors' if children_crawl else '') if has_children else 'No'}\n"
+        f"{'- Location ZIP: ' + zip_code if zip_code else ''}\n\n"
+        f"Provide exactly 6 concise, actionable, personalized recommendations to reduce this person's PFAS exposure. "
+        f"Each recommendation should be 1-2 sentences. Return a JSON array of strings only, no extra text."
+    )
+
+    try:
+        raw = _call_gemini_api(prompt)
+        # Parse JSON array from response
+        raw_stripped = raw.strip()
+        # Find JSON array in response
+        start = raw_stripped.find("[")
+        end = raw_stripped.rfind("]") + 1
+        if start >= 0 and end > start:
+            recs = json.loads(raw_stripped[start:end])
+            if isinstance(recs, list) and all(isinstance(r, str) for r in recs):
+                return {"source": "gemini", "tier": tier, "recommendations": recs[:8]}
+        # If not valid JSON array, split by newlines
+        lines = [ln.strip().lstrip("0123456789.-) ") for ln in raw_stripped.splitlines() if ln.strip()]
+        lines = [ln for ln in lines if len(ln) > 20][:8]
+        if lines:
+            return {"source": "gemini", "tier": tier, "recommendations": lines}
+    except Exception as e:
+        logger.info("Gemini recommendations call failed, using fallback: %s", e)
+
+    return {
+        "source": "fallback",
+        "tier": tier,
+        "recommendations": _FALLBACK_RECOMMENDATIONS.get(tier, _FALLBACK_RECOMMENDATIONS["moderate"]),
+    }

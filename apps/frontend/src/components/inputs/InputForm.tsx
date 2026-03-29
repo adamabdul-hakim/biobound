@@ -4,10 +4,10 @@ import { useAppStore } from "@/store/appStore";
 import { Loader } from "lucide-react";
 import ZipCodeInput from "./ZipCodeInput";
 import FilterAuditor from "./FilterAuditor";
-import ProductScanner from "./ProductScanner";
 import CookwareForm from "./CookwareForm";
 import DietHabitsForm from "./DietHabitsForm";
 import MakeUpUseForm from "./MakeUpUseForm";
+import HouseholdForm from "./HouseholdForm";
 import LocationPfasDisplay from "./LocationPfasDisplay";
 import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
 import { useRouter } from "next/navigation";
@@ -15,10 +15,10 @@ import { useRouter } from "next/navigation";
 const steps = [
   { title: "Zip Code", component: ZipCodeInput },
   { title: "Water Filter", component: FilterAuditor },
-  { title: "Product Scan", component: ProductScanner },
   { title: "Cookware Use", component: CookwareForm },
   { title: "Diet & Habits", component: DietHabitsForm },
-  { title: "Makeup Use", component: MakeUpUseForm },
+  { title: "Personal Care", component: MakeUpUseForm },
+  { title: "Household", component: HouseholdForm },
 ];
 
 export default function InputForm() {
@@ -27,10 +27,10 @@ export default function InputForm() {
     currentStep,
     zipCode,
     filterModel,
-    productScan,
     cookwareUse,
     dietHabits,
     makeUpUse,
+    householdProfile,
     nextStep,
     prevStep,
     setAnalyzeResult,
@@ -44,20 +44,14 @@ export default function InputForm() {
   const canAdvance = () => {
     if (currentStep === 1) return /^\d{5}$/.test(zipCode);
     if (currentStep === 2) return filterModel?.type !== undefined;
-    if (currentStep === 3) return true; // Product scan is optional
-    if (currentStep === 4) return cookwareUse !== null;
-    if (currentStep === 5) return dietHabits !== null;
-    if (currentStep === 6) return makeUpUse !== null;
+    // Steps 3-6 have non-null defaults, always advanceable
     return true;
   };
 
   const canAnalyze = () => {
     return (
       /^\d{5}$/.test(zipCode) &&
-      filterModel?.type !== undefined &&
-      cookwareUse !== null &&
-      dietHabits !== null &&
-      makeUpUse !== null
+      filterModel?.type !== undefined
     );
   };
 
@@ -79,11 +73,12 @@ export default function InputForm() {
     try {
       const payload = {
         zipCode,
-        productScan,
+        productScan: null,
         cookwareUse,
         filterModel,
         dietHabits,
         makeUpUse,
+        householdProfile,
       };
 
       const result = await callIntegratedAnalyzeApi(payload);
@@ -160,10 +155,10 @@ export default function InputForm() {
         <p className="text-gray-400 text-sm md:text-base">
           {currentStep === 1 && "Where are you located? We'll check local water quality data."}
           {currentStep === 2 && "What type of water filter do you use?"}
-          {currentStep === 3 && "Optional: Scan a product to check ingredients"}
-          {currentStep === 4 && "How much of your cookware is non-stick coated?"}
-          {currentStep === 5 && "Which foods do you eat regularly & any medications?"}
-          {currentStep === 6 && "How frequently do you use makeup products?"}
+          {currentStep === 3 && "How much of your cookware is non-stick coated?"}
+          {currentStep === 4 && "Which foods do you eat regularly & any medications?"}
+          {currentStep === 5 && "Makeup, shampoo, and hair care products with PFAS"}
+          {currentStep === 6 && "Do you have young children at home?"}
         </p>
       </div>
 

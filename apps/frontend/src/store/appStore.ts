@@ -28,6 +28,13 @@ export interface MitigationTier {
 export interface MakeUpUse {
   frequency: "never" | "rarely" | "weekly" | "daily";
   productTypes: string[];
+  shampooProducts?: string[];
+}
+
+export interface HouseholdProfile {
+  hasChildrenUnder5: boolean;
+  numberOfChildren: number;
+  childrenCrawlOnFloor: boolean;
 }
 
 export interface LocationPfasEstimate {
@@ -52,6 +59,7 @@ interface AppState {
   filterModel: { brand: string; type: string } | null;
   dietHabits: { fiberSources: string[]; foods: string[]; medications: string[] } | null;
   makeUpUse: MakeUpUse | null;
+  householdProfile: HouseholdProfile | null;
 
   // PFAS Estimation
   pfasEstimate: LocationPfasEstimate | null;
@@ -79,6 +87,7 @@ interface AppState {
   setFilterModel: (filter: { brand: string; type: string }) => void;
   setDietHabits: (habits: { fiberSources: string[]; foods: string[]; medications: string[] }) => void;
   setMakeUpUse: (use: MakeUpUse) => void;
+  setHouseholdProfile: (profile: HouseholdProfile) => void;
 
   // Actions — PFAS Estimation
   setPfasEstimate: (estimate: LocationPfasEstimate | null) => void;
@@ -111,10 +120,11 @@ export const useAppStore = create<AppState>((set) => ({
   // Inputs — defaults
   zipCode: "",
   productScan: null,
-  cookwareUse: null,
+  cookwareUse: { brand: "0%", yearsOfUse: 0 },
   filterModel: null,
-  dietHabits: null,
-  makeUpUse: null,
+  dietHabits: { fiberSources: [], foods: [], medications: ["None"] },
+  makeUpUse: { frequency: "never", productTypes: [], shampooProducts: [] },
+  householdProfile: { hasChildrenUnder5: false, numberOfChildren: 0, childrenCrawlOnFloor: false },
 
   // PFAS Estimation — defaults
   pfasEstimate: null,
@@ -142,6 +152,7 @@ export const useAppStore = create<AppState>((set) => ({
   setFilterModel: (filter) => set({ filterModel: filter }),
   setDietHabits: (habits) => set({ dietHabits: habits }),
   setMakeUpUse: (use) => set({ makeUpUse: use }),
+  setHouseholdProfile: (profile) => set({ householdProfile: profile }),
 
   // PFAS Estimation setters
   setPfasEstimate: (estimate) => set({ pfasEstimate: estimate }),

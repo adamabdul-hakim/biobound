@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { DecayPoint } from "@/store/appStore";
 
 interface DecayChartProps {
@@ -7,139 +8,151 @@ interface DecayChartProps {
 }
 
 export default function DecayChart({ data }: DecayChartProps) {
+  const maxWeek = data && data.length > 0 ? Math.max(...data.map((d) => d.week), 260) : 260;
+  const maxYears = parseFloat((maxWeek / 52).toFixed(1));
+  const [displayYears, setDisplayYears] = useState(Math.min(Math.max(5, maxYears), 10));
+
   if (!data || data.length === 0) {
     return (
-      <div className="w-full h-64 bg-gray-50 border-2 border-gray-200 rounded-xl flex items-center justify-center">
-        <p className="text-gray-600 font-semibold">No decay data available</p>
+      <div className="w-full h-64 bg-slate-800/60 border border-teal-700/30 rounded-xl flex items-center justify-center">
+        <p className="text-gray-400 font-semibold">No decay data available</p>
       </div>
     );
   }
 
-  const maxWeek = Math.max(...data.map((d) => d.week), 52);
-  const padding = 40;
-  const chartWidth = 500;
-  const chartHeight = 300;
+  const displayWeeks = displayYears * 52;
+  const filteredData = data.filter((d) => d.week <= displayWeeks);
 
-  const xScale = (week: number) => padding + (week / maxWeek) * (chartWidth - 2 * padding);
-  const yScale = (load: number) => chartHeight - padding - (load / 100) * (chartHeight - 2 * padding);
+  const pad = { top: 20, right: 24, bottom: 40, left: 48 };
+  const W = 520;
+  const H = 260;
+  const innerW = W - pad.left - pad.right;
+  const innerH = H - pad.top - pad.bottom;
 
-  const points = data.map((d) => ({
+  const xScale = (week: number) => pad.left + (week / displayWeeks) * innerW;
+  const yScale = (load: number) => pad.top + innerH - (load / 100) * innerH;
+
+  const points = filteredData.map((d) => ({
     x: xScale(d.week),
     y: yScale(d.bodyLoad),
-    week: d.week,
     load: d.bodyLoad,
   }));
 
-  const pathData = points
-    .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
-    .join(" ");
+  const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+  const areaPath =
+    points.length > 1
+      ? `${linePath} L ${points[points.length - 1].x} ${pad.top + innerH} L ${points[0].x} ${pad.top + innerH} Z`
+      : "";
+
+  // Year tick marks spaced sensibly
+  const tickStep = displayYears <= 1 ? 0.25 : displayYears <= 3 ? 0.5 : 1;
+  const yearTicks: number[] = [];
+  for (let y = 0; y <= displayYears + 0.001; y += tickStep) {
+    yearTicks.push(parseFloat(y.toFixed(2)));
+  }
 
   return (
     <div className="w-full">
-      <h3 className="font-bold text-gray-900 mb-6 text-xl">PFAS Body Load Decay</h3>
-      <div className="bg-gradient-to-br from-white to-emerald-50 border-2 border-emerald-100 rounded-xl p-6 overflow-x-auto shadow-sm">
+      {/* Header + slider */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <h3 className="font-bold text-gray-100 text-xl">PFAS Body Load Over Time</h3>
+        <div className="flex items-center gap-3 text-sm text-gray-300">
+          <span className="text-gray-400">Simulate:</span>
+          <input
+            type="range"
+            min={5}
+            max={maxYears}
+            step={0.5}
+            value={displayYears}
+            onChange={(e) => setDisplayYears(parseFloat(e.target.value))}
+            className="w-28 accent-teal-400"
+          />
+          <span className="text-teal-400 font-bold w-20 text-right">
+            {displayYears} yr{displayYears !== 1 ? "s" : ""}
+          </span>
+        </div>
+      </div>
+
+      {/* Chart */}
+      <div className="bg-slate-800/80 border border-teal-700/30 rounded-xl p-3 overflow-x-auto">
         <svg
-          width={chartWidth + 40}
-          height={chartHeight}
-          viewBox={`0 0 ${chartWidth + 40} ${chartHeight}`}
-          className="mx-auto"
+          width={W}
+          height={H}
+          viewBox={`0 0 ${W} ${H}`}
+          className="mx-auto w-full"
         >
-          {/* Grid lines */}
+          <defs>
+            <linearGradient id="decayArea" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="#10b981" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          {/* Horizontal grid */}
           {[0, 25, 50, 75, 100].map((val) => (
             <line
-              key={`h-${val}`}
-              x1={padding}
+              key={`hg-${val}`}
+              x1={pad.left}
               y1={yScale(val)}
-              x2={chartWidth - padding}
+              x2={W - pad.right}
               y2={yScale(val)}
-              stroke="#e5e7eb"
-              strokeDasharray="4"
+              stroke="#334155"
+              strokeDasharray="4 3"
               strokeWidth="1"
             />
           ))}
 
           {/* Axes */}
-          <line
-            x1={padding}
-            y1={chartHeight - padding}
-            x2={chartWidth - padding}
-            y2={chartHeight - padding}
-            stroke="#374151"
-            strokeWidth="2"
-          />
-          <line
-            x1={padding}
-            y1={padding}
-            x2={padding}
-            y2={chartHeight - padding}
-            stroke="#374151"
-            strokeWidth="2"
-          />
+          <line x1={pad.left} y1={pad.top + innerH} x2={W - pad.right} y2={pad.top + innerH} stroke="#475569" strokeWidth="1.5" />
+          <line x1={pad.left} y1={pad.top} x2={pad.left} y2={pad.top + innerH} stroke="#475569" strokeWidth="1.5" />
 
-          {/* Y-axis labels */}
+          {/* Y labels */}
           {[0, 25, 50, 75, 100].map((val) => (
-            <text
-              key={`label-y-${val}`}
-              x={padding - 10}
-              y={yScale(val) + 4}
-              textAnchor="end"
-              fontSize="12"
-              fill="#6b7280"
-            >
+            <text key={`yl-${val}`} x={pad.left - 6} y={yScale(val) + 4} textAnchor="end" fontSize="11" fill="#94a3b8">
               {val}%
             </text>
           ))}
 
-          {/* X-axis labels */}
-          {[0, 13, 26, 39, 52].map((week) => (
+          {/* X labels */}
+          {yearTicks.map((yr) => (
             <text
-              key={`label-x-${week}`}
-              x={xScale(week)}
-              y={chartHeight - 15}
+              key={`xl-${yr}`}
+              x={xScale(yr * 52)}
+              y={pad.top + innerH + 22}
               textAnchor="middle"
-              fontSize="12"
-              fill="#6b7280"
+              fontSize="11"
+              fill="#94a3b8"
             >
-              {week}w
+              {yr === 0 ? "0" : `${yr}y`}
             </text>
           ))}
 
-          {/* Line */}
-          <path
-            d={pathData}
-            fill="none"
-            stroke="#10b981"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          {/* Area */}
+          {areaPath && <path d={areaPath} fill="url(#decayArea)" />}
 
-          {/* Points */}
-          {points.map((p, i) => (
-            <circle
-              key={`point-${i}`}
-              cx={p.x}
-              cy={p.y}
-              r="4"
-              fill="#10b981"
-              stroke="white"
-              strokeWidth="2"
-            />
-          ))}
+          {/* Line */}
+          <path d={linePath} fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+
+          {/* Dots — only when few points */}
+          {points.length <= 24 &&
+            points.map((p, i) => (
+              <circle key={`dot-${i}`} cx={p.x} cy={p.y} r="3.5" fill="#10b981" stroke="#0f172a" strokeWidth="1.5" />
+            ))}
         </svg>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-        <div className="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-200">
-          <p className="text-gray-700 font-semibold text-xs mb-1">Current Load</p>
-          <p className="text-2xl font-bold text-emerald-700">
-            {data[0]?.bodyLoad ?? 0}%
-          </p>
+      {/* Summary cards */}
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="p-4 bg-slate-700/60 rounded-xl border border-teal-700/30">
+          <p className="text-gray-400 text-xs font-semibold mb-1 uppercase tracking-wide">Starting Load</p>
+          <p className="text-2xl font-bold text-emerald-400">{data[0]?.bodyLoad ?? 0}%</p>
         </div>
-        <div className="p-4 bg-gradient-to-br from-teal-50 to-emerald-50 rounded-xl border border-teal-200">
-          <p className="text-gray-700 font-semibold text-xs mb-1">After {maxWeek}w</p>
-          <p className="text-2xl font-bold text-teal-700">
-            {data[data.length - 1]?.bodyLoad ?? 0}%
+        <div className="p-4 bg-slate-700/60 rounded-xl border border-teal-700/30">
+          <p className="text-gray-400 text-xs font-semibold mb-1 uppercase tracking-wide">
+            After {displayYears} yr{displayYears !== 1 ? "s" : ""}
+          </p>
+          <p className="text-2xl font-bold text-teal-400">
+            {filteredData[filteredData.length - 1]?.bodyLoad ?? 0}%
           </p>
         </div>
       </div>

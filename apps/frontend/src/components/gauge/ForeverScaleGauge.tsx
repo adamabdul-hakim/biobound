@@ -125,7 +125,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
         <path
           d={`M ${CX - R_OUTER} ${CY} A ${R_OUTER} ${R_OUTER} 0 1 1 ${CX + R_OUTER} ${CY}`}
           fill="none"
-          stroke="var(--color-border-tertiary)"
+          stroke="#334155"
           strokeWidth="14"
           strokeLinecap="round"
         />
