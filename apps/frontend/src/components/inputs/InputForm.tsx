@@ -7,7 +7,6 @@ import FilterAuditor from "./FilterAuditor";
 import CookwareForm from "./CookwareForm";
 import DietHabitsForm from "./DietHabitsForm";
 import MakeUpUseForm from "./MakeUpUseForm";
-import HouseholdForm from "./HouseholdForm";
 import ReceiptScanner from "./ReceiptScanner";
 import LocationPfasDisplay from "./LocationPfasDisplay";
 import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
@@ -19,11 +18,10 @@ const steps = [
   { title: "Cookware" },
   { title: "Diet & Habits" },
   { title: "Personal Care" },
-  { title: "Household" },
   { title: "Product Scan", optional: true },
 ];
 
-const stepComponents = [ZipCodeInput, FilterAuditor, CookwareForm, DietHabitsForm, MakeUpUseForm, HouseholdForm, ReceiptScanner];
+const stepComponents = [ZipCodeInput, FilterAuditor, CookwareForm, DietHabitsForm, MakeUpUseForm, ReceiptScanner];
 
 const stepHeadings = [
   <>Where do you get your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>tap water</em>?</>,
@@ -31,7 +29,6 @@ const stepHeadings = [
   <>How much of your cookware <em style={{ fontStyle: "italic", color: "var(--accent)" }}>is non-stick</em>?</>,
   <>Which foods do you <em style={{ fontStyle: "italic", color: "var(--accent)" }}>eat regularly</em>?</>,
   <>Your personal care <em style={{ fontStyle: "italic", color: "var(--accent)" }}>product exposure</em></>,
-  <>Children in your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>household</em></>,
   <>Scan your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>everyday products</em></>,
 ];
 
@@ -41,7 +38,7 @@ const stepLeads = [
   "Heat accelerates PFAS leaching. Scratched non-stick pans can release significant PFAS into every meal.",
   "PFAS bioaccumulates in fish, leaches from packaging, and builds up through certain everyday food habits.",
   "PFAS hides in waterproof cosmetics, dry shampoo, and hair products for smoothness and water resistance.",
-  "Young children who crawl and mouth objects can ingest up to 10× more PFAS-contaminated dust than adults.",
+
   "Upload a grocery receipt or paste product names — we OCR the image then Gemini AI flags each item's PFAS risk.",
 ];
 
@@ -54,7 +51,6 @@ export default function InputForm() {
     cookwareUse,
     dietHabits,
     makeUpUse,
-    householdProfile,
     receiptScanResult,
     nextStep,
     prevStep,
@@ -94,7 +90,6 @@ export default function InputForm() {
         filterModel,
         dietHabits,
         makeUpUse,
-        householdProfile,
         receiptScanResult,
       });
       setAnalyzeResult(result);
