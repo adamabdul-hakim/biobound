@@ -7,9 +7,8 @@ import FilterAuditor from "./FilterAuditor";
 import ProductScanner from "./ProductScanner";
 import CookwareForm from "./CookwareForm";
 import DietHabitsForm from "./DietHabitsForm";
-import { calculateWaterScore } from "@/lib/scoring";
+import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const steps = [
   { title: "Zip Code", component: ZipCodeInput },
@@ -18,88 +17,6 @@ const steps = [
   { title: "Cookware Use", component: CookwareForm },
   { title: "Diet & Habits", component: DietHabitsForm },
 ];
-
-// Mock API call — replace with actual Team B endpoint
-async function callAnalysisAPI(payload: any) {
-  // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  // Mock response data
-  return {
-    reiScore: Math.round(Math.random() * 100),
-    filterWarning:
-      payload.filterModel.type === "none"
-        ? "Your filter is not NSF certified for PFAS removal. Consider upgrading to an NSF-53 or NSF-58 filter."
-        : null,
-    pfasFlags: [
-      {
-        compound: "PFOA",
-        tier: (Math.random() > 0.5 ? "high" : "medium") as "low" | "medium" | "high",
-      },
-      {
-        compound: "PFOS",
-        tier: (Math.random() > 0.5 ? "high" : "medium") as "low" | "medium" | "high",
-      },
-    ] as any,
-    decayCurve: Array.from({ length: 13 }, (_, i) => ({
-      week: i * 4,
-      bodyLoad: Math.max(0, 100 - i * 8 + Math.random() * 10),
-    })),
-    interventionModel: [
-      {
-        label: "Current Trajectory",
-        description: "Without dietary changes or interventions",
-        data: Array.from({ length: 13 }, (_, i) => ({
-          week: i * 4,
-          bodyLoad: Math.max(0, 100 - i * 6),
-        })),
-      },
-      {
-        label: "With Fiber Intervention",
-        description: "Adding 15g daily soluble fiber",
-        data: Array.from({ length: 13 }, (_, i) => ({
-          week: i * 4,
-          bodyLoad: Math.max(0, 100 - i * 9),
-        })),
-      },
-    ],
-    medWarnings: [
-      "If taking metformin, consult your doctor before increasing fiber intake significantly.",
-    ],
-    mitigationPlan: [
-      {
-        tier: 1 as 1 | 2 | 3,
-        description: "Zero-cost actions you can start today",
-        cost: "Free",
-        actions: [
-          "Use filtered water for drinking and cooking",
-          "Switch to glass or ceramic cookware",
-          "Avoid microwave popcorn and processed foods in PFAS-lined packaging",
-        ],
-      },
-      {
-        tier: 2 as 1 | 2 | 3,
-        description: "Low-cost improvements ($20-$100)",
-        cost: "$50-$100",
-        actions: [
-          "Install an NSF-53 certified pitcher filter",
-          "Buy cast iron or stainless steel cookware",
-          "Add high-fiber foods to your diet",
-        ],
-      },
-      {
-        tier: 3 as 1 | 2 | 3,
-        description: "Long-term high-impact solutions",
-        cost: "$200-$500",
-        actions: [
-          "Install a whole-house carbon water filter",
-          "Consider professional air filtration (HEPA)",
-          "Work with a nutritionist on PFAS-reducing diet",
-        ],
-      },
-    ],
-  };
-}
 
 export default function InputForm() {
   const router = useRouter();
@@ -159,7 +76,7 @@ export default function InputForm() {
         dietHabits,
       };
 
-      const result = await callAnalysisAPI(payload);
+      const result = await callIntegratedAnalyzeApi(payload);
       setAnalyzeResult(result);
 
       // Navigate to results page
@@ -168,6 +85,7 @@ export default function InputForm() {
       setError(
         err instanceof Error ? err.message : "Analysis failed. Please try again."
       );
+    } finally {
       setLoading(false);
     }
   };
