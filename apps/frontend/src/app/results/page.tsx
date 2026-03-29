@@ -89,7 +89,7 @@ export default function ResultsPage() {
         borderBottom: "0.5px solid var(--border)",
       }}>
         <Link href="/" style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em", textDecoration: "none" }}>
-          BIO//BOUND
+          SafeSource
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <ThemeToggle />
@@ -270,7 +270,7 @@ export default function ResultsPage() {
         {/* ── FOOTER ── */}
         <footer style={{ marginTop: 60, paddingTop: 28, borderTop: "0.5px solid var(--border)", textAlign: "center" }}>
           <p style={{ fontSize: 12, color: "var(--text3)", marginBottom: 16, lineHeight: 1.7 }}>
-            BioBound is an educational tool. Estimates use EPA, EFSA and NIH population data and do not constitute medical advice.
+            SafeSource is an educational tool. Estimates use EPA, EFSA and NIH population data and do not constitute medical advice.
           </p>
           <button
             onClick={() => router.push("/audit")}

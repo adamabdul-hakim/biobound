@@ -10,7 +10,7 @@ function applyTheme(theme: "dark" | "light") {
     document.documentElement.removeAttribute("data-theme");
   }
   try {
-    localStorage.setItem("biobound-theme", theme);
+    localStorage.setItem("safesource-theme", theme);
   } catch {}
 }
 
@@ -18,7 +18,7 @@ export function useTheme() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    const stored = localStorage.getItem("biobound-theme");
+    const stored = localStorage.getItem("safesource-theme");
     const initialTheme = stored === "light" ? "light" : "dark";
     setTheme(initialTheme);
     // Ensure DOM is in sync (the ThemeScript may have already set it)

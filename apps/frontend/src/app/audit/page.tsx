@@ -24,7 +24,7 @@ export default function AuditPage() {
         borderBottom: "0.5px solid var(--border)",
       }}>
         <Link href="/" style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em", textDecoration: "none" }}>
-          BIO//BOUND
+          SafeSource
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <ThemeToggle />

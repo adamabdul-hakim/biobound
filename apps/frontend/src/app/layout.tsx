@@ -15,7 +15,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BioBound — The Forever Chemicals Audit",
+  title: "SafeSource — The Forever Chemicals Audit",
   description: "Discover your PFAS exposure and get a personalized action plan in under 3 minutes.",
 };
 
@@ -33,7 +33,8 @@ export default function RootLayout({
         {/* Prevent flash of wrong theme — reads localStorage before first paint */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(localStorage.getItem('biobound-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})()`,
+            __html: `(function(){try{if(localStorage.getItem('safesource-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})()`,
+
           }}
         />
         <link

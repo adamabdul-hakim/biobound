@@ -37,7 +37,7 @@ export default function LandingPage() {
         borderBottom: "0.5px solid var(--border)",
       }}>
         <span style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em" }}>
-          BIO//BOUND
+          SafeSource
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <Link href="/demo" style={{
@@ -85,7 +85,7 @@ export default function LandingPage() {
           <p style={{ fontSize: 17, color: "var(--text2)", lineHeight: 1.75, maxWidth: 560, marginBottom: 40 }}>
             97% of Americans have detectable PFAS in their blood. These "forever chemicals" don't leave —
             they build up over decades, linking to cancer, hormone disruption, and liver disease.
-            BioBound finds your biggest sources in under 3 minutes.
+            SafeSource finds your biggest sources in under 3 minutes.
           </p>
           <Link href="/audit" className="btn-primary" style={{ fontSize: 16, padding: "18px 36px", borderRadius: 12, textDecoration: "none" }}>
             Start my audit →
@@ -157,7 +157,7 @@ export default function LandingPage() {
         display: "flex", justifyContent: "space-between", alignItems: "center",
         flexWrap: "wrap", gap: 12,
       }}>
-        <span style={{ fontFamily: "var(--mono)", fontSize: 13, color: "var(--accent)" }}>BIO//BOUND</span>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 13, color: "var(--accent)" }}>SafeSource</span>
         <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--text3)" }}>
           Powered by EPA UCMR 5 data · Science-backed · Private
         </span>

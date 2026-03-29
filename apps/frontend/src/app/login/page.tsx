@@ -91,7 +91,7 @@ export default function LoginPage() {
             textDecoration: "none",
           }}
         >
-          ← BIO//BOUND
+          ← SafeSource
         </Link>
       </div>
 

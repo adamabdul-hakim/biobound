@@ -1,5 +1,5 @@
 /**
- * authStore.ts — BioBound client-side authentication
+ * authStore.ts — SafeSource client-side authentication
  *
  * DEMO APPLICATION NOTE: This uses browser localStorage for persistence.
  * Passwords are hashed with SHA-256 via the Web Crypto API before storage.
@@ -51,7 +51,7 @@ interface AuthState {
 async function hashPassword(password: string, email: string): Promise<string> {
   // Domain-scoped: include lowercase email so the same password produces
   // different hashes on different accounts.
-  const message = `${password}::${email.toLowerCase()}::biobound-v1`;
+  const message = `${password}::${email.toLowerCase()}::safesource-v1`;
   const encoded = new TextEncoder().encode(message);
   const hashBuf = await crypto.subtle.digest("SHA-256", encoded);
   return Array.from(new Uint8Array(hashBuf))
@@ -63,7 +63,7 @@ async function hashPassword(password: string, email: string): Promise<string> {
 
 function getStoredUsers(): StoredUser[] {
   try {
-    const raw = localStorage.getItem("biobound-users");
+    const raw = localStorage.getItem("safesource-users");
     if (!raw) return [];
     return JSON.parse(raw) as StoredUser[];
   } catch {
@@ -72,7 +72,7 @@ function getStoredUsers(): StoredUser[] {
 }
 
 function setStoredUsers(users: StoredUser[]): void {
-  localStorage.setItem("biobound-users", JSON.stringify(users));
+  localStorage.setItem("safesource-users", JSON.stringify(users));
 }
 
 // ── Store ─────────────────────────────────────────────────────────────────────
@@ -155,7 +155,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       // Only persist session tokens — never the overall user registry (that lives separately)
-      name: "biobound-auth-session",
+      name: "safesource-auth-session",
       partialize: (s) => ({ user: s.user, isLoggedIn: s.isLoggedIn }),
     },
   ),
