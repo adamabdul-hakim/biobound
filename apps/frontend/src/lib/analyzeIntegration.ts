@@ -241,7 +241,7 @@ interface ComponentScores {
 }
 
 function computeComponentScores(payload: TeamAAnalyzeInput, backendWaterScore: number, waterDataStatus: string): ComponentScores {
-  let water = waterDataStatus === "calculated"
+  const water = waterDataStatus === "calculated"
     ? Math.max(0, Math.min(100, backendWaterScore))
     : (payload.filterModel?.type && payload.filterModel.type !== "none" ? 35 : 70);
 
@@ -455,8 +455,8 @@ export function mapTeamBToTeamAResult(
   response: TeamBAnalyzeResponse,
   payload: TeamAAnalyzeInput,
 ): TeamAAnalyzeResult {
-  // Use the lifestyle-based REI instead of the backend's scanner-dominated score
-  const reiScore = computeLifestyleREI(payload, response.water_risk_score, response.water_data_status);
+  // Backend is the source of truth for final REI and baseline decay projection.
+  const reiScore = response.risk_score;
   const scores = computeComponentScores(payload, response.water_risk_score, response.water_data_status);
 
   const tier = getRiskTier(reiScore);
@@ -466,16 +466,30 @@ export function mapTeamBToTeamAResult(
         { compound: "General PFAS Exposure", tier },
       ];
 
-  // Ongoing exposure for the current trajectory
-  const ongoingBase = (scores.water * 0.4 + scores.cookware * 0.3 + scores.diet * 0.2 + scores.makeup * 0.1) / 100 * reiScore * 0.3;
-  const decayCurve = generateDecayCurve(reiScore, BASELINE_K, ongoingBase);
+  const decayCurve = response.decay_data.map((point) => ({
+    week: point.year * 52,
+    bodyLoad: point.level,
+  }));
+
+  const interventionModel = buildInterventionScenarios(reiScore, scores).map(
+    (scenario, index) => {
+      if (index !== 0) {
+        return scenario;
+      }
+      return {
+        ...scenario,
+        description: "Backend-provided baseline trajectory from /analyze.",
+        data: decayCurve,
+      };
+    },
+  );
 
   return {
     reiScore,
     filterWarning: response.filter_warning,
     pfasFlags,
     decayCurve,
-    interventionModel: buildInterventionScenarios(reiScore, scores),
+    interventionModel,
     medWarnings: response.medical_warnings,
     mitigationPlan: buildMitigationPlan(reiScore),
   };

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useAuthStore } from "@/store/authStore";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
@@ -20,9 +19,6 @@ const steps = [
 
 export default function LandingPage() {
   const { isLoggedIn, user } = useAuthStore();
-  // Guard SSR hydration for auth state
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   return (
     <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }} className="min-h-screen">
@@ -46,7 +42,7 @@ export default function LandingPage() {
           }}>
             Demo
           </Link>
-          {mounted && isLoggedIn ? (
+          {isLoggedIn ? (
             <Link href="/dashboard" style={{
               fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
               textDecoration: "none",
@@ -83,9 +79,9 @@ export default function LandingPage() {
             your whole life.
           </h1>
           <p style={{ fontSize: 17, color: "var(--text2)", lineHeight: 1.75, maxWidth: 560, marginBottom: 40 }}>
-            97% of Americans have detectable PFAS in their blood. These "forever chemicals" don't leave.
-            They build up over decades, linking to cancer, hormone disruption, and liver disease.
-            SafeSource helps you fight back.
+            97% of Americans have detectable PFAS in their blood. These &quot;forever chemicals&quot; don&apos;t leave —
+            they build up over decades, linking to cancer, hormone disruption, and liver disease.
+            SafeSource finds your biggest sources in under 3 minutes.
           </p>
           <Link href="/audit" className="btn-primary" style={{ fontSize: 16, padding: "18px 36px", borderRadius: 12, textDecoration: "none" }}>
             Start my audit →

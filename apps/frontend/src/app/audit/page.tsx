@@ -45,7 +45,7 @@ export default function AuditPage() {
           <h1 className="heading-serif" style={{ fontSize: "clamp(28px,4vw,42px)", marginBottom: 8 }}>
             Your PFAS exposure assessment
           </h1>
-          <p style={{ fontSize: 14, color: "var(--text2)" }}>Step through the questions below — we'll generate your score.</p>
+          <p style={{ fontSize: 14, color: "var(--text2)" }}>Step through the questions below — we&apos;ll generate your score.</p>
         </div>
       </div>
 
