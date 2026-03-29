@@ -1,0 +1,104 @@
+{
+  "tips": [
+    {
+      "id": "dust-1",
+      "category": "Dust Reduction",
+      "icon": "Wind",
+      "badge": "Quick Win",
+      "title": "Upgrade to HEPA Filters",
+      "description": "Use HEPA air filters in your home to capture airborne PFAS-laden dust particles.",
+      "cost": "Free - $200",
+      "effort": "Easy"
+    },
+    {
+      "id": "dust-2",
+      "category": "Dust Reduction",
+      "icon": "Wind",
+      "badge": "Quick Win",
+      "title": "Wet Cleaning Instead of Sweeping",
+      "description": "Sweep and mop with damp cloths instead of dry sweeping to prevent dust circulation.",
+      "cost": "Free",
+      "effort": "Easy"
+    },
+    {
+      "id": "cookware-1",
+      "category": "Cookware Swaps",
+      "icon": "Utensils",
+      "badge": "High Impact",
+      "title": "Replace Non-Stick Cookware",
+      "description": "Swap Teflon/PTFE-coated pans for cast iron, stainless steel, or ceramic alternatives.",
+      "cost": "$50 - $200",
+      "effort": "Medium"
+    },
+    {
+      "id": "cookware-2",
+      "category": "Cookware Swaps",
+      "icon": "Utensils",
+      "badge": "High Impact",
+      "title": "Use Ceramic or Cast Iron",
+      "description": "Cast iron and ceramic pans are durable, chemical-free, and improve over time with use.",
+      "cost": "$30 - $150",
+      "effort": "Easy"
+    },
+    {
+      "id": "water-1",
+      "category": "Budget Water Filters",
+      "icon": "Droplets",
+      "badge": "High Impact",
+      "title": "NSF-53 Certified Pitcher Filter",
+      "description": "Affordable pitcher filters certified for PFAS removal (e.g., Aquaphor, Clearly Filtered).",
+      "cost": "$30 - $60",
+      "effort": "Very Easy"
+    },
+    {
+      "id": "water-2",
+      "category": "Budget Water Filters",
+      "icon": "Droplets",
+      "badge": "High Impact",
+      "title": "Whole-House Carbon Filter",
+      "description": "Install a carbon filter at your main water line to capture PFAS before it reaches any tap.",
+      "cost": "$200 - $500",
+      "effort": "Hard"
+    },
+    {
+      "id": "kids-1",
+      "category": "Kids & Pets",
+      "icon": "Heart",
+      "badge": "Quick Win",
+      "title": "Filter Water for Kids & Pets",
+      "description": "Provide filtered water to children and pets who are more vulnerable to PFAS exposure.",
+      "cost": "$30 - $80",
+      "effort": "Easy"
+    },
+    {
+      "id": "kids-2",
+      "category": "Kids & Pets",
+      "icon": "Heart",
+      "badge": "Quick Win",
+      "title": "Check Food Packaging",
+      "description": "Avoid takeout containers and microwave popcorn bags which are often lined with PFAS.",
+      "cost": "Free",
+      "effort": "Very Easy"
+    },
+    {
+      "id": "diet-1",
+      "category": "Diet & Fiber",
+      "icon": "Leaf",
+      "badge": "High Impact",
+      "title": "Add Fiber-Rich Foods",
+      "description": "Increase intake of oats, beans, whole grains, and vegetables to aid natural PFAS elimination.",
+      "cost": "Free - $20/week",
+      "effort": "Medium"
+    },
+    {
+      "id": "diet-2",
+      "category": "Diet & Fiber",
+      "icon": "Leaf",
+      "badge": "High Impact",
+      "title": "Consider Psyllium Husk Supplements",
+      "description": "Studies show dietary fiber supplements can accelerate PFAS clearance (consult your doctor).",
+      "cost": "$10 - $25",
+      "effort": "Easy"
+    }
+  ]
+}

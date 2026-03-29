@@ -1,0 +1,12 @@
+[
+  {
+    "name": "sample_nonstick_pan",
+    "ocr_text": "PTFE coated non-stick surface",
+    "expected_detected": ["PTFE"]
+  },
+  {
+    "name": "sample_popcorn_bag",
+    "ocr_text": "Grease-resistant fluorotelomer treatment",
+    "expected_detected": ["fluorotelomer"]
+  }
+]

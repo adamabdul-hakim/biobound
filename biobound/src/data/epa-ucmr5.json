@@ -1,0 +1,22 @@
+{
+  "10001": { "status": "data", "totalPpt": 8.2 },
+  "10002": { "status": "data", "totalPpt": 12.5 },
+  "10003": { "status": "data", "totalPpt": 5.1 },
+  "10004": { "status": "data", "totalPpt": 18.7 },
+  "10005": { "status": "data", "totalPpt": 3.2 },
+  "10006": { "status": "data", "totalPpt": 22.1 },
+  "10007": { "status": "data", "totalPpt": 7.8 },
+  "10008": { "status": "data", "totalPpt": 14.3 },
+  "10009": { "status": "data", "totalPpt": 9.6 },
+  "10010": { "status": "data", "totalPpt": 11.2 },
+  "10011": { "status": "data", "totalPpt": 15.8 },
+  "10012": { "status": "data", "totalPpt": 6.4 },
+  "10013": { "status": "data", "totalPpt": 19.3 },
+  "10014": { "status": "data", "totalPpt": 4.7 },
+  "10015": { "status": "data", "totalPpt": 13.9 },
+  "10016": { "status": "data", "totalPpt": 8.5 },
+  "10017": { "status": "data", "totalPpt": 10.1 },
+  "10018": { "status": "data", "totalPpt": 16.2 },
+  "10019": { "status": "data", "totalPpt": 7.1 },
+  "10020": { "status": "no-data", "totalPpt": null }
+}
