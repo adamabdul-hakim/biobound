@@ -309,16 +309,38 @@ def process_image(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
 
 def _compute_decay_score(payload: AnalyzeRequest) -> int:
     if payload.diet_habits is None:
-        return 50
+        return 45
 
-    fiber_bonus = min(20, len(payload.diet_habits.fiber_sources) * 5)
-    processed_penalty = 8 if any(
-        "processed" in food.lower() for food in payload.diet_habits.foods
-    ) else 0
-    medications = [m for m in payload.diet_habits.medications if m.lower() != "none"]
-    medication_penalty = min(15, len(medications) * 3)
+    habits = payload.diet_habits
+    fiber_sources = {item.lower() for item in habits.fiber_sources}
+    foods = {item.lower() for item in habits.foods}
+    medications = {item.lower() for item in habits.medications if item.lower() != "none"}
 
-    score = 50 + fiber_bonus - processed_penalty - medication_penalty
+    protective_fiber_sources = {
+        "oats",
+        "beans",
+        "lentils",
+        "psyllium husk",
+        "flax seeds",
+        "whole wheat",
+    }
+    beneficial_foods = {"organic produce"}
+    adverse_foods = {"processed foods"}
+
+    fiber_bonus = min(25, len(fiber_sources & protective_fiber_sources) * 6)
+    beneficial_bonus = min(10, len(foods & beneficial_foods) * 4)
+    adverse_penalty = min(12, len(foods & adverse_foods) * 8)
+
+    medication_risk_weights = {
+        "metformin": 5,
+        "statins": 4,
+        "blood pressure meds": 6,
+    }
+    medication_penalty = sum(
+        weight for medication, weight in medication_risk_weights.items() if medication in medications
+    )
+
+    score = 45 + fiber_bonus + beneficial_bonus - adverse_penalty - medication_penalty
     return max(0, min(100, score))
 
 
@@ -327,9 +349,21 @@ def _derive_contraindication(payload: AnalyzeRequest) -> str | None:
         return None
 
     meds = {m.lower() for m in payload.diet_habits.medications}
+    fiber_count = len(payload.diet_habits.fiber_sources)
+
+    if "blood pressure meds" in meds and fiber_count > 0:
+        return "High-fiber timing may alter blood pressure medication absorption"
+
+    if "metformin" in meds and fiber_count >= 2:
+        return "High-fiber intake may require metformin timing review"
+
+    if "statins" in meds and "psyllium husk" in {f.lower() for f in payload.diet_habits.fiber_sources}:
+        return "Psyllium may affect statin absorption timing"
+
     interacting = {"metformin", "statins", "blood pressure meds"}
-    if meds & interacting:
+    if meds & interacting and fiber_count > 0:
         return "Potential fiber-medication timing interaction"
+
     return None
 
 
