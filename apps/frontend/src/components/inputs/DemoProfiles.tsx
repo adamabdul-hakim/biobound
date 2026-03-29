@@ -256,7 +256,7 @@ export default function DemoProfiles() {
                   className="mt-3 w-full py-2 rounded-lg text-sm font-bold transition-all active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ background: accent, color: "#0d0f0e", border: "none", cursor: "pointer" }}
                 >
-                  {isLoading ? "Running..." : "Run Assessment â†’"}
+                  {isLoading ? "Running..." : "Run Assessment"}
                 </button>
               </div>
             </div>
