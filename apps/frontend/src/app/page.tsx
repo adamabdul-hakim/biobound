@@ -3,16 +3,10 @@
 import InputForm from "@/components/inputs/InputForm";
 import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
 import { useAppStore } from "@/store/appStore";
-import { calculateWaterScore } from "@/lib/scoring";
 
 export default function Home() {
-  const { zipCode, filterModel, reiScore, currentStep } = useAppStore();
-  const previewScore =
-    zipCode && filterModel?.type && currentStep >= 2
-      ? calculateWaterScore(zipCode, filterModel.type).score
-      : null;
-
-  const displayScore = reiScore ?? previewScore ?? 0;
+  const { reiScore } = useAppStore();
+  const displayScore = reiScore ?? 0;
 
   const getStatus = (score: number): string => {
     if (score < 33) return "safe";
@@ -44,18 +38,15 @@ export default function Home() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                {previewScore !== null ? "Preview Score" : "REI Score"}
+                REI Score
               </h2>
               <ForeverScaleGauge
                 score={displayScore}
                 status={getStatus(displayScore)}
               />
-              {previewScore !== null && currentStep >= 2 && (
-                <p className="text-xs text-gray-500 text-center mt-4">
-                  This is a preview based on EPA water quality data and your
-                  filter selection. Your final score will include other factors.
-                </p>
-              )}
+              <p className="text-xs text-gray-500 text-center mt-4">
+                Score is shown after running full backend analysis.
+              </p>
             </div>
           </div>
         </div>

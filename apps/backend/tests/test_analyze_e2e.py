@@ -9,6 +9,7 @@ from uuid import UUID
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.services.ocr import OCRResult, OCRTextLine
 
 
 def test_analyze_with_valid_product_hint() -> None:
@@ -29,6 +30,10 @@ def test_analyze_with_valid_product_hint() -> None:
         "detected_chemicals",
         "risk_score",
         "confidence_interval",
+        "water_risk_score",
+        "water_effective_ppt",
+        "water_data_status",
+        "filter_warning",
         "decay_data",
         "medical_warnings",
         "meta",
@@ -43,6 +48,9 @@ def test_analyze_with_valid_product_hint() -> None:
     # Verify risk score bounds
     assert isinstance(body["risk_score"], int)
     assert 0 <= body["risk_score"] <= 100
+    assert 0 <= body["water_risk_score"] <= 100
+    assert body["water_effective_ppt"] >= 0.0
+    assert body["water_data_status"] in {"calculated", "no-data", "missing-zip"}
 
     # Verify confidence interval bounds
     assert isinstance(body["confidence_interval"], float)
@@ -93,13 +101,23 @@ def test_analyze_with_base64_image() -> None:
         "2mP8/8/wHwAFBQIAX8jx0gAAAABJRU5ErkJggg=="
     )
 
-    response = client.post(
-        "/analyze",
-        json={
-            "image_base64": sample_png_b64,
-            "product_name_hint": "Test Product",
-        },
-    )
+    with patch(
+        "app.routes.analyze.extract_text_from_image",
+        return_value=OCRResult(
+            raw_text="PTFE label",
+            text_blocks=[OCRTextLine(text="PTFE label", confidence=0.9)],
+            labels=[],
+            confidence=0.9,
+            provider="google",
+        ),
+    ):
+        response = client.post(
+            "/analyze",
+            json={
+                "image_base64": sample_png_b64,
+                "product_name_hint": "Test Product",
+            },
+        )
 
     assert response.status_code == 200
     body = response.json()
@@ -229,6 +247,8 @@ def test_analyze_full_orchestration_sequence() -> None:
     assert isinstance(body["detected_chemicals"], list)
     assert 0 <= body["risk_score"] <= 100
     assert 0.0 <= body["confidence_interval"] <= 1.0
+    assert 0 <= body["water_risk_score"] <= 100
+    assert body["water_effective_ppt"] >= 0.0
     assert isinstance(body["decay_data"], list) and len(body["decay_data"]) > 0
     assert isinstance(body["medical_warnings"], list)
     assert "request_id" in body["meta"]
@@ -288,10 +308,27 @@ def test_analyze_returns_500_on_ocr_failure() -> None:
     client = TestClient(app)
 
     with patch("app.routes.analyze.extract_text_from_image", side_effect=RuntimeError("boom")):
-        response = client.post("/analyze", json={"product_name_hint": "Test"})
+        response = client.post(
+            "/analyze",
+            json={
+                "product_name_hint": "Test",
+                "image_base64": "invalid-but-present",
+            },
+        )
 
     assert response.status_code == 500
     body = response.json()
     assert body["error"]["code"] == "INTERNAL_ERROR"
     assert body["error"]["message"] == "OCR processing failed"
     assert "request_id" in body["error"]
+
+
+def test_analyze_skips_ocr_when_image_missing() -> None:
+    client = TestClient(app)
+
+    with patch("app.routes.analyze.extract_text_from_image") as mock_extract:
+        response = client.post("/analyze", json={"product_name_hint": "Text Only"})
+
+    assert response.status_code == 200
+    assert response.json()["product_name"] == "Text Only"
+    mock_extract.assert_not_called()

@@ -1,8 +1,10 @@
 import base64
 import binascii
+import os
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from dataclasses import dataclass
 from io import BytesIO
+from pathlib import Path
 from typing import Protocol
 
 from app.core.config import settings
@@ -132,12 +134,21 @@ def extract_text_from_image(
     image_data: str | bytes | None,
     mime_type: str | None = None,
     provider_override: str | None = None,
+    allow_mock_fallback: bool = True,
+    strict_readiness: bool = False,
 ) -> OCRResult:
     image_bytes = _coerce_to_bytes(image_data)
-    provider_names = _provider_order(provider_override)
+    provider_names = _provider_order(provider_override, allow_mock_fallback)
     last_error: Exception | None = None
 
     for name in provider_names:
+        if strict_readiness:
+            try:
+                assert_ocr_provider_ready(name)
+            except Exception as exc:
+                last_error = exc
+                continue
+
         provider = _provider_by_name(name)
         try:
             return _run_with_retry_and_timeout(
@@ -154,14 +165,68 @@ def extract_text_from_image(
     raise RuntimeError(error_message)
 
 
-def _provider_order(provider_override: str | None) -> list[str]:
+def _provider_order(provider_override: str | None, allow_mock_fallback: bool) -> list[str]:
     selected = (provider_override or settings.ocr_provider or "google").lower()
+
+    if selected == "mock" and not allow_mock_fallback:
+        raise RuntimeError(
+            "OCR provider 'mock' is not allowed for /analyze image processing. "
+            "Set OCR_PROVIDER to 'google' or 'tesseract'."
+        )
+
     order = [selected]
     if selected == "google" and settings.ocr_enable_fallback_tesseract:
         order.append("tesseract")
-    order.append("mock")
+    if allow_mock_fallback:
+        order.append("mock")
     # Remove duplicates while preserving order.
     return list(dict.fromkeys(order))
+
+
+def assert_ocr_provider_ready(provider_name: str) -> None:
+    name = provider_name.lower()
+
+    if name == "google":
+        _assert_google_ready()
+        return
+
+    if name == "tesseract":
+        _assert_tesseract_ready()
+        return
+
+    if name == "mock":
+        return
+
+    raise RuntimeError(f"Unsupported OCR provider: {provider_name}")
+
+
+def _assert_google_ready() -> None:
+    try:
+        from google.cloud import vision  # noqa: F401
+    except Exception as exc:  # pragma: no cover - depends on optional dependency
+        raise RuntimeError("google-cloud-vision is not installed") from exc
+
+    credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "").strip()
+    if not credentials_path:
+        raise RuntimeError("GOOGLE_APPLICATION_CREDENTIALS is not set")
+
+    if not Path(credentials_path).exists():
+        raise RuntimeError(
+            f"GOOGLE_APPLICATION_CREDENTIALS file does not exist: {credentials_path}"
+        )
+
+
+def _assert_tesseract_ready() -> None:
+    try:
+        import pytesseract  # type: ignore
+        from PIL import Image  # noqa: F401
+    except Exception as exc:  # pragma: no cover - depends on optional dependency
+        raise RuntimeError("pytesseract and pillow are not installed") from exc
+
+    try:
+        pytesseract.get_tesseract_version()
+    except Exception as exc:  # pragma: no cover - depends on system installation
+        raise RuntimeError("Tesseract binary is not available on PATH") from exc
 
 
 def _provider_by_name(name: str) -> OCRProvider:

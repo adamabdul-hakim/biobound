@@ -25,6 +25,11 @@ export interface MitigationTier {
   actions: string[];
 }
 
+export interface MakeUpUse {
+  frequency: "never" | "rarely" | "weekly" | "daily";
+  productTypes: string[];
+}
+
 // ── State & Actions ──────────────────────────────────────────────────────────
 
 interface AppState {
@@ -34,6 +39,7 @@ interface AppState {
   cookwareUse: { brand: string; yearsOfUse: number } | null;
   filterModel: { brand: string; type: string } | null;
   dietHabits: { fiberSources: string[]; foods: string[]; medications: string[] } | null;
+  makeUpUse: MakeUpUse | null;
 
   // API Outputs
   reiScore: number | null;
@@ -55,6 +61,7 @@ interface AppState {
   setCookwareUse: (cookware: { brand: string; yearsOfUse: number }) => void;
   setFilterModel: (filter: { brand: string; type: string }) => void;
   setDietHabits: (habits: { fiberSources: string[]; foods: string[]; medications: string[] }) => void;
+  setMakeUpUse: (use: MakeUpUse) => void;
 
   // Actions — Outputs
   setAnalyzeResult: (result: {
@@ -85,6 +92,7 @@ export const useAppStore = create<AppState>((set) => ({
   cookwareUse: null,
   filterModel: null,
   dietHabits: null,
+  makeUpUse: null,
 
   // Outputs — defaults
   reiScore: null,
@@ -106,6 +114,7 @@ export const useAppStore = create<AppState>((set) => ({
   setCookwareUse: (cookware) => set({ cookwareUse: cookware }),
   setFilterModel: (filter) => set({ filterModel: filter }),
   setDietHabits: (habits) => set({ dietHabits: habits }),
+  setMakeUpUse: (use) => set({ makeUpUse: use }),
 
   // Bulk output setter — called once after /api/analyze responds
   setAnalyzeResult: (result) => set({ ...result }),
@@ -114,7 +123,7 @@ export const useAppStore = create<AppState>((set) => ({
   setLoading: (loading) => set({ isLoading: loading }),
   setError: (error) => set({ error }),
   setCurrentStep: (step) => set({ currentStep: step }),
-  nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 5) })),
+  nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 6) })),
   prevStep: () => set((s) => ({ currentStep: Math.max(s.currentStep - 1, 1) })),
   setReiScore: (score) => set({ reiScore: score }),
 }));

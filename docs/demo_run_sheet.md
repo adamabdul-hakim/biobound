@@ -11,12 +11,15 @@ Use this during hackathon demo to prove full stack integration quickly.
 
 ```bash
 cd apps/backend
-ANALYZE_RATE_LIMIT_PER_MINUTE=60 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+python scripts/check_ocr_readiness.py
+OCR_PROVIDER=google GOOGLE_APPLICATION_CREDENTIALS=/absolute/path/to/service-account.json ANALYZE_RATE_LIMIT_PER_MINUTE=60 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
 Expected:
+- `check_ocr_readiness.py` prints `OK`.
 - Uvicorn starts without errors.
 - `http://127.0.0.1:8000/health` returns status `ok`.
+- `/analyze` image requests fail fast with `503` if OCR provider is not ready.
 
 ## 2. Start Frontend
 
@@ -32,7 +35,7 @@ Expected:
 ## 3. Core Demo Flow
 
 1. Open frontend at `http://127.0.0.1:3000`.
-2. Fill required fields (zip, filter, cookware, diet).
+2. Fill required fields (zip, filter, cookware, diet, makeup).
 3. Optionally set product name as `Teflon Pan`.
 4. Click `View Results`.
 
@@ -59,12 +62,23 @@ curl -X POST http://127.0.0.1:8000/analyze \
 ```bash
 curl -X POST http://127.0.0.1:3000/api/analyze \
   -H "Content-Type: application/json" \
-  -d '{"zipCode":"10001","productScan":"Teflon Pan","cookwareUse":{"brand":"Teflon","yearsOfUse":3},"filterModel":{"brand":"None","type":"none"},"dietHabits":{"fiberSources":["oats"],"foods":["rice"],"medications":[]}}'
+  -d '{"zipCode":"10001","productScan":"Teflon Pan","cookwareUse":{"brand":"Teflon","yearsOfUse":3},"filterModel":{"brand":"None","type":"none"},"dietHabits":{"fiberSources":["oats"],"foods":["rice"],"medications":[]},"makeUpUse":{"frequency":"weekly","productTypes":["mascara"]}}'
 ```
 
 Expected:
 - `200` success with Team B payload shape.
 - On error, standardized envelope under `error` key.
+
+### Backend analyze image path (real OCR required)
+```bash
+curl -X POST http://127.0.0.1:8000/analyze \
+  -H "Content-Type: application/json" \
+  -d '{"product_name_hint":"Bottle Label","image_base64":"dGVzdA=="}'
+```
+
+Expected:
+- `503 SERVICE_UNAVAILABLE` with `OCR provider is not ready for analyze image processing` if OCR provider setup is missing.
+- `200` when provider setup is valid.
 
 ## 5. Error Path Demo (Rate Limit)
 

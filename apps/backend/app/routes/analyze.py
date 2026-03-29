@@ -9,7 +9,8 @@ from app.core.config import settings
 from app.core.rate_limit import analyze_rate_limiter
 from app.models.schemas import AnalyzeMeta, AnalyzeRequest, AnalyzeResponse
 from app.services.decay import evaluate_medical_warnings, simulate_decay
-from app.services.ocr import extract_text_from_image
+from app.services.hydrology import calculate_hydrology_risk
+from app.services.ocr import OCRResult, extract_text_from_image
 from app.services.pfas_hunter import detect_chemicals_scored
 from app.services.risk import calculate_risk_score
 
@@ -76,12 +77,28 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         # Stage 1: OCR
         _log_request(request_id, "ocr_start", "processing")
         try:
-            ocr_result = extract_text_from_image(payload.image_base64)
+            if payload.image_base64:
+                ocr_result = extract_text_from_image(
+                    payload.image_base64,
+                    allow_mock_fallback=False,
+                    strict_readiness=True,
+                )
+            else:
+                ocr_result = OCRResult(
+                    raw_text="",
+                    text_blocks=[],
+                    labels=[],
+                    confidence=0.0,
+                    provider="none",
+                )
             _log_request(
                 request_id,
                 "ocr_success",
                 "completed",
-                {"blocks_found": len(ocr_result.text_blocks)},
+                {
+                    "blocks_found": len(ocr_result.text_blocks),
+                    "provider": ocr_result.provider,
+                },
             )
         except (ValueError, TypeError) as e:
             _log_error(request_id, "ocr", str(e), type(e).__name__)
@@ -91,6 +108,18 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
             ) from e
         except Exception as e:
             _log_error(request_id, "ocr", str(e), type(e).__name__)
+            error_message = str(e).lower()
+            if (
+                "not installed" in error_message
+                or "not set" in error_message
+                or "does not exist" in error_message
+                or "not available on path" in error_message
+                or "not allowed for /analyze" in error_message
+            ):
+                raise HTTPException(
+                    status_code=503,
+                    detail="OCR provider is not ready for analyze image processing",
+                ) from e
             raise HTTPException(
                 status_code=500,
                 detail="OCR processing failed",
@@ -122,11 +151,26 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         _log_request(request_id, "risk_start", "processing")
         try:
             risk_result = calculate_risk_score(chemicals_scored)
+
+            hydrology_result = calculate_hydrology_risk(
+                zip_code=payload.zip_code,
+                filter_type=payload.filter_model.type if payload.filter_model else None,
+            )
+
+            # Shift source-of-truth risk composition to backend-owned modules.
+            final_risk_score = int(
+                min(100, max(0, round((risk_result.risk_score * 0.6) + (hydrology_result.water_score * 0.4))))
+            )
             _log_request(
                 request_id,
                 "risk_success",
                 "completed",
-                {"risk_score": risk_result.risk_score},
+                {
+                    "risk_score": final_risk_score,
+                    "product_risk_score": risk_result.risk_score,
+                    "water_risk_score": hydrology_result.water_score,
+                    "water_data_status": hydrology_result.data_status,
+                },
             )
         except Exception as e:
             _log_error(request_id, "risk", str(e), type(e).__name__)
@@ -145,7 +189,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
             )
             decay_result = simulate_decay(
                 chemical=top_chemical,
-                initial_level=risk_result.risk_score,
+                initial_level=final_risk_score,
             )
             _log_request(
                 request_id,
@@ -165,7 +209,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         try:
             warnings_result = evaluate_medical_warnings(
                 detected_chemicals=risk_result.top_contributors,
-                risk_score=risk_result.risk_score,
+                risk_score=final_risk_score,
                 contraindication=None,
             )
             medical_warnings = warnings_result.warnings
@@ -189,8 +233,12 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         response = AnalyzeResponse(
             product_name=payload.product_name_hint or "Unknown Product",
             detected_chemicals=risk_result.top_contributors,
-            risk_score=risk_result.risk_score,
+            risk_score=final_risk_score,
             confidence_interval=risk_result.confidence_interval,
+            water_risk_score=hydrology_result.water_score,
+            water_effective_ppt=hydrology_result.effective_ppt,
+            water_data_status=hydrology_result.data_status,
+            filter_warning=hydrology_result.filter_warning,
             decay_data=decay_result.decay_data,
             medical_warnings=medical_warnings,
             meta=AnalyzeMeta(request_id=uuid.UUID(request_id)),

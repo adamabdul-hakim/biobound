@@ -7,7 +7,6 @@ import FilterAuditor from "./FilterAuditor";
 import ProductScanner from "./ProductScanner";
 import CookwareForm from "./CookwareForm";
 import DietHabitsForm from "./DietHabitsForm";
-import MakeUpUseForm from "./MakeUpUseForm";
 import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
 import { useRouter } from "next/navigation";
 
@@ -17,7 +16,6 @@ const steps = [
   { title: "Product Scan", component: ProductScanner },
   { title: "Cookware Use", component: CookwareForm },
   { title: "Diet & Habits", component: DietHabitsForm },
-  { title: "Makeup Use", component: MakeUpUseForm },
 ];
 
 export default function InputForm() {
@@ -29,7 +27,6 @@ export default function InputForm() {
     productScan,
     cookwareUse,
     dietHabits,
-    makeUpUse,
     nextStep,
     prevStep,
     setAnalyzeResult,
@@ -51,8 +48,7 @@ export default function InputForm() {
       /^\d{5}$/.test(zipCode) &&
       filterModel?.type !== undefined &&
       cookwareUse !== null &&
-      dietHabits !== null &&
-      makeUpUse !== null
+      dietHabits !== null
     );
   };
 
@@ -78,7 +74,6 @@ export default function InputForm() {
         cookwareUse,
         filterModel,
         dietHabits,
-        makeUpUse,
       };
 
       const result = await callIntegratedAnalyzeApi(payload);
