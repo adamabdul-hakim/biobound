@@ -49,7 +49,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: apps/frontend
-        run: npm ci
+        run: npm ci --workspaces=false
 
       - name: Frontend lint
         working-directory: apps/frontend
