@@ -60,3 +60,87 @@ Team B's `/analyze` endpoint MUST return this structure to Team A:
   ],
   "medical_warnings": ["String"]
 }
+```
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    %% ── User Inputs ──────────────────────────────────────────
+    ZIP[/"📍 Zip code"/]
+    SCAN[/"📷 Product scan\nCamera · OCR"/]
+    COOK[/"🍳 Cookware usage\nFrequency · years"/]
+    FILT[/"🚰 Filter model\nBrand · type"/]
+    DIET[/"🥗 Diet & habits\nFiber · foods · meds"/]
+
+    %% ── External Data Sources ────────────────────────────────
+    EPA[("🗄️ EPA UCMR 5\nWater PPT by zip")]
+    NSF[("🗄️ NSF/ANSI DB\nFilter certification")]
+    PUB[("🗄️ PubMed 2025\nFiber half-life data")]
+
+    %% ── Processing Modules ───────────────────────────────────
+    MOD1["⬡ Module 1 — Hydrology Sentinel\nWater risk + filter verification"]
+    MOD2["⬡ Module 2 — Forensic Scanner\nComputer vision + suffix engine"]
+    MOD3["⬡ Module 3 — Bio-Decay Simulator\nHalf-life + intervention modelling"]
+
+    %% ── Core Engine ──────────────────────────────────────────
+    REI["◆ REI Engine\nΣ(Wᵢ × Vᵢ × Fᵢ)"]
+
+    %% ── Safety Layer ─────────────────────────────────────────
+    SAFE["⚠ Safety & Equity Filter\nMed. interactions · zero-cost mitigations"]
+
+    %% ── Outputs ──────────────────────────────────────────────
+    OUT1[/"REI score\nRelative Exposure Index"/]
+    OUT2[/"Filter warning\nFalse security alert"/]
+    OUT3[/"PFAS flags\nProduct risk tier"/]
+    OUT4[/"Decay curve\nDynamic reduction slope"/]
+    OUT5[/"Intervention model\nWhat-if fibre scenarios"/]
+    OUT6[/"Forever Scale dashboard"/]
+    OUT7[/"Medication warnings\nDrug–fibre interactions"/]
+    OUT8[/"Mitigation plan\nTiered + zero-cost options"/]
+
+    %% ── User input → Modules ─────────────────────────────────
+    ZIP   --> MOD1
+    FILT  --> MOD1
+    SCAN  --> MOD2
+    COOK  --> MOD2
+    DIET  --> MOD3
+
+    %% ── External data → Modules (dashed) ────────────────────
+    EPA -.->|live scrape| MOD1
+    NSF -.->|cert lookup| MOD1
+    PUB -.->|half-life data| MOD3
+
+    %% ── Modules → REI Engine ─────────────────────────────────
+    MOD1 --> REI
+    MOD2 --> REI
+    MOD3 --> REI
+
+    %% ── REI → Safety ─────────────────────────────────────────
+    REI --> SAFE
+
+    %% ── Modules → Outputs ────────────────────────────────────
+    MOD1 --> OUT1
+    MOD1 --> OUT2
+    MOD2 --> OUT3
+    MOD3 --> OUT4
+    MOD3 --> OUT5
+    REI  --> OUT6
+    SAFE --> OUT7
+    SAFE --> OUT8
+
+    %% ── Styles ───────────────────────────────────────────────
+    classDef input    fill:#E6F1FB,stroke:#185FA5,color:#0C447C
+    classDef extdata  fill:#F1EFE8,stroke:#5F5E5A,color:#444441
+    classDef module   fill:#E1F5EE,stroke:#0F6E56,color:#085041
+    classDef engine   fill:#EEEDFE,stroke:#534AB7,color:#3C3489
+    classDef safety   fill:#FAEEDA,stroke:#854F0B,color:#633806
+    classDef output   fill:#EAF3DE,stroke:#3B6D11,color:#27500A
+
+    class ZIP,SCAN,COOK,FILT,DIET input
+    class EPA,NSF,PUB extdata
+    class MOD1,MOD2,MOD3 module
+    class REI engine
+    class SAFE safety
+    class OUT1,OUT2,OUT3,OUT4,OUT5,OUT6,OUT7,OUT8 output
+```
