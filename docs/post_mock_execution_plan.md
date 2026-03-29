@@ -33,7 +33,76 @@ Ship a demo-ready build where `/analyze` is backend-owned and aligned with the a
 5. REI transparency contract added.
 - `/analyze` now returns `rei_formula_version`, `module_scores`, and `safety` object.
 
+## Completed Implementation Log
+
+### Step 2: Complete Module 2 Signal Ownership (Scanner + Cookware)
+Status: Done  
+Commit: `4bc40dc`
+
+Delivered:
+- Scanner input assembly now uses OCR + `product_scan` + fallback hint.
+- Cookware exposure modifier adjusts scanner module score based on usage percent and years.
+- Test coverage includes no-scan, scan-only, cookware-only, and combined scenarios.
+
+### Step 3: Complete Module 3 Signal Ownership (Diet + Meds)
+Status: Done  
+Commits: `cb23ae3`, `d233e53`
+
+Delivered:
+- Decay scoring now responds to explicit diet and medication inputs.
+- Contraindication logic uses deterministic medication/fiber interaction rules.
+- Contract tests cover diet-only, meds-only, and conflict scenarios.
+
+### Step 4: NSF Data Integration (Hydrology completion)
+Status: Done  
+Commit: `4952d30`
+
+Delivered:
+- Added local dataset `apps/backend/app/data/nsf_certifications.json`.
+- Hydrology now performs dataset-backed certification lookup by normalized filter type (brand hook included).
+- Regression tests cover certified (`NSF-53`), known non-PFAS certification (`NSF-42`), and unknown/unverified types.
+
+### Step 5: Golden Flow Test (Architecture Proof)
+Status: Done  
+Commit: `4138dc9`
+
+Delivered:
+- Added fixture: `apps/backend/tests/fixtures/analyze_golden_payload.json`.
+- Added e2e golden test asserting architecture outputs:
+  - `risk_score`
+  - `filter_warning`
+  - `detected_chemicals`
+  - `decay_data`
+  - `medical_warnings`
+  - `module_scores`
+  - `safety`
+
+### Step 6: CI Guardrails (prevent drift)
+Status: Done  
+Commit: `8776917`
+
+Delivered:
+- Backend lint+test remains required in CI.
+- Added frontend lint+build CI job under `apps/frontend`.
+
 ## Remaining Concrete Steps
+
+### Step 7: Real Data Completion - Model-Level NSF Catalog
+Owner: Backend + Data  
+ETA: 0.5 day after data source access
+
+Tasks:
+- Ingest real model-level NSF listing (`brand`, `model`, `standard`, PFAS claim status).
+- Extend lookup from type-level to model-level matching first; fallback to type-level only when model is missing.
+- Version the ingested dataset with retrieval date and source hash.
+
+Definition of done:
+- Known certified model returns no PFAS warning.
+- Known uncertified model returns PFAS warning.
+- Unknown model falls back to type-level rule with explicit uncertainty warning.
+
+Current blocker:
+- Repository does not yet contain a model-level NSF product export/source file.
 
 ### Step 2: Complete Module 2 Signal Ownership (Scanner + Cookware)
 Owner: Backend  
@@ -111,6 +180,7 @@ Definition of done:
 4. Add Step 5 golden flow test.
 5. Add Step 6 CI guardrails.
 6. Re-run demo script and update handoff docs.
+7. Ingest model-level NSF catalog and upgrade lookup fidelity.
 
 ## Validation Commands
 
@@ -127,6 +197,18 @@ cd apps/frontend
 npm run lint
 npm run build
 ```
+
+Golden flow:
+```bash
+cd apps/backend
+python -m pytest -q tests/test_analyze_e2e.py -k golden
+```
+
+Live rehearsal result (2026-03-28):
+- `/health` returned 200.
+- Backend `/analyze` full payload returned 200.
+- Frontend `/api/analyze` proxy returned 200.
+- Image analyze route returned expected 503 until OCR credentials are configured.
 
 ## Teammate Status Template
 
