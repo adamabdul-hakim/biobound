@@ -85,7 +85,7 @@ export default function LandingPage() {
           <p style={{ fontSize: 17, color: "var(--text2)", lineHeight: 1.75, maxWidth: 560, marginBottom: 40 }}>
             97% of Americans have detectable PFAS in their blood. These "forever chemicals" don't leave —
             they build up over decades, linking to cancer, hormone disruption, and liver disease.
-            SafeSource finds your biggest sources in under 3 minutes.
+            SafeSource helps you fight back.
           </p>
           <Link href="/audit" className="btn-primary" style={{ fontSize: 16, padding: "18px 36px", borderRadius: 12, textDecoration: "none" }}>
             Start my audit →
