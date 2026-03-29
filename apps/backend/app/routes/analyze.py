@@ -134,10 +134,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         # Stage 2: Chemical Detection
         _log_request(request_id, "detection_start", "processing")
         try:
-            # Combine OCR text with product hint for detection
-            text = ocr_result.raw_text
-            if payload.product_name_hint:
-                text += " " + payload.product_name_hint
+            text = _build_scanner_text(payload=payload, ocr_result=ocr_result)
 
             chemicals_scored = detect_chemicals_scored(text)
             _log_request(
@@ -156,7 +153,11 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         # Stage 3: Risk Scoring
         _log_request(request_id, "risk_start", "processing")
         try:
-            risk_result = calculate_risk_score(chemicals_scored)
+            raw_scanner_result = calculate_risk_score(chemicals_scored)
+            scanner_score = _apply_cookware_exposure_modifier(
+                base_score=raw_scanner_result.risk_score,
+                payload=payload,
+            )
 
             hydrology_result = calculate_hydrology_risk(
                 zip_code=payload.zip_code,
@@ -172,7 +173,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
                     max(
                         0,
                         round(
-                            (risk_result.risk_score * 0.5)
+                            (scanner_score * 0.5)
                             + (hydrology_result.water_score * 0.3)
                             + (decay_score * 0.2)
                         ),
@@ -185,7 +186,8 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
                 "completed",
                 {
                     "risk_score": final_risk_score,
-                    "product_risk_score": risk_result.risk_score,
+                    "product_risk_score": scanner_score,
+                    "scanner_base_score": raw_scanner_result.risk_score,
                     "water_risk_score": hydrology_result.water_score,
                     "decay_score": decay_score,
                     "water_data_status": hydrology_result.data_status,
@@ -202,8 +204,8 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         _log_request(request_id, "decay_start", "processing")
         try:
             top_chemical = (
-                risk_result.top_contributors[0]
-                if risk_result.top_contributors
+                raw_scanner_result.top_contributors[0]
+                if raw_scanner_result.top_contributors
                 else None
             )
             decay_result = simulate_decay(
@@ -228,7 +230,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         try:
             contraindication = _derive_contraindication(payload)
             warnings_result = evaluate_medical_warnings(
-                detected_chemicals=risk_result.top_contributors,
+                detected_chemicals=raw_scanner_result.top_contributors,
                 risk_score=final_risk_score,
                 contraindication=contraindication,
             )
@@ -247,7 +249,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
 
             module_scores = ModuleScores(
                 hydrology=hydrology_result.water_score,
-                scanner=risk_result.risk_score,
+                scanner=scanner_score,
                 decay=decay_score,
                 composite=final_risk_score,
             )
@@ -270,11 +272,11 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         # Compose response
         response = AnalyzeResponse(
             product_name=payload.product_name_hint or "Unknown Product",
-            detected_chemicals=risk_result.top_contributors,
+            detected_chemicals=raw_scanner_result.top_contributors,
             risk_score=final_risk_score,
             rei_formula_version="v2-module-weighted-0.5-0.3-0.2",
             module_scores=module_scores,
-            confidence_interval=risk_result.confidence_interval,
+            confidence_interval=raw_scanner_result.confidence_interval,
             water_risk_score=hydrology_result.water_score,
             water_effective_ppt=hydrology_result.effective_ppt,
             water_data_status=hydrology_result.data_status,
@@ -329,3 +331,38 @@ def _derive_contraindication(payload: AnalyzeRequest) -> str | None:
     if meds & interacting:
         return "Potential fiber-medication timing interaction"
     return None
+
+
+def _build_scanner_text(payload: AnalyzeRequest, ocr_result: OCRResult) -> str:
+    # Module 2 source text priority: OCR image text + explicit product_scan + fallback hint.
+    parts: list[str] = []
+    if ocr_result.raw_text:
+        parts.append(ocr_result.raw_text)
+
+    if payload.product_scan:
+        parts.append(payload.product_scan)
+
+    if payload.product_name_hint:
+        parts.append(payload.product_name_hint)
+
+    return " ".join(parts)
+
+
+def _apply_cookware_exposure_modifier(base_score: int, payload: AnalyzeRequest) -> int:
+    cookware = payload.cookware_use
+    if cookware is None:
+        return base_score
+
+    # In current Team A shape, brand stores non-stick frequency buckets like "50%".
+    frequency_bonus = 0
+    brand_value = cookware.brand.strip().lower()
+    if brand_value.endswith("%"):
+        try:
+            percentage = int(brand_value.replace("%", ""))
+            frequency_bonus = min(20, max(0, round(percentage / 5)))
+        except ValueError:
+            frequency_bonus = 0
+
+    years_bonus = min(10, max(0, cookware.years_of_use))
+    adjusted = base_score + frequency_bonus + years_bonus
+    return min(100, max(0, adjusted))

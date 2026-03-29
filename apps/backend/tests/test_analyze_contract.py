@@ -112,3 +112,43 @@ def test_analyze_sets_filter_warning_from_hydrology_module() -> None:
     body = response.json()
     assert body["filter_warning"] is not None
     assert body["water_data_status"] == "calculated"
+
+
+def test_analyze_scanner_score_changes_with_product_scan_text() -> None:
+    client = TestClient(app)
+
+    without_scan = client.post(
+        "/analyze",
+        json={"product_name_hint": "Unknown"},
+    )
+    with_scan = client.post(
+        "/analyze",
+        json={"product_name_hint": "Unknown", "product_scan": "PTFE coated pan PFOA"},
+    )
+
+    assert without_scan.status_code == 200
+    assert with_scan.status_code == 200
+    assert with_scan.json()["module_scores"]["scanner"] >= without_scan.json()["module_scores"]["scanner"]
+
+
+def test_analyze_scanner_score_changes_with_cookware_use() -> None:
+    client = TestClient(app)
+
+    low_exposure = client.post(
+        "/analyze",
+        json={
+            "product_scan": "non-stick pan",
+            "cookware_use": {"brand": "10%", "years_of_use": 1},
+        },
+    )
+    high_exposure = client.post(
+        "/analyze",
+        json={
+            "product_scan": "non-stick pan",
+            "cookware_use": {"brand": "100%", "years_of_use": 10},
+        },
+    )
+
+    assert low_exposure.status_code == 200
+    assert high_exposure.status_code == 200
+    assert high_exposure.json()["module_scores"]["scanner"] >= low_exposure.json()["module_scores"]["scanner"]

@@ -340,3 +340,42 @@ def test_analyze_skips_ocr_when_image_missing() -> None:
     assert response.status_code == 200
     assert response.json()["product_name"] == "Text Only"
     mock_extract.assert_not_called()
+
+
+def test_module2_scenarios_scanner_score_ordering() -> None:
+    client = TestClient(app)
+
+    no_scan = client.post(
+        "/analyze",
+        json={"product_name_hint": "Unknown"},
+    )
+    scan_only = client.post(
+        "/analyze",
+        json={"product_scan": "PTFE PFOA coated product"},
+    )
+    cookware_only = client.post(
+        "/analyze",
+        json={"cookware_use": {"brand": "75%", "years_of_use": 8}},
+    )
+    combined = client.post(
+        "/analyze",
+        json={
+            "product_scan": "PTFE PFOA coated product",
+            "cookware_use": {"brand": "75%", "years_of_use": 8},
+        },
+    )
+
+    assert no_scan.status_code == 200
+    assert scan_only.status_code == 200
+    assert cookware_only.status_code == 200
+    assert combined.status_code == 200
+
+    no_scan_score = no_scan.json()["module_scores"]["scanner"]
+    scan_only_score = scan_only.json()["module_scores"]["scanner"]
+    cookware_only_score = cookware_only.json()["module_scores"]["scanner"]
+    combined_score = combined.json()["module_scores"]["scanner"]
+
+    assert scan_only_score >= no_scan_score
+    assert cookware_only_score >= no_scan_score
+    assert combined_score >= scan_only_score
+    assert combined_score >= cookware_only_score
