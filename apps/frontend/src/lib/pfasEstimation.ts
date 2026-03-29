@@ -1,8 +1,6 @@
 /**
- * PFAS estimation service that calls the backend /estimate/pfas endpoint
+ * PFAS estimation service routed through frontend API proxy.
  */
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export interface LocationPfasData {
   source: "manual_demo" | "gemini" | "heuristic_fallback";
@@ -17,7 +15,7 @@ export interface LocationPfasData {
 }
 
 export async function estimatePfasByZip(zipCode: string): Promise<LocationPfasData> {
-  const url = `${API_BASE}/estimate/pfas?zip_code=${encodeURIComponent(zipCode)}`;
+  const url = `/api/pfas?zip_code=${encodeURIComponent(zipCode)}`;
   
   const response = await fetch(url);
   

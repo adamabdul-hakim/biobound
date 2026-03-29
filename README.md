@@ -43,3 +43,19 @@ npm run lint:frontend
 npm run test:backend
 npm run lint:backend
 ```
+
+## Deploy Backend For Vercel Frontend
+
+Deploy the FastAPI backend separately (recommended: Render), then point Vercel to that URL.
+
+1. Deploy backend using `render.yaml` at repo root.
+2. Set Vercel env vars:
+
+```bash
+TEAM_B_API_BASE_URL=https://<your-backend>.onrender.com
+NEXT_PUBLIC_API_URL=https://<your-backend>.onrender.com
+```
+
+3. Redeploy frontend on Vercel.
+
+Full step-by-step guide: `docs/backend-deployment.md`.

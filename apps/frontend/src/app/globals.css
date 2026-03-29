@@ -24,7 +24,7 @@
 
   /* ── Fonts ── */
   --mono:   var(--font-dm-mono), 'DM Mono', monospace;
-  --serif:  'Instrument Serif', serif;
+  --serif:  var(--font-instrument-serif), serif;
   --sans:   var(--font-dm-sans), 'DM Sans', sans-serif;
 
   /* ── Gauge / component tokens ── */

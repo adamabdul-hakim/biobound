@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: biobound-backend
+    runtime: python
+    rootDir: apps/backend
+    plan: free
+    buildCommand: pip install -e .
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: OCR_PROVIDER
+        value: google
+      - key: OCR_TIMEOUT_SECONDS
+        value: "2.0"
+      - key: OCR_RETRY_ATTEMPTS
+        value: "2"
+      - key: OCR_ENABLE_FALLBACK_TESSERACT
+        value: "true"
+      - key: ANALYZE_RATE_LIMIT_PER_MINUTE
+        value: "60"
+      - key: METRICS_MAX_SAMPLES
+        value: "1000"
+      # Set this in Render dashboard for production secrets.
+      - key: GEMINI_API_KEY
+        sync: false

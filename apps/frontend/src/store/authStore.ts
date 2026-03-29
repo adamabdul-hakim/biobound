@@ -99,7 +99,8 @@ export const useAuthStore = create<AuthState>()(
           return false;
         }
         // Never surface passwordHash to state consumers
-        const { passwordHash: _pw, ...profile } = found;
+        const { passwordHash, ...profile } = found;
+        void passwordHash;
         set({ user: profile, isLoggedIn: true, authError: null });
         return true;
       },
@@ -121,7 +122,8 @@ export const useAuthStore = create<AuthState>()(
           passwordHash: hash,
         };
         setStoredUsers([...users, newUser]);
-        const { passwordHash: _pw, ...profile } = newUser;
+        const { passwordHash, ...profile } = newUser;
+        void passwordHash;
         set({ user: profile, isLoggedIn: true, authError: null });
         return true;
       },

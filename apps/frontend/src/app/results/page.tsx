@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 
 export default function ResultsPage() {
   const router = useRouter();
-  const { isLoggedIn, saveAssessment, user } = useAuthStore();
+  const { isLoggedIn, saveAssessment } = useAuthStore();
   const [saved, setSaved] = useState(false);
 
   const {
@@ -32,9 +32,6 @@ export default function ResultsPage() {
     mitigationPlan,
     zipCode,
     filterModel,
-    cookwareUse,
-    dietHabits,
-    makeUpUse,
     error,
     setError,
   } = useAppStore();

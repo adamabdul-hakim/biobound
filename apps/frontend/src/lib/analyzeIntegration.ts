@@ -85,114 +85,7 @@ function getRiskTier(score: number): PfasFlag["tier"] {
 // ── Lifestyle-based REI computation ───────────────────────────────────────────
 // The backend scanner score is 0 when no product is scanned (50% of its weight),
 // so we compute REI fully on the frontend from all lifestyle inputs.
-function computeLifestyleREI(
-  payload: TeamAAnalyzeInput,
-  backendWaterScore: number,
-  waterDataStatus: "calculated" | "no-data" | "missing-zip" = "calculated",
-): number {
-  // 1. Water score (0-100) — precautionary fallback when backend has no data
-  let waterScore: number;
-  if (waterDataStatus === "calculated") {
-    waterScore = Math.max(0, Math.min(100, backendWaterScore));
-  } else {
-    // Unknown water quality = elevated risk (precautionary principle)
-    const hasFilter = payload.filterModel?.type && payload.filterModel.type !== "none";
-    waterScore = hasFilter ? 35 : 70;
-  }
-
-  // 2. Cookware exposure score (0-100)
-  let cookwareScore = 0;
-  if (payload.cookwareUse) {
-    const brand = payload.cookwareUse.brand.trim();
-    const pct = brand.endsWith("%") ? Math.min(100, Math.max(0, parseInt(brand) || 0)) : 0;
-    const years = Math.min(20, Math.max(0, payload.cookwareUse.yearsOfUse));
-    // pct 0-100% → 0-60 pts;  years 0-20 → 0-40 pts
-    cookwareScore = Math.round((pct / 100) * 60 + (years / 20) * 40);
-  }
-
-  // 3. Diet exposure (net of PFAS-raising minus PFAS-reducing foods) (0-100)
-  let dietScore = 0;
-  if (payload.dietHabits) {
-    const raising = payload.dietHabits.foods.length; // each adds ~10pts (7 foods max)
-    const reducing = payload.dietHabits.fiberSources.length; // each reduces ~7pts
-    const meds = payload.dietHabits.medications.filter(
-      (m) => m.toLowerCase() !== "none",
-    ).length;
-    const rawDiet = raising * 10 - reducing * 7 + meds * 3;
-    dietScore = Math.max(0, Math.min(100, rawDiet));
-  }
-
-  // 4. Personal care exposure (0-100)
-  let makeupScore = 0;
-  if (payload.makeUpUse) {
-    const freqMap: Record<string, number> = { never: 0, rarely: 18, weekly: 42, daily: 65 };
-    const freqScore = freqMap[payload.makeUpUse.frequency] ?? 0;
-    const productScore = payload.makeUpUse.frequency === "never"
-      ? 0
-      : Math.min(25, payload.makeUpUse.productTypes.length * 4);
-    // Shampoo/hair products — dry shampoo + keratin are high-PFAS
-    const highRiskHairProducts = ["Dry shampoo", "Keratin / straightening treatments", "Hair spray / styling spray"];
-    const hairScore = Math.min(10, (payload.makeUpUse.shampooProducts?.filter(
-      (p) => highRiskHairProducts.some((h) => h.toLowerCase().includes(p.toLowerCase().split(" ")[0]))
-    ).length ?? 0) * 5);
-    makeupScore = Math.min(100, freqScore + productScore + hairScore);
-  }
-
-  // 5. Household (crawling children = 10× dust ingestion) (0-100)
-  let householdScore = 0;
-  if (payload.householdProfile?.hasChildrenUnder5) {
-    const n = Math.min(4, payload.householdProfile.numberOfChildren);
-    householdScore = payload.householdProfile.childrenCrawlOnFloor
-      ? Math.min(100, 65 + n * 12) // crawling: high dust ingestion (~10x adult)
-      : Math.min(60, 15 + n * 10);
-  }
-
-  // 6. Receipt scan score (0-100) — real product data from OCR/Gemini
-  let receiptScore = 0;
-  const hasReceipt = payload.receiptScanResult && payload.receiptScanResult.items.length > 0;
-  if (hasReceipt) {
-    const levelPoints: Record<string, number> = { none: 0, low: 8, moderate: 25, high: 50 };
-    let totalPts = 0;
-    for (const item of payload.receiptScanResult!.items) {
-      // Use ppt_estimate when available, otherwise fall back to level-based points
-      if (item.ppt_estimate != null && item.ppt_estimate > 0) {
-        // Normalize ppt: 70 ppt ceiling maps to ~50 points per item
-        totalPts += Math.min(50, (item.ppt_estimate / 70) * 50);
-      } else {
-        totalPts += levelPoints[item.pfas_level] ?? 0;
-      }
-    }
-    receiptScore = Math.min(100, Math.round(totalPts));
-  }
-
-  // Weighted composite — redistribute weights when receipt data exists
-  let rei: number;
-  if (hasReceipt) {
-    // With receipt data: receipt gets 20%, other weights compressed proportionally
-    rei = Math.round(
-      waterScore * 0.20 +
-      cookwareScore * 0.15 +
-      dietScore * 0.20 +
-      makeupScore * 0.10 +
-      householdScore * 0.15 +
-      receiptScore * 0.20,
-    );
-  } else {
-    // Without receipt data: original weights
-    rei = Math.round(
-      waterScore * 0.25 +
-      cookwareScore * 0.20 +
-      dietScore * 0.25 +
-      makeupScore * 0.15 +
-      householdScore * 0.15,
-    );
-  }
-  // Crawling infants ingest ~10x more PFAS-laden house dust: apply vulnerability multiplier
-  if (payload.householdProfile?.hasChildrenUnder5 && payload.householdProfile?.childrenCrawlOnFloor) {
-    return Math.min(100, Math.round(rei * 1.6));
-  }
-  return Math.max(0, Math.min(100, rei));
-}
+// REI is now backend-derived via risk_score in mapTeamBToTeamAResult.
 
 // ── Smooth exponential decay curve ────────────────────────────────────────────
 // PFAS half-lives vary by compound. PFOS ~4-5 years, PFOA ~2-4 years.
@@ -395,7 +288,6 @@ function buildInterventionScenarios(
   ];
 
   if (reiScore >= 55) {
-    const s4 = { ...s3 };
     // Medical intervention on top of full overhaul
     const rei4 = rei3;
     const ongoing4 = ongoing3 * 0.5; // medical treatment + full overhaul cuts ongoing exposure further
@@ -497,7 +389,14 @@ export function mapTeamBToTeamAResult(
 
 export async function callIntegratedAnalyzeApi(payload: TeamAAnalyzeInput): Promise<TeamAAnalyzeResult> {
   // Strip frontend-only fields before sending to backend
-  const { householdProfile: _hp, receiptScanResult: _rsr, ...backendPayload } = payload;
+  const backendPayload = {
+    zipCode: payload.zipCode,
+    productScan: payload.productScan,
+    cookwareUse: payload.cookwareUse,
+    filterModel: payload.filterModel,
+    dietHabits: payload.dietHabits,
+    makeUpUse: payload.makeUpUse,
+  };
 
   const response = await fetch("/api/analyze", {
     method: "POST",

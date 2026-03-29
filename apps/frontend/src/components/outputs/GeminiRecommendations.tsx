@@ -15,7 +15,7 @@ function parseCookwarePct(brand: string): number {
 }
 
 export default function GeminiRecommendations({ reiScore }: GeminiRecommendationsProps) {
-  const { cookwareUse, dietHabits, makeUpUse, householdProfile, filterModel, zipCode } = useAppStore();
+  const { cookwareUse, dietHabits, householdProfile, filterModel, zipCode } = useAppStore();
   const [result, setResult] = useState<RecommendationsResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

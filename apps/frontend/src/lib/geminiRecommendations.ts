@@ -19,7 +19,7 @@ export interface RecommendationsInput {
 export async function fetchGeminiRecommendations(
   input: RecommendationsInput,
 ): Promise<RecommendationsResult> {
-  const response = await fetch("http://localhost:8000/estimate/recommendations", {
+  const response = await fetch("/api/recommendations", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Sun, Moon } from "lucide-react";
 
 function applyTheme(theme: "dark" | "light") {
@@ -40,6 +40,15 @@ interface ThemeToggleProps {
 
 export default function ThemeToggle({ style }: ThemeToggleProps) {
   const { theme, toggle } = useTheme();
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <button
