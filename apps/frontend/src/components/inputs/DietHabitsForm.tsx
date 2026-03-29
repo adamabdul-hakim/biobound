@@ -2,7 +2,7 @@
 
 import { useAppStore } from "@/store/appStore";
 import { useState } from "react";
-import { Apple, CheckCircle } from "lucide-react";
+import { Apple } from "lucide-react";
 
 const fiberSourceOptions = [
   "oats",
