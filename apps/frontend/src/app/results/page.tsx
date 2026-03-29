@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { useAppStore } from "@/store/appStore";
+import { useAuthStore } from "@/store/authStore";
 import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
 import FilterWarningBanner from "@/components/outputs/FilterWarningBanner";
 import PfasFlagList from "@/components/outputs/PfasFlagList";
@@ -16,6 +18,9 @@ import { useRouter } from "next/navigation";
 
 export default function ResultsPage() {
   const router = useRouter();
+  const { isLoggedIn, saveAssessment, user } = useAuthStore();
+  const [saved, setSaved] = useState(false);
+
   const {
     reiScore,
     filterWarning,
@@ -32,6 +37,17 @@ export default function ResultsPage() {
     error,
     setError,
   } = useAppStore();
+
+  function handleSave() {
+    if (!reiScore) return;
+    saveAssessment({
+      reiScore,
+      zipCode,
+      riskLevel: reiScore < 33 ? "low" : reiScore < 67 ? "moderate" : "high",
+      topRiskFactor: pfasFlags?.[0]?.compound ?? undefined,
+    });
+    setSaved(true);
+  }
 
   if (reiScore === null) {
     return (
@@ -74,13 +90,20 @@ export default function ResultsPage() {
         <Link href="/" style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em", textDecoration: "none" }}>
           BIO//BOUND
         </Link>
-        <Link href="/audit" style={{
-          fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
-          border: "0.5px solid var(--border2)", borderRadius: 20,
-          padding: "6px 16px", textDecoration: "none",
-        }}>
-          ← New Audit
-        </Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {isLoggedIn && (
+            <Link href="/dashboard" style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)", textDecoration: "none" }}>
+              Dashboard
+            </Link>
+          )}
+          <Link href="/audit" style={{
+            fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
+            border: "0.5px solid var(--border2)", borderRadius: 20,
+            padding: "6px 16px", textDecoration: "none",
+          }}>
+            ← New Audit
+          </Link>
+        </div>
       </nav>
 
       <ErrorBanner error={error} onClose={() => setError(null)} />
@@ -154,6 +177,51 @@ export default function ResultsPage() {
                       : "High exposure detected. Prioritize the recommended interventions."}
                 </p>
               </div>
+
+              {/* Save to profile */}
+              <div style={{ marginTop: 16 }}>
+                {isLoggedIn ? (
+                  saved ? (
+                    <div style={{
+                      padding: "10px 14px",
+                      background: "rgba(96,216,144,0.1)",
+                      border: "0.5px solid rgba(96,216,144,0.3)",
+                      borderRadius: 10, textAlign: "center",
+                      fontFamily: "var(--mono)", fontSize: 12, color: "var(--safe)",
+                    }}>
+                      ✓ Saved to your dashboard
+                    </div>
+                  ) : (
+                    <button
+                      onClick={handleSave}
+                      style={{
+                        width: "100%", padding: "10px 0",
+                        background: "rgba(200,240,96,0.08)",
+                        border: "0.5px solid rgba(200,240,96,0.3)",
+                        borderRadius: 10, cursor: "pointer",
+                        fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
+                      }}
+                    >
+                      Save to my profile →
+                    </button>
+                  )
+                ) : (
+                  <Link
+                    href="/login?redirect=/dashboard"
+                    style={{
+                      display: "block", textAlign: "center",
+                      padding: "10px 14px",
+                      background: "var(--surface2)",
+                      border: "0.5px solid var(--border2)",
+                      borderRadius: 10,
+                      fontFamily: "var(--mono)", fontSize: 11, color: "var(--text2)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Save results to profile →
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
 
@@ -167,7 +235,8 @@ export default function ResultsPage() {
             </div>
 
             <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
-              <DecayChart data={decayCurve} />
+              {/* Show all scenarios overlaid; fallback to single decay curve */}
+              <DecayChart scenarios={interventionModel} data={decayCurve} />
             </div>
 
             <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>

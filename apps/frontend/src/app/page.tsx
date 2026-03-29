@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useAuthStore } from "@/store/authStore";
 
 const stats = [
   { num: "97%",  desc: "of Americans have detectable PFAS blood levels" },
@@ -16,6 +18,11 @@ const steps = [
 ];
 
 export default function LandingPage() {
+  const { isLoggedIn, user } = useAuthStore();
+  // Guard SSR hydration for auth state
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   return (
     <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }} className="min-h-screen">
 
@@ -36,8 +43,23 @@ export default function LandingPage() {
             fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
             textDecoration: "none",
           }}>
-            Try a Demo
+            Demo
           </Link>
+          {mounted && isLoggedIn ? (
+            <Link href="/dashboard" style={{
+              fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
+              textDecoration: "none",
+            }}>
+              {user?.name.split(" ")[0] ?? "Dashboard"}
+            </Link>
+          ) : (
+            <Link href="/login" style={{
+              fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
+              textDecoration: "none",
+            }}>
+              Sign in
+            </Link>
+          )}
           <Link href="/audit" style={{
             fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
             border: "0.5px solid var(--accent)", borderRadius: 20,
