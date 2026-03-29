@@ -55,9 +55,9 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 const CX = 160;
-const CY = 150;
-const R_OUTER  = 120;
-const R_NEEDLE = 108;
+const CY = 140;
+const R_OUTER  = 110;
+const R_NEEDLE = 98;
 const DURATION = 800; // ms
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -115,7 +115,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
       maxWidth: "340px", margin: "0 auto",
     }}>
       <svg
-        viewBox="0 0 320 190"
+        viewBox="0 0 320 210"
         width="100%"
         role="img"
         aria-label={`REI Score: ${score} out of 100. Status: ${STATUS_LABELS[status] ?? status}`}

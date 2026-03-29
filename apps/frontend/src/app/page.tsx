@@ -31,14 +31,22 @@ export default function LandingPage() {
         <span style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em" }}>
           BIO//BOUND
         </span>
-        <Link href="/audit" style={{
-          fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
-          border: "0.5px solid var(--accent)", borderRadius: 20,
-          padding: "6px 16px", textDecoration: "none",
-          background: "rgba(200,240,96,0.08)",
-        }}>
-          Start audit →
-        </Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Link href="/demo" style={{
+            fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
+            textDecoration: "none",
+          }}>
+            Try a Demo
+          </Link>
+          <Link href="/audit" style={{
+            fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
+            border: "0.5px solid var(--accent)", borderRadius: 20,
+            padding: "6px 16px", textDecoration: "none",
+            background: "rgba(200,240,96,0.08)",
+          }}>
+            Start audit →
+          </Link>
+        </div>
       </nav>
 
       {/* ── HERO ── */}

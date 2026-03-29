@@ -8,6 +8,7 @@ import CookwareForm from "./CookwareForm";
 import DietHabitsForm from "./DietHabitsForm";
 import MakeUpUseForm from "./MakeUpUseForm";
 import HouseholdForm from "./HouseholdForm";
+import ReceiptScanner from "./ReceiptScanner";
 import LocationPfasDisplay from "./LocationPfasDisplay";
 import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
 import { useRouter } from "next/navigation";
@@ -19,9 +20,10 @@ const steps = [
   { title: "Diet & Habits" },
   { title: "Personal Care" },
   { title: "Household" },
+  { title: "Product Scan", optional: true },
 ];
 
-const stepComponents = [ZipCodeInput, FilterAuditor, CookwareForm, DietHabitsForm, MakeUpUseForm, HouseholdForm];
+const stepComponents = [ZipCodeInput, FilterAuditor, CookwareForm, DietHabitsForm, MakeUpUseForm, HouseholdForm, ReceiptScanner];
 
 const stepHeadings = [
   <>Where do you get your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>tap water</em>?</>,
@@ -30,6 +32,7 @@ const stepHeadings = [
   <>Which foods do you <em style={{ fontStyle: "italic", color: "var(--accent)" }}>eat regularly</em>?</>,
   <>Your personal care <em style={{ fontStyle: "italic", color: "var(--accent)" }}>product exposure</em></>,
   <>Children in your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>household</em></>,
+  <>Scan your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>everyday products</em></>,
 ];
 
 const stepLeads = [
@@ -39,6 +42,7 @@ const stepLeads = [
   "PFAS bioaccumulates in fish, leaches from packaging, and builds up through certain everyday food habits.",
   "PFAS hides in waterproof cosmetics, dry shampoo, and hair products for smoothness and water resistance.",
   "Young children who crawl and mouth objects can ingest up to 10× more PFAS-contaminated dust than adults.",
+  "Upload a grocery receipt or paste product names — we OCR the image then Gemini AI flags each item's PFAS risk.",
 ];
 
 export default function InputForm() {
@@ -51,6 +55,7 @@ export default function InputForm() {
     dietHabits,
     makeUpUse,
     householdProfile,
+    receiptScanResult,
     nextStep,
     prevStep,
     setAnalyzeResult,
@@ -90,6 +95,7 @@ export default function InputForm() {
         dietHabits,
         makeUpUse,
         householdProfile,
+        receiptScanResult,
       });
       setAnalyzeResult(result);
       router.push("/results");
@@ -148,14 +154,27 @@ export default function InputForm() {
         </button>
 
         {currentStep < steps.length ? (
-          <button
-            onClick={handleNextStep}
-            disabled={!canAdvance() || isLoading}
-            className="btn-primary"
-            style={{ opacity: !canAdvance() || isLoading ? 0.4 : 1, cursor: !canAdvance() || isLoading ? "not-allowed" : "pointer" }}
-          >
-            Next: {steps[currentStep]?.title} →
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {/* When the next step is optional, offer a direct skip to results */}
+            {steps[currentStep]?.optional && (
+              <button
+                onClick={handleAnalyze}
+                disabled={!canAnalyze() || isLoading}
+                className="btn-ghost-bb"
+                style={{ opacity: !canAnalyze() || isLoading ? 0.4 : 1, cursor: !canAnalyze() || isLoading ? "not-allowed" : "pointer" }}
+              >
+                Skip to Results
+              </button>
+            )}
+            <button
+              onClick={handleNextStep}
+              disabled={!canAdvance() || isLoading}
+              className="btn-primary"
+              style={{ opacity: !canAdvance() || isLoading ? 0.4 : 1, cursor: !canAdvance() || isLoading ? "not-allowed" : "pointer" }}
+            >
+              Next: {steps[currentStep]?.title} →
+            </button>
+          </div>
         ) : (
           <button
             onClick={handleAnalyze}

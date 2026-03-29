@@ -1,13 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import InputForm from "@/components/inputs/InputForm";
 import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
-import DemoProfiles from "@/components/inputs/DemoProfiles";
 import { useAppStore } from "@/store/appStore";
 
 export default function AuditPage() {
+  const reset = useAppStore((s) => s.reset);
   const { reiScore, zipCode, filterModel, cookwareUse, dietHabits, makeUpUse } = useAppStore();
+
+  useEffect(() => { reset(); }, [reset]);
   const displayScore = reiScore ?? 0;
 
   const isDataComplete =
@@ -38,13 +41,15 @@ export default function AuditPage() {
         <Link href="/" style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em", textDecoration: "none" }}>
           BIO//BOUND
         </Link>
-        <Link href="/" style={{
-          fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
-          border: "0.5px solid var(--border2)", borderRadius: 20,
-          padding: "6px 16px", textDecoration: "none",
-        }}>
-          ← Home
-        </Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Link href="/" style={{
+            fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
+            border: "0.5px solid var(--border2)", borderRadius: 20,
+            padding: "6px 16px", textDecoration: "none",
+          }}>
+            ← Home
+          </Link>
+        </div>
       </nav>
 
       {/* ── HEADER ── */}
@@ -103,7 +108,7 @@ export default function AuditPage() {
             <p style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--text3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>
               What we check
             </p>
-            {["Tap water quality (EPA UCMR 5)", "Cookware & kitchen habits", "Diet & grocery items", "Personal care products", "PFAS filter effectiveness"].map((item) => (
+            {["Tap water quality (EPA UCMR 5)", "Cookware & kitchen habits", "Diet & grocery items", "Personal care products", "Everyday products (receipt scan)", "PFAS filter effectiveness"].map((item) => (
               <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent)", flexShrink: 0 }} />
                 <span style={{ fontSize: 13, color: "var(--text2)" }}>{item}</span>
@@ -123,18 +128,6 @@ export default function AuditPage() {
             <p style={{ fontFamily: "var(--mono)", fontSize: 22, color: "var(--text)" }}>3 min</p>
             <p style={{ fontSize: 12, color: "var(--text2)", marginTop: 4 }}>No account required</p>
           </div>
-        </div>
-      </div>
-
-      {/* ── DEMO PROFILES ── */}
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 80px" }}>
-        <div style={{
-          background: "var(--surface)",
-          border: "0.5px solid var(--border)",
-          borderRadius: 20,
-          padding: 28,
-        }}>
-          <DemoProfiles />
         </div>
       </div>
 

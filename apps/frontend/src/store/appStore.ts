@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { ReceiptScanResult } from "@/lib/receiptScan";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -66,6 +67,9 @@ interface AppState {
   pfasEstimateLoading: boolean;
   pfasEstimateError: string | null;
 
+  // Receipt scan
+  receiptScanResult: ReceiptScanResult | null;
+
   // API Outputs
   reiScore: number | null;
   filterWarning: string | null;
@@ -94,6 +98,9 @@ interface AppState {
   setPfasEstimateLoading: (loading: boolean) => void;
   setPfasEstimateError: (error: string | null) => void;
 
+  // Actions — Receipt scan
+  setReceiptScanResult: (result: ReceiptScanResult | null) => void;
+
   // Actions — Outputs
   setAnalyzeResult: (result: {
     reiScore: number;
@@ -112,6 +119,9 @@ interface AppState {
   nextStep: () => void;
   prevStep: () => void;
   setReiScore: (score: number | null) => void;
+
+  // Actions — Reset
+  reset: () => void;
 }
 
 // ── Store ────────────────────────────────────────────────────────────────────
@@ -130,6 +140,9 @@ export const useAppStore = create<AppState>((set) => ({
   pfasEstimate: null,
   pfasEstimateLoading: false,
   pfasEstimateError: null,
+
+  // Receipt scan — defaults
+  receiptScanResult: null,
 
   // Outputs — defaults
   reiScore: null,
@@ -159,6 +172,9 @@ export const useAppStore = create<AppState>((set) => ({
   setPfasEstimateLoading: (loading) => set({ pfasEstimateLoading: loading }),
   setPfasEstimateError: (error) => set({ pfasEstimateError: error }),
 
+  // Receipt scan setters
+  setReceiptScanResult: (result) => set({ receiptScanResult: result }),
+
   // Bulk output setter — called once after /api/analyze responds
   setAnalyzeResult: (result) => set({ ...result }),
 
@@ -166,7 +182,31 @@ export const useAppStore = create<AppState>((set) => ({
   setLoading: (loading) => set({ isLoading: loading }),
   setError: (error) => set({ error }),
   setCurrentStep: (step) => set({ currentStep: step }),
-  nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 6) })),
+  nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 7) })),
   prevStep: () => set((s) => ({ currentStep: Math.max(s.currentStep - 1, 1) })),
   setReiScore: (score) => set({ reiScore: score }),
+
+  reset: () => set({
+    zipCode: "",
+    productScan: null,
+    cookwareUse: { brand: "0%", yearsOfUse: 0 },
+    filterModel: null,
+    dietHabits: { fiberSources: [], foods: [], medications: ["None"] },
+    makeUpUse: { frequency: "never", productTypes: [], shampooProducts: [] },
+    householdProfile: { hasChildrenUnder5: false, numberOfChildren: 0, childrenCrawlOnFloor: false },
+    pfasEstimate: null,
+    pfasEstimateLoading: false,
+    pfasEstimateError: null,
+    receiptScanResult: null,
+    reiScore: null,
+    filterWarning: null,
+    pfasFlags: null,
+    decayCurve: null,
+    interventionModel: null,
+    medWarnings: null,
+    mitigationPlan: null,
+    isLoading: false,
+    error: null,
+    currentStep: 1,
+  }),
 }));

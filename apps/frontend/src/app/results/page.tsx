@@ -10,7 +10,6 @@ import MedWarningList from "@/components/outputs/MedWarningList";
 import MitigationPlanTiles from "@/components/outputs/MitigationPlanTiles";
 import AdvocacyLetter from "@/components/outputs/AdvocacyLetter";
 import GeminiRecommendations from "@/components/outputs/GeminiRecommendations";
-import WeeklyGroceryScan from "@/components/outputs/WeeklyGroceryScan";
 import ErrorBanner from "@/components/ui/ErrorBanner";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -187,10 +186,6 @@ export default function ResultsPage() {
 
             <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
               <GeminiRecommendations reiScore={reiScore} />
-            </div>
-
-            <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
-              <WeeklyGroceryScan basePayload={{ zipCode, filterModel, cookwareUse, dietHabits, makeUpUse }} />
             </div>
 
             <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
