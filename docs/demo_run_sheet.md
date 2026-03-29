@@ -22,12 +22,15 @@ Real OCR prerequisite:
 
 ```bash
 cd apps/backend
-python scripts/check_ocr_readiness.py
+python -m pip install -e .[dev,ocr-google]
+python scripts/check_ocr_readiness.py --provider current
+python scripts/check_ocr_readiness.py --provider all
 OCR_PROVIDER=google GOOGLE_APPLICATION_CREDENTIALS=/absolute/path/to/service-account.json ANALYZE_RATE_LIMIT_PER_MINUTE=60 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
 Expected:
-- `check_ocr_readiness.py` prints `OK`.
+- `check_ocr_readiness.py --provider current` prints `OK` for configured provider.
+- `check_ocr_readiness.py --provider all` prints readiness for both Google and Tesseract (if both configured).
 - Uvicorn starts without errors.
 - `http://127.0.0.1:8000/health` returns status `ok`.
 - `/analyze` image requests fail fast with `503` if OCR provider is not ready.
