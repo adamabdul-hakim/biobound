@@ -13,6 +13,7 @@ import MitigationPlanTiles from "@/components/outputs/MitigationPlanTiles";
 import AdvocacyLetter from "@/components/outputs/AdvocacyLetter";
 import GeminiRecommendations from "@/components/outputs/GeminiRecommendations";
 import ErrorBanner from "@/components/ui/ErrorBanner";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -83,7 +84,7 @@ export default function ResultsPage() {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "16px 32px",
-        background: "rgba(13,15,14,0.88)",
+        background: "var(--nav-bg)",
         backdropFilter: "blur(12px)",
         borderBottom: "0.5px solid var(--border)",
       }}>
@@ -91,6 +92,7 @@ export default function ResultsPage() {
           BIO//BOUND
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <ThemeToggle />
           {isLoggedIn && (
             <Link href="/dashboard" style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)", textDecoration: "none" }}>
               Dashboard

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* ── Palette (from BioBound demo) ── */
+  /* ── Palette — dark mode (default) ── */
   --bg:       #0d0f0e;
   --surface:  #141714;
   --surface2: #1a1d1a;
@@ -15,6 +15,12 @@
   --danger:   #ff5c3a;
   --warn:     #f0a030;
   --safe:     #60d890;
+
+  /* ── Button foreground (swaps in light mode) ── */
+  --btn-fg:   #0d0f0e;
+
+  /* ── Nav glass overlay ── */
+  --nav-bg:   rgba(13,15,14,0.88);
 
   /* ── Fonts ── */
   --mono:   var(--font-dm-mono), 'DM Mono', monospace;
@@ -31,6 +37,27 @@
   --border-radius-lg: 1rem;
 
   /* Legacy aliases so existing Tailwind utilities still work */
+  --background: var(--bg);
+  --foreground:  var(--text);
+}
+
+/* ── Light mode overrides ─────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:       #f4f5f0;
+  --surface:  #ffffff;
+  --surface2: #eaebe5;
+  --border:   rgba(0,0,0,0.08);
+  --border2:  rgba(0,0,0,0.16);
+  --text:     #1b1d1a;
+  --text2:    #4a4c48;
+  --text3:    #7c7e7a;
+  --accent:   #3e7000;   /* forest green — readable on light bg */
+  --accent2:  #2e5800;
+  --danger:   #c0321a;
+  --warn:     #9a5e0a;
+  --safe:     #137830;
+  --btn-fg:   #f4f5f0;   /* light text on dark green button */
+  --nav-bg:   rgba(244,245,240,0.92);
   --background: var(--bg);
   --foreground:  var(--text);
 }
@@ -82,7 +109,7 @@ body {
 
 .btn-primary {
   background: var(--accent);
-  color: #0d0f0e;
+  color: var(--btn-fg);
   border: none;
   border-radius: 10px;
   padding: 14px 28px;
@@ -130,7 +157,7 @@ body {
 /* ── Form component utility classes ── */
 .btn-select-active {
   background: var(--accent);
-  color: #0d0f0e;
+  color: var(--btn-fg);
   border: 1.5px solid var(--accent);
   font-weight: 700;
 }

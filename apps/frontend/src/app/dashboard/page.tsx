@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuthStore, type AssessmentRecord, type UserProfile } from "@/store/authStore";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import { TrendingDown, TrendingUp, User, Calendar, Activity, ChevronDown, ChevronUp } from "lucide-react";
 
 // ── Demo profiles ─────────────────────────────────────────────────────────────
@@ -576,7 +577,7 @@ export default function DashboardPage() {
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: "16px 32px",
-          background: "rgba(13,15,14,0.88)",
+          background: "var(--nav-bg)",
           backdropFilter: "blur(12px)",
           borderBottom: "0.5px solid var(--border)",
         }}
@@ -585,6 +586,7 @@ export default function DashboardPage() {
           BIO//BOUND
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <ThemeToggle />
           {isLoggedIn && user ? (
             <span style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)" }}>
               {user.name}

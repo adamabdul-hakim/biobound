@@ -30,6 +30,12 @@ export default function RootLayout({
       className={`${dmSans.variable} ${dmMono.variable} h-full`}
     >
       <head>
+        {/* Prevent flash of wrong theme — reads localStorage before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(localStorage.getItem('biobound-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})()`,
+          }}
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
           rel="stylesheet"

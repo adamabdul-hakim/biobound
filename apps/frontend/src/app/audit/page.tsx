@@ -3,28 +3,13 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import InputForm from "@/components/inputs/InputForm";
-import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
 import { useAppStore } from "@/store/appStore";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function AuditPage() {
   const reset = useAppStore((s) => s.reset);
-  const { reiScore, zipCode, filterModel, cookwareUse, dietHabits, makeUpUse } = useAppStore();
 
   useEffect(() => { reset(); }, [reset]);
-  const displayScore = reiScore ?? 0;
-
-  const isDataComplete =
-    /^\d{5}$/.test(zipCode) &&
-    filterModel?.type &&
-    cookwareUse !== null &&
-    dietHabits !== null &&
-    makeUpUse !== null;
-
-  const getStatus = (score: number): string => {
-    if (score < 33) return "safe";
-    if (score < 67) return "caution";
-    return "danger";
-  };
 
   return (
     <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }} className="min-h-screen">
@@ -34,7 +19,7 @@ export default function AuditPage() {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "16px 32px",
-        background: "rgba(13,15,14,0.88)",
+        background: "var(--nav-bg)",
         backdropFilter: "blur(12px)",
         borderBottom: "0.5px solid var(--border)",
       }}>
@@ -42,6 +27,7 @@ export default function AuditPage() {
           BIO//BOUND
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <ThemeToggle />
           <Link href="/" style={{
             fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
             border: "0.5px solid var(--border2)", borderRadius: 20,
@@ -79,24 +65,6 @@ export default function AuditPage() {
 
         {/* Sidebar column */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-
-          {/* Score preview */}
-          {isDataComplete && (
-            <div style={{
-              background: "var(--surface)",
-              border: "0.5px solid rgba(200,240,96,0.2)",
-              borderRadius: 20,
-              padding: 24,
-            }} className="animate-fade-up">
-              <p style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--text3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
-                Your REI Score
-              </p>
-              <ForeverScaleGauge score={displayScore} status={getStatus(displayScore)} />
-              <p style={{ fontSize: 11, color: "var(--text3)", textAlign: "center", marginTop: 12, fontStyle: "italic" }}>
-                Updates after analysis
-              </p>
-            </div>
-          )}
 
           {/* Info cards */}
           <div style={{

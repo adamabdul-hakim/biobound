@@ -113,12 +113,12 @@ function computeLifestyleREI(
   // 3. Diet exposure (net of PFAS-raising minus PFAS-reducing foods) (0-100)
   let dietScore = 0;
   if (payload.dietHabits) {
-    const raising = payload.dietHabits.foods.length; // each adds ~14pts (7 foods max)
-    const reducing = payload.dietHabits.fiberSources.length; // each reduces ~5pts
+    const raising = payload.dietHabits.foods.length; // each adds ~10pts (7 foods max)
+    const reducing = payload.dietHabits.fiberSources.length; // each reduces ~7pts
     const meds = payload.dietHabits.medications.filter(
       (m) => m.toLowerCase() !== "none",
     ).length;
-    const rawDiet = raising * 14 - reducing * 5 + meds * 3;
+    const rawDiet = raising * 10 - reducing * 7 + meds * 3;
     dietScore = Math.max(0, Math.min(100, rawDiet));
   }
 
@@ -127,7 +127,9 @@ function computeLifestyleREI(
   if (payload.makeUpUse) {
     const freqMap: Record<string, number> = { never: 0, rarely: 18, weekly: 42, daily: 65 };
     const freqScore = freqMap[payload.makeUpUse.frequency] ?? 0;
-    const productScore = Math.min(25, payload.makeUpUse.productTypes.length * 4);
+    const productScore = payload.makeUpUse.frequency === "never"
+      ? 0
+      : Math.min(25, payload.makeUpUse.productTypes.length * 4);
     // Shampoo/hair products — dry shampoo + keratin are high-PFAS
     const highRiskHairProducts = ["Dry shampoo", "Keratin / straightening treatments", "Hair spray / styling spray"];
     const hairScore = Math.min(10, (payload.makeUpUse.shampooProducts?.filter(
@@ -258,14 +260,16 @@ function computeComponentScores(payload: TeamAAnalyzeInput, backendWaterScore: n
     const raising = payload.dietHabits.foods.length;
     fiberCount = payload.dietHabits.fiberSources.length;
     const meds = payload.dietHabits.medications.filter((m) => m.toLowerCase() !== "none").length;
-    diet = Math.max(0, Math.min(100, raising * 14 - fiberCount * 5 + meds * 3));
+    diet = Math.max(0, Math.min(100, raising * 10 - fiberCount * 7 + meds * 3));
   }
 
   let makeup = 0;
   if (payload.makeUpUse) {
     const freqMap: Record<string, number> = { never: 0, rarely: 18, weekly: 42, daily: 65 };
     const freqScore = freqMap[payload.makeUpUse.frequency] ?? 0;
-    const productScore = Math.min(25, payload.makeUpUse.productTypes.length * 4);
+    const productScore = payload.makeUpUse.frequency === "never"
+      ? 0
+      : Math.min(25, payload.makeUpUse.productTypes.length * 4);
     const highRiskHairProducts = ["Dry shampoo", "Keratin / straightening treatments", "Hair spray / styling spray"];
     const hairScore = Math.min(10, (payload.makeUpUse.shampooProducts?.filter(
       (p) => highRiskHairProducts.some((h) => h.toLowerCase().includes(p.toLowerCase().split(" ")[0]))

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import DemoProfiles from "@/components/inputs/DemoProfiles";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function DemoPage() {
   return (
@@ -12,7 +13,7 @@ export default function DemoPage() {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "16px 32px",
-        background: "rgba(13,15,14,0.88)",
+        background: "var(--nav-bg)",
         backdropFilter: "blur(12px)",
         borderBottom: "0.5px solid var(--border)",
       }}>
@@ -20,6 +21,7 @@ export default function DemoPage() {
           BIO//BOUND
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <ThemeToggle />
           <Link href="/audit" style={{
             fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
             border: "0.5px solid var(--accent)", borderRadius: 20,

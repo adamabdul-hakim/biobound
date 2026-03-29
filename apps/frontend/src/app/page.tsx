@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@/store/authStore";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const stats = [
   { num: "97%",  desc: "of Americans have detectable PFAS blood levels" },
@@ -31,7 +32,7 @@ export default function LandingPage() {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "16px 32px",
-        background: "rgba(13,15,14,0.88)",
+        background: "var(--nav-bg)",
         backdropFilter: "blur(12px)",
         borderBottom: "0.5px solid var(--border)",
       }}>
@@ -60,6 +61,7 @@ export default function LandingPage() {
               Sign in
             </Link>
           )}
+          <ThemeToggle />
           <Link href="/audit" style={{
             fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
             border: "0.5px solid var(--accent)", borderRadius: 20,
