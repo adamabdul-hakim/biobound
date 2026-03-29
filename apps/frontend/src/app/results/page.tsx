@@ -140,7 +140,9 @@ export default function ResultsPage() {
               <p style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--text3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 20 }}>
                 Body Burden Score
               </p>
-              <ForeverScaleGauge score={reiScore} status={getStatus(reiScore)} />
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <ForeverScaleGauge score={reiScore} status={getStatus(reiScore)} />
+              </div>
 
               {/* Scale bar */}
               <div style={{ marginTop: 24 }}>
