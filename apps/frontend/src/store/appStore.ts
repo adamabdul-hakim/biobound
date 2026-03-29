@@ -30,6 +30,18 @@ export interface MakeUpUse {
   productTypes: string[];
 }
 
+export interface LocationPfasEstimate {
+  source: "manual_demo" | "gemini" | "heuristic_fallback";
+  zip_code: string;
+  location_data?: Record<string, unknown>;
+  estimate?: {
+    estimated_total_pfas_ppt: number;
+    breakdown: Record<string, number>;
+    confidence: "low" | "medium" | "high";
+  };
+  raw_response?: string;
+}
+
 // ── State & Actions ──────────────────────────────────────────────────────────
 
 interface AppState {
@@ -40,6 +52,11 @@ interface AppState {
   filterModel: { brand: string; type: string } | null;
   dietHabits: { fiberSources: string[]; foods: string[]; medications: string[] } | null;
   makeUpUse: MakeUpUse | null;
+
+  // PFAS Estimation
+  pfasEstimate: LocationPfasEstimate | null;
+  pfasEstimateLoading: boolean;
+  pfasEstimateError: string | null;
 
   // API Outputs
   reiScore: number | null;
@@ -62,6 +79,11 @@ interface AppState {
   setFilterModel: (filter: { brand: string; type: string }) => void;
   setDietHabits: (habits: { fiberSources: string[]; foods: string[]; medications: string[] }) => void;
   setMakeUpUse: (use: MakeUpUse) => void;
+
+  // Actions — PFAS Estimation
+  setPfasEstimate: (estimate: LocationPfasEstimate | null) => void;
+  setPfasEstimateLoading: (loading: boolean) => void;
+  setPfasEstimateError: (error: string | null) => void;
 
   // Actions — Outputs
   setAnalyzeResult: (result: {
@@ -94,6 +116,11 @@ export const useAppStore = create<AppState>((set) => ({
   dietHabits: null,
   makeUpUse: null,
 
+  // PFAS Estimation — defaults
+  pfasEstimate: null,
+  pfasEstimateLoading: false,
+  pfasEstimateError: null,
+
   // Outputs — defaults
   reiScore: null,
   filterWarning: null,
@@ -115,6 +142,11 @@ export const useAppStore = create<AppState>((set) => ({
   setFilterModel: (filter) => set({ filterModel: filter }),
   setDietHabits: (habits) => set({ dietHabits: habits }),
   setMakeUpUse: (use) => set({ makeUpUse: use }),
+
+  // PFAS Estimation setters
+  setPfasEstimate: (estimate) => set({ pfasEstimate: estimate }),
+  setPfasEstimateLoading: (loading) => set({ pfasEstimateLoading: loading }),
+  setPfasEstimateError: (error) => set({ pfasEstimateError: error }),
 
   // Bulk output setter — called once after /api/analyze responds
   setAnalyzeResult: (result) => set({ ...result }),

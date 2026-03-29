@@ -8,6 +8,7 @@ import ProductScanner from "./ProductScanner";
 import CookwareForm from "./CookwareForm";
 import DietHabitsForm from "./DietHabitsForm";
 import MakeUpUseForm from "./MakeUpUseForm";
+import LocationPfasDisplay from "./LocationPfasDisplay";
 import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
 import { useRouter } from "next/navigation";
 
@@ -170,6 +171,13 @@ export default function InputForm() {
       <div className="mb-10 p-6 md:p-8 bg-slate-700/50 rounded-xl border border-teal-700/30 backdrop-blur-sm">
         <CurrentComponent />
       </div>
+
+      {/* Show PFAS Location Data after Zip Code */}
+      {currentStep === 1 && (
+        <div className="mb-10">
+          <LocationPfasDisplay />
+        </div>
+      )}
 
       {/* Enhanced Navigation - Mobile Optimized */}
       <div className="flex flex-col-reverse md:flex-row items-stretch md:items-center justify-between gap-3 pt-6 border-t border-teal-700/30">

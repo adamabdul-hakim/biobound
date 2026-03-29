@@ -1,6 +1,10 @@
 import os
+from dotenv import load_dotenv
 
 from pydantic import BaseModel
+
+# Load environment variables from .env.local
+load_dotenv('.env.local')
 
 
 class Settings(BaseModel):
@@ -16,6 +20,7 @@ class Settings(BaseModel):
     )
     analyze_rate_limit_per_minute: int = int(os.getenv("ANALYZE_RATE_LIMIT_PER_MINUTE", "60"))
     metrics_max_samples: int = int(os.getenv("METRICS_MAX_SAMPLES", "1000"))
+    gemini_api_key: str | None = os.getenv("GEMINI_API_KEY")
 
 
 settings = Settings()

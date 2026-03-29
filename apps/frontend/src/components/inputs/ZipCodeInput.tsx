@@ -1,12 +1,37 @@
 "use client";
 
 import { useAppStore } from "@/store/appStore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MapPin, CheckCircle } from "lucide-react";
+import { estimatePfasByZip } from "@/lib/pfasEstimation";
 
 export default function ZipCodeInput() {
-  const { zipCode, setZipCode } = useAppStore();
+  const { zipCode, setZipCode, setPfasEstimate, setPfasEstimateLoading, setPfasEstimateError } = useAppStore();
   const [error, setError] = useState("");
+
+  // Fetch PFAS estimate when zip code becomes valid
+  useEffect(() => {
+    const isValid = /^\d{5}$/.test(zipCode);
+    
+    if (isValid) {
+      setPfasEstimateLoading(true);
+      setPfasEstimateError(null);
+      
+      estimatePfasByZip(zipCode)
+        .then((data) => {
+          setPfasEstimate(data);
+          setPfasEstimateLoading(false);
+        })
+        .catch((err) => {
+          console.error("Failed to estimate PFAS:", err);
+          setPfasEstimateError(err.message);
+          setPfasEstimateLoading(false);
+        });
+    } else {
+      setPfasEstimate(null);
+      setPfasEstimateError(null);
+    }
+  }, [zipCode, setPfasEstimate, setPfasEstimateLoading, setPfasEstimateError]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
