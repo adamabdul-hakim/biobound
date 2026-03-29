@@ -162,6 +162,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
             hydrology_result = calculate_hydrology_risk(
                 zip_code=payload.zip_code,
                 filter_type=payload.filter_model.type if payload.filter_model else None,
+                filter_brand=payload.filter_model.brand if payload.filter_model else None,
             )
 
             decay_score = _compute_decay_score(payload)

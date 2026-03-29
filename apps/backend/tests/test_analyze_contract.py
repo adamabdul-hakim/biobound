@@ -114,6 +114,23 @@ def test_analyze_sets_filter_warning_from_hydrology_module() -> None:
     assert body["water_data_status"] == "calculated"
 
 
+def test_analyze_flags_nsf42_as_not_pfas_certified() -> None:
+    client = TestClient(app)
+    response = client.post(
+        "/analyze",
+        json={
+            "zip_code": "10006",
+            "filter_model": {"brand": "Generic", "type": "NSF-42"},
+            "product_name_hint": "Sample Pan",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["filter_warning"] is not None
+    assert "NSF-42" in body["filter_warning"]
+
+
 def test_analyze_scanner_score_changes_with_product_scan_text() -> None:
     client = TestClient(app)
 
