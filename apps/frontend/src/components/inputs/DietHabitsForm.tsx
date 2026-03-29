@@ -2,6 +2,7 @@
 
 import { useAppStore } from "@/store/appStore";
 import { useState } from "react";
+import { Apple } from "lucide-react";
 
 const fiberSourceOptions = [
   "oats",
@@ -68,63 +69,64 @@ export default function DietHabitsForm() {
   const isValid = fiberSources.length > 0 || foods.length > 0;
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4">
-      <label className="block text-sm font-medium text-gray-700">
-        Diet & Habits
+    <div className="w-full max-w-md mx-auto space-y-6">
+      <label className="block text-sm font-bold text-gray-100 flex items-center gap-2">
+        <Apple className="w-4 h-4 text-teal-400" />
+        Diet & Medications
       </label>
 
       <div>
-        <label className="block text-sm text-gray-600 mb-2 font-medium">
+        <label className="block text-sm font-semibold text-gray-100 mb-3">
           Fiber sources you consume:
         </label>
         <div className="space-y-2">
           {fiberSourceOptions.map((option) => (
-            <label key={option} className="flex items-center cursor-pointer">
+            <label key={option} className="flex items-center cursor-pointer p-2 rounded-lg hover:bg-teal-900/20 transition">
               <input
                 type="checkbox"
                 checked={fiberSources.includes(option)}
                 onChange={() => toggleFiber(option)}
-                className="w-4 h-4 rounded border-gray-300"
+                className="w-5 h-5 rounded border-2 border-teal-700/50 text-teal-500 focus:ring-teal-400 accent-teal-500 bg-slate-600"
               />
-              <span className="ml-2 text-gray-700 capitalize">{option}</span>
+              <span className="ml-3 text-gray-300 font-medium capitalize">{option}</span>
             </label>
           ))}
         </div>
       </div>
 
       <div>
-        <label className="block text-sm text-gray-600 mb-2 font-medium">
+        <label className="block text-sm font-semibold text-gray-100 mb-3">
           Food categories:
         </label>
         <div className="space-y-2">
           {foodCategories.map((option) => (
-            <label key={option} className="flex items-center cursor-pointer">
+            <label key={option} className="flex items-center cursor-pointer p-2 rounded-lg hover:bg-teal-900/20 transition">
               <input
                 type="checkbox"
                 checked={foods.includes(option)}
                 onChange={() => toggleFood(option)}
-                className="w-4 h-4 rounded border-gray-300"
+                className="w-5 h-5 rounded border-2 border-teal-700/50 text-teal-500 focus:ring-teal-400 accent-teal-500 bg-slate-600"
               />
-              <span className="ml-2 text-gray-700 capitalize">{option}</span>
+              <span className="ml-3 text-gray-300 font-medium capitalize">{option}</span>
             </label>
           ))}
         </div>
       </div>
 
       <div>
-        <label className="block text-sm text-gray-600 mb-2 font-medium">
+        <label className="block text-sm font-semibold text-gray-100 mb-3">
           Current medications:
         </label>
         <div className="space-y-2">
           {medicationOptions.map((option) => (
-            <label key={option} className="flex items-center cursor-pointer">
+            <label key={option} className="flex items-center cursor-pointer p-2 rounded-lg hover:bg-teal-900/20 transition">
               <input
                 type="checkbox"
                 checked={medications.includes(option)}
                 onChange={() => toggleMedication(option)}
-                className="w-4 h-4 rounded border-gray-300"
+                className="w-5 h-5 rounded border-2 border-teal-700/50 text-teal-500 focus:ring-teal-400 accent-teal-500 bg-slate-600"
               />
-              <span className="ml-2 text-gray-700 capitalize">{option}</span>
+              <span className="ml-3 text-gray-300 font-medium capitalize">{option}</span>
             </label>
           ))}
         </div>
@@ -133,13 +135,13 @@ export default function DietHabitsForm() {
       <button
         onClick={handleSave}
         disabled={!isValid}
-        className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+        className="w-full py-3 px-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-bold hover:from-teal-500 hover:to-emerald-500 disabled:from-slate-600 disabled:to-slate-600 disabled:cursor-not-allowed transition-all active:scale-95"
       >
         Save Diet Info
       </button>
 
       {dietHabits && (
-        <p className="text-sm text-green-600">✓ Diet info saved</p>
+        <p className="text-sm text-emerald-300">✓ Diet info saved</p>
       )}
     </div>
   );

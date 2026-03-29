@@ -4,7 +4,36 @@ from uuid import UUID, uuid4
 from pydantic import BaseModel, Field
 
 
+class CookwareUse(BaseModel):
+    brand: str
+    years_of_use: int = Field(ge=0, le=100)
+
+
+class FilterModel(BaseModel):
+    brand: str
+    type: str
+
+
+class DietHabits(BaseModel):
+    fiber_sources: list[str]
+    foods: list[str]
+    medications: list[str]
+
+
+class MakeUpUse(BaseModel):
+    frequency: Literal["never", "rarely", "weekly", "daily"]
+    product_types: list[str]
+
+
 class AnalyzeRequest(BaseModel):
+    zip_code: str | None = Field(default=None, pattern=r"^\d{5}$")
+    product_scan: str | None = Field(default=None)
+    cookware_use: CookwareUse | None = Field(default=None)
+    filter_model: FilterModel | None = Field(default=None)
+    diet_habits: DietHabits | None = Field(default=None)
+    make_up_use: MakeUpUse | None = Field(default=None)
+
+    # Backward-compatible fields from the initial integration contract.
     image_base64: str | None = Field(default=None, description="Base64 encoded product image")
     product_name_hint: str | None = Field(default=None, description="Optional product name hint")
 
@@ -19,13 +48,34 @@ class AnalyzeMeta(BaseModel):
     request_id: UUID = Field(default_factory=uuid4)
 
 
+class ModuleScores(BaseModel):
+    hydrology: int = Field(ge=0, le=100)
+    scanner: int = Field(ge=0, le=100)
+    decay: int = Field(ge=0, le=100)
+    composite: int = Field(ge=0, le=100)
+
+
+class SafetySummary(BaseModel):
+    contraindications: list[str]
+    recommendation_safe: bool
+    equity_adjustments_applied: bool
+    zero_cost_actions: list[str]
+
+
 class AnalyzeResponse(BaseModel):
     product_name: str
     detected_chemicals: list[str]
     risk_score: int = Field(ge=0, le=100)
+    rei_formula_version: str
+    module_scores: ModuleScores
     confidence_interval: float = Field(ge=0.0, le=1.0)
+    water_risk_score: int = Field(ge=0, le=100)
+    water_effective_ppt: float = Field(ge=0.0)
+    water_data_status: Literal["calculated", "no-data", "missing-zip"]
+    filter_warning: str | None = None
     decay_data: list[DecayPoint]
     medical_warnings: list[str]
+    safety: SafetySummary
     meta: AnalyzeMeta
 
 

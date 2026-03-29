@@ -56,41 +56,41 @@ ${userEmail || "[Your Email]"}`;
 
   return (
     <div className="w-full">
-      <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-        <Mail className="w-5 h-5 text-blue-600" />
+      <h3 className="font-bold text-gray-900 mb-6 text-xl flex items-center gap-2">
+        <Mail className="w-5 h-5 text-emerald-600" />
         Advocacy Letter to Representatives
       </h3>
 
       <div className="space-y-4 mb-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-bold text-gray-900 mb-2">
             Your Name
           </label>
           <input
             type="text"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition"
             placeholder="Jane Doe"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-bold text-gray-900 mb-2">
             Your Email
           </label>
           <input
             type="email"
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition"
             placeholder="jane@example.com"
           />
         </div>
       </div>
 
       {/* Letter Preview */}
-      <div className="bg-gray-50 border border-gray-300 rounded-lg p-6 mb-6 max-h-48 overflow-y-auto">
+      <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-6 mb-6 max-h-48 overflow-y-auto">
         <pre className="text-sm text-gray-700 font-mono whitespace-pre-wrap break-words">
           {letterContent}
         </pre>
@@ -99,7 +99,7 @@ ${userEmail || "[Your Email]"}`;
       <div className="flex gap-3 flex-wrap">
         <button
           onClick={handleCopy}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-bold hover:from-emerald-600 hover:to-teal-600 transition-all active:scale-95"
         >
           {copied ? (
             <>
@@ -116,16 +116,15 @@ ${userEmail || "[Your Email]"}`;
 
         <button
           onClick={handleEmail}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition"
+          className="flex items-center gap-2 px-4 py-3 bg-gray-700 text-white rounded-xl font-bold hover:bg-gray-800 transition-all active:scale-95"
         >
           <Mail className="w-4 h-4" />
           Open in Mail App
         </button>
       </div>
 
-      <p className="text-xs text-gray-500 mt-4">
-        Edit the letter above with specific representative names and addresses.
-        We recommend sending to your local city council and state representatives.
+      <p className="text-xs text-gray-600 mt-4 italic leading-relaxed">
+        💡 Pro tip: Edit the letter to include your local representatives&apos; names and addresses for maximum impact.
       </p>
     </div>
   );

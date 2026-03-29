@@ -1,0 +1,22 @@
+{
+  "zip_code": "10006",
+  "product_scan": "Non-stick pan label: PTFE coating, stain-resistant packaging, PFOA legacy claim",
+  "cookware_use": {
+    "brand": "80%",
+    "years_of_use": 6
+  },
+  "filter_model": {
+    "brand": "Brita Elite",
+    "type": "NSF-53"
+  },
+  "diet_habits": {
+    "fiber_sources": ["oats", "beans", "psyllium husk"],
+    "foods": ["organic produce", "processed foods"],
+    "medications": ["statins"]
+  },
+  "make_up_use": {
+    "frequency": "daily",
+    "product_types": ["foundation", "long-wear lipstick"]
+  },
+  "product_name_hint": "Everyday Non-Stick Pan"
+}

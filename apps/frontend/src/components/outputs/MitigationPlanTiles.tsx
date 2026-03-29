@@ -16,7 +16,7 @@ const tierIcons = {
 export default function MitigationPlanTiles({ plan }: MitigationPlanTilesProps) {
   if (!plan || plan.length === 0) {
     return (
-      <div className="w-full p-4 bg-gray-50 rounded-lg text-gray-600 text-sm">
+      <div className="w-full p-6 bg-gray-50 rounded-xl text-gray-600 text-sm border border-gray-200">
         No mitigation plan available
       </div>
     );
@@ -24,7 +24,7 @@ export default function MitigationPlanTiles({ plan }: MitigationPlanTilesProps) 
 
   return (
     <div className="w-full">
-      <h3 className="font-semibold text-gray-900 mb-6">Your Mitigation Plan</h3>
+      <h3 className="font-bold text-gray-900 mb-8 text-xl">Your Mitigation Plan</h3>
 
       <div className="grid md:grid-cols-3 gap-6">
         {plan.map((tier) => {
@@ -34,17 +34,23 @@ export default function MitigationPlanTiles({ plan }: MitigationPlanTilesProps) 
           return (
             <div
               key={tier.tier}
-              className={`p-6 rounded-lg border-2 border-gray-200 ${
+              className={`p-6 rounded-xl border-2 transition-all hover:shadow-lg ${
                 tierConfig?.bg || "bg-gray-50"
+              } ${
+                tier.tier === 1
+                  ? "border-green-200 hover:border-green-400"
+                  : tier.tier === 2
+                    ? "border-blue-200 hover:border-blue-400"
+                    : "border-purple-200 hover:border-purple-400"
               }`}
             >
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-3 mb-4">
                 <Icon className={`w-6 h-6 ${tierConfig?.color}`} />
                 <div>
-                  <p className="text-xs text-gray-500 uppercase font-semibold">
+                  <p className="text-xs text-gray-600 uppercase font-bold tracking-wide">
                     Tier {tier.tier}
                   </p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-bold text-gray-900">
                     {tierConfig?.label}
                   </p>
                 </div>
@@ -52,7 +58,7 @@ export default function MitigationPlanTiles({ plan }: MitigationPlanTilesProps) 
 
               <p className="text-sm text-gray-700 mb-4">{tier.description}</p>
 
-              <p className="text-xs font-medium text-gray-600 mb-3">
+              <p className="text-xs font-bold text-gray-700 mb-4 inline-block px-3 py-1 bg-white rounded-full border border-gray-200">
                 {tier.cost}
               </p>
 

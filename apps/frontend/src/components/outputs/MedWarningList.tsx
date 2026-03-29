@@ -9,35 +9,37 @@ interface MedWarningListProps {
 export default function MedWarningList({ warnings }: MedWarningListProps) {
   if (!warnings || warnings.length === 0) {
     return (
-      <div className="w-full p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
-        <p className="font-medium">✓ No medication interactions detected</p>
+      <div className="w-full p-5 bg-emerald-50 border-2 border-emerald-200 rounded-xl text-emerald-800 text-sm font-semibold">
+        <p className="flex items-center gap-2">
+          <span className="text-lg">✅</span>
+          No medication interactions detected
+        </p>
       </div>
     );
   }
 
   return (
     <div className="w-full">
-      <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-        <AlertTriangle className="w-5 h-5 text-yellow-600" />
+      <h3 className="font-bold text-gray-900 mb-6 text-xl flex items-center gap-2">
+        <AlertTriangle className="w-5 h-5 text-amber-600" />
         Medication & Supplement Warnings
       </h3>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {warnings.map((warning, idx) => (
           <div
             key={idx}
-            className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg"
+            className="p-5 bg-amber-50 border-2 border-amber-200 rounded-xl shadow-sm"
           >
-            <p className="text-sm text-yellow-800 leading-relaxed">{warning}</p>
+            <p className="text-sm text-amber-900 font-medium leading-relaxed">⚠️ {warning}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
-        <p className="font-medium mb-1">Consult Your Doctor</p>
-        <p>
-          Always discuss PFAS mitigation strategies and dietary interventions
-          with your healthcare provider, especially if taking medications.
+      <div className="mt-6 p-5 bg-blue-50 border-2 border-blue-200 rounded-xl text-sm text-blue-900">
+        <p className="font-bold mb-2">🏥 Consult Your Healthcare Provider</p>
+        <p className="leading-relaxed">
+          Always discuss PFAS mitigation strategies and dietary changes with your doctor, especially if you take medications or have pre-existing conditions.
         </p>
       </div>
     </div>

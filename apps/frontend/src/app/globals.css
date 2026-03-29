@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f2e2f;
+  --foreground: #e8f5f5;
+  
+  /* Health-focused color palette (darker) */
+  --primary-green: #059669;
+  --primary-teal: #0d9488;
+  --accent-mint: #5eead4;
+  --accent-emerald: #047857;
+  --warm-sage: #6db599;
+  --light-mint: #1f3f3f;
+  --dark-forest: #051d1d;
 }
 
 @theme inline {
@@ -14,13 +23,38 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a1818;
+    --foreground: #d1f1f1;
   }
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #0f2e2f 0%, #0a1f21 50%, #051d1d 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+}
+
+/* Smooth transitions for interactive elements */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f2e2f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #059669;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #047857;
 }

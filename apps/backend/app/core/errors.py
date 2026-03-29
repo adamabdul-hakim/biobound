@@ -31,6 +31,7 @@ def status_to_error_code(status_code: int) -> str:
         409: "CONFLICT",
         422: "VALIDATION_ERROR",
         429: "RATE_LIMITED",
+        503: "SERVICE_UNAVAILABLE",
         500: "INTERNAL_ERROR",
     }
     return mapping.get(status_code, "UNHANDLED_ERROR")

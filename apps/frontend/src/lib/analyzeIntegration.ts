@@ -10,6 +10,10 @@ export interface TeamAAnalyzeInput {
     foods: string[];
     medications: string[];
   } | null;
+  makeUpUse: {
+    frequency: "never" | "rarely" | "weekly" | "daily";
+    productTypes: string[];
+  } | null;
 }
 
 interface TeamBDecayPoint {
@@ -21,9 +25,26 @@ export interface TeamBAnalyzeResponse {
   product_name: string;
   detected_chemicals: string[];
   risk_score: number;
+  rei_formula_version: string;
+  module_scores: {
+    hydrology: number;
+    scanner: number;
+    decay: number;
+    composite: number;
+  };
   confidence_interval: number;
+  water_risk_score: number;
+  water_effective_ppt: number;
+  water_data_status: "calculated" | "no-data" | "missing-zip";
+  filter_warning: string | null;
   decay_data: TeamBDecayPoint[];
   medical_warnings: string[];
+  safety: {
+    contraindications: string[];
+    recommendation_safe: boolean;
+    equity_adjustments_applied: boolean;
+    zero_cost_actions: string[];
+  };
   meta: {
     contract_version: "v1";
     request_id: string;
@@ -141,21 +162,8 @@ function buildMitigationPlan(riskScore: number): MitigationTier[] {
   ];
 }
 
-function buildFilterWarning(filterType: string | undefined): string | null {
-  if (!filterType || filterType === "unknown") {
-    return null;
-  }
-
-  if (filterType === "NSF-53" || filterType === "NSF-58") {
-    return null;
-  }
-
-  return "Your filter is not NSF certified for PFAS removal. Consider NSF-53 or NSF-58 options.";
-}
-
 export function mapTeamBToTeamAResult(
   response: TeamBAnalyzeResponse,
-  filterType: string | undefined,
 ): TeamAAnalyzeResult {
   const tier = getRiskTier(response.risk_score);
   const pfasFlags: PfasFlag[] = response.detected_chemicals.map((compound) => ({
@@ -167,7 +175,7 @@ export function mapTeamBToTeamAResult(
 
   return {
     reiScore: response.risk_score,
-    filterWarning: buildFilterWarning(filterType),
+    filterWarning: response.filter_warning,
     pfasFlags,
     decayCurve,
     interventionModel: buildInterventionScenarios(decayCurve),
@@ -195,5 +203,5 @@ export async function callIntegratedAnalyzeApi(payload: TeamAAnalyzeInput): Prom
     throw new Error(withRequestId);
   }
 
-  return mapTeamBToTeamAResult(body as TeamBAnalyzeResponse, payload.filterModel?.type);
+  return mapTeamBToTeamAResult(body as TeamBAnalyzeResponse);
 }

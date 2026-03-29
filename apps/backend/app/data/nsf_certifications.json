@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "name": "NSF Drinking Water Standards for PFAS Determination",
+    "compiled_at": "2026-03-28",
+    "sources": [
+      "https://www.nsf.org/knowledge-library/nsf-ansi-53-drinking-water-treatment-units-health-effects",
+      "https://www.nsf.org/knowledge-library/nsf-ansi-58-reverse-osmosis-drinking-water-treatment-systems",
+      "https://www.nsf.org/knowledge-library/nsf-ansi-42-drinking-water-treatment-units-aesthetic-effects"
+    ]
+  },
+  "type_aliases": {
+    "nsf-53": "NSF-53",
+    "nsf 53": "NSF-53",
+    "nsf/ansi 53": "NSF-53",
+    "ansi 53": "NSF-53",
+    "nsf-58": "NSF-58",
+    "nsf 58": "NSF-58",
+    "nsf/ansi 58": "NSF-58",
+    "ansi 58": "NSF-58",
+    "reverse osmosis": "NSF-58",
+    "ro": "NSF-58",
+    "nsf-42": "NSF-42",
+    "nsf 42": "NSF-42",
+    "nsf/ansi 42": "NSF-42",
+    "ansi 42": "NSF-42"
+  },
+  "pfas_standards": [
+    {
+      "type": "NSF-53",
+      "pfas_certified": true,
+      "summary": "Health effects standard used by systems listed for PFOA/PFOS reduction claims"
+    },
+    {
+      "type": "NSF-58",
+      "pfas_certified": true,
+      "summary": "Reverse osmosis systems can carry PFAS reduction claims under this standard"
+    },
+    {
+      "type": "NSF-42",
+      "pfas_certified": false,
+      "summary": "Aesthetic effects standard and not a PFAS reduction certification"
+    }
+  ]
+}

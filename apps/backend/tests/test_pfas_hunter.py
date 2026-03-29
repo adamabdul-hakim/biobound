@@ -135,3 +135,24 @@ def test_detect_chemicals_false_positive_fluorine_chemistry() -> None:
     matches = detect_chemicals_scored(ocr_text)
     terms = [m.term for m in matches]
     assert "fluoride" not in terms
+
+
+def test_detect_chemicals_phrase_variant_per_and_polyfluoroalkyl() -> None:
+    ocr_text = "Contains per and poly fluoro alkyl substances in coating"
+    matches = detect_chemicals_scored(ocr_text)
+    terms = [m.term for m in matches]
+    assert "PFAS" in terms
+
+
+def test_detect_chemicals_compound_variant_pfhxs() -> None:
+    ocr_text = "Trace PFHxS was identified in lab report"
+    matches = detect_chemicals_scored(ocr_text)
+    terms = [m.term for m in matches]
+    assert "PFHxS" in terms
+
+
+def test_detect_chemicals_trade_name_tefal_alias() -> None:
+    ocr_text = "TEFAL non stick surface"
+    matches = detect_chemicals_scored(ocr_text)
+    terms = [m.term for m in matches]
+    assert "PTFE" in terms
