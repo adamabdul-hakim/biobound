@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "biobound-teamb-service"
 version = "0.1.0"
 description = "Team B analysis service scaffold for BioBound"
-readme = "REAMDE.md"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.116.0,<1.0.0",

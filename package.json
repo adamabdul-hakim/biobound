@@ -1,6 +1,14 @@
 {
-  "dependencies": {
-    "lucide-react": "^1.7.0",
-    "zustand": "^5.0.12"
+  "name": "biobound-workspace",
+  "private": true,
+  "workspaces": [
+    "apps/frontend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm --prefix apps/frontend run dev",
+    "build:frontend": "npm --prefix apps/frontend run build",
+    "lint:frontend": "npm --prefix apps/frontend run lint",
+    "test:backend": "cd apps/backend && python -m pytest -q",
+    "lint:backend": "cd apps/backend && python -m ruff check ."
   }
 }

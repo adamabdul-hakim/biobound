@@ -8,7 +8,7 @@ Use this mode for local development and Team A integration when cloud APIs are n
 - Full `/analyze` contract remains available.
 
 ## Environment
-Set the following variables (or copy from `.env.example`):
+Set the following variables (or copy from `apps/backend/.env.example`):
 
 - `OCR_PROVIDER=mock`
 - `OCR_TIMEOUT_SECONDS=2.0`

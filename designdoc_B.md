@@ -63,11 +63,11 @@ Each phase must end in a releasable state and include a demo to Team A.
 
 ### Tasks
 1. Create service structure:
-	- `app/main.py` (API entry)
-	- `app/routes/analyze.py`
-	- `app/core/config.py`
-	- `app/models/schemas.py`
-	- `app/services/` modules for OCR, parser, risk, decay
+	- `apps/backend/app/main.py` (API entry)
+	- `apps/backend/app/routes/analyze.py`
+	- `apps/backend/app/core/config.py`
+	- `apps/backend/app/models/schemas.py`
+	- `apps/backend/app/services/` modules for OCR, parser, risk, decay
 2. Define request/response schemas and versioning policy.
 3. Add lint/test tooling and CI pipeline (run lint + tests on PR).
 4. Add seed fixtures for ingredient labels and expected parse outputs.

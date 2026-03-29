@@ -14,7 +14,7 @@
 - [ ] Mock mode setup shared with Team A (`docs/mock_mode_setup.md`).
 
 ## Deployment readiness
-- [ ] Environment values reviewed (`.env.example`).
+- [ ] Environment values reviewed (`apps/backend/.env.example`).
 - [ ] Runbook reviewed (`docs/phase6_runbook.md`).
 - [ ] Rollback owner assigned.
 - [ ] Incident contact channel confirmed.

@@ -41,8 +41,8 @@
 
 ## Change Process
 
-1. Update schema definitions in `app/models/schemas.py`.
-2. Update contract tests in `tests/test_analyze_contract.py`.
+1. Update schema definitions in `apps/backend/app/models/schemas.py`.
+2. Update contract tests in `apps/backend/tests/test_analyze_contract.py`.
 3. Update this document with behavior details.
 4. Mark API impact in PR template and request Team A review.
 
