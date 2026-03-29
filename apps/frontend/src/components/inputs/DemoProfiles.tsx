@@ -2,15 +2,24 @@
 
 import { useState } from "react";
 import { useAppStore } from "@/store/appStore";
-import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
+import { callIntegratedAnalyzeApi, computeLifestyleREI } from "@/lib/analyzeIntegration";
+import type { TeamAAnalyzeInput } from "@/lib/analyzeIntegration";
 import { useRouter } from "next/navigation";
 import { Loader, User, Users, Baby, UserCog, ChevronDown } from "lucide-react";
+
+interface MemberPayload {
+  cookwareUse: { brand: string; yearsOfUse: number };
+  dietHabits: { fiberSources: string[]; foods: string[]; medications: string[] };
+  makeUpUse: { frequency: "never" | "rarely" | "weekly" | "daily"; productTypes: string[]; shampooProducts: string[] };
+  householdProfile: { hasChildrenUnder5: boolean; numberOfChildren: number; childrenCrawlOnFloor: boolean };
+}
 
 interface FamilyMember {
   name: string;
   age: string;
   exposureNote: string;
-  riskBadge: "low" | "moderate" | "high";
+  isCrawlingInfant?: boolean;
+  memberPayload: MemberPayload;
 }
 
 interface DemoProfile {
@@ -20,6 +29,7 @@ interface DemoProfile {
   icon: React.ReactNode;
   description: string;
   accentColor: string;
+  waterScoreHint?: number;
   familyMembers?: FamilyMember[];
   data: {
     zipCode: string;

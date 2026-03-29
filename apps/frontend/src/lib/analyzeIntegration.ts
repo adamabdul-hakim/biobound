@@ -82,10 +82,11 @@ function getRiskTier(score: number): PfasFlag["tier"] {
 // ── Lifestyle-based REI computation ───────────────────────────────────────────
 // The backend scanner score is 0 when no product is scanned (50% of its weight),
 // so we compute REI fully on the frontend from all lifestyle inputs.
-function computeLifestyleREI(
+export function computeLifestyleREI(
   payload: TeamAAnalyzeInput,
   backendWaterScore: number,
   waterDataStatus: "calculated" | "no-data" | "missing-zip" = "calculated",
+  isCrawlingInfant = false,
 ): number {
   // 1. Water score (0-100) — precautionary fallback when backend has no data
   let waterScore: number;
@@ -142,14 +143,22 @@ function computeLifestyleREI(
       : Math.min(60, 15 + n * 10);
   }
 
-  // Weighted composite (must sum to 1.0)
-  const rei = Math.round(
-    waterScore * 0.25 +
-    cookwareScore * 0.20 +
-    dietScore * 0.25 +
-    makeupScore * 0.15 +
-    householdScore * 0.15,
-  );
+  // For crawling infants, floor dust is the dominant pathway (45% weight vs 15% for adults)
+  const rei = isCrawlingInfant
+    ? Math.round(
+        waterScore    * 0.15 +
+        cookwareScore * 0.15 +
+        dietScore     * 0.20 +
+        makeupScore   * 0.05 +
+        householdScore * 0.45,
+      )
+    : Math.round(
+        waterScore    * 0.25 +
+        cookwareScore * 0.20 +
+        dietScore     * 0.25 +
+        makeupScore   * 0.15 +
+        householdScore * 0.15,
+      );
   // Crawling infants ingest ~10x more PFAS-laden house dust: apply vulnerability multiplier
   if (payload.householdProfile?.hasChildrenUnder5 && payload.householdProfile?.childrenCrawlOnFloor) {
     return Math.min(100, Math.round(rei * 1.6));
@@ -160,37 +169,51 @@ function computeLifestyleREI(
 // ── Smooth exponential decay curve ────────────────────────────────────────────
 // Backend only returns 3 data points (years 0, 4, 8). We generate smooth
 // yearly data for 10 years using C(t) = C0 * exp(-k*t).
-const DEFAULT_K = 0.231; // half-life ~3 years (general PFAS average)
-const INTERVENTION_K = DEFAULT_K * 1.5;  // 50% faster with dietary intervention
-const FULL_INTERVENTION_K = DEFAULT_K * 2.0; // 100% faster with full lifestyle overhaul
+// PFAS serum half-lives (scientific literature):
+// PFOS ~5.4yr (k=0.128), PFOA ~3.5yr (k=0.198), PFHxS ~8.5yr (k=0.082)
+// Weighted average for mixed PFAS burden: ~4.5yr half-life
+const DEFAULT_K = 0.154;          // no intervention — mixed PFAS, ~4.5yr half-life
+const INTERVENTION_K = 0.231;     // filter + high-fiber diet — ~3yr half-life
+const FULL_INTERVENTION_K = 0.347; // full overhaul (PFAS-free cookware + filter + clean diet) — ~2yr
 
-function generateDecayCurve(startLevel: number, k: number, horizon = 10): Array<{ week: number; bodyLoad: number }> {
+// floor: steady-state body burden from ongoing exposure. PFAS never decay to zero
+// as long as exposure continues — the body approaches an equilibrium, not zero.
+function generateDecayCurve(
+  startLevel: number,
+  k: number,
+  floor: number,
+  horizon = 10,
+): Array<{ week: number; bodyLoad: number }> {
   const points: Array<{ week: number; bodyLoad: number }> = [];
   for (let m = 0; m <= horizon * 12; m += 6) {
-    // every 6 months
     const t = m / 12;
-    const level = Math.max(5, startLevel * Math.exp(-k * t));
-    points.push({ week: Math.round(t * 52), bodyLoad: Math.round(level) });
+    // Approach steady-state floor asymptotically: C(t) = floor + (C0-floor)*e^(-kt)
+    const level = floor + (startLevel - floor) * Math.exp(-k * t);
+    points.push({ week: Math.round(t * 52), bodyLoad: Math.round(Math.max(0, level)) });
   }
   return points;
 }
 
 function buildInterventionScenarios(startLevel: number): Scenario[] {
+  // Steady-state floors: fraction of body burden maintained by ongoing exposure
+  const floorBaseline = Math.round(startLevel * 0.40); // ~40%: no habit change
+  const floorDietary  = Math.round(startLevel * 0.20); // ~20%: filter + fiber halves intake
+  const floorFull     = Math.round(startLevel * 0.07); // ~7%: near-elimination of new intake
   return [
     {
       label: "Current Trajectory",
-      description: "Projected body burden without changing habits.",
-      data: generateDecayCurve(startLevel, DEFAULT_K),
+      description: "Body burden stabilizes at ~40% of today's level from ongoing exposure.",
+      data: generateDecayCurve(startLevel, DEFAULT_K, floorBaseline),
     },
     {
       label: "Dietary Intervention",
-      description: "Estimated decline with increased fiber intake and filter upgrade.",
-      data: generateDecayCurve(startLevel, INTERVENTION_K),
+      description: "Certified filter + high-fiber diet — burden declines to ~20% of baseline.",
+      data: generateDecayCurve(startLevel, INTERVENTION_K, floorDietary),
     },
     {
       label: "Full Lifestyle Overhaul",
-      description: "Maximum reduction: certified filter, PFAS-free cookware, clean diet.",
-      data: generateDecayCurve(startLevel, FULL_INTERVENTION_K),
+      description: "PFAS-free cookware, certified filter, clean diet — near-zero ongoing intake.",
+      data: generateDecayCurve(startLevel, FULL_INTERVENTION_K, floorFull),
     },
   ];
 }
@@ -248,7 +271,7 @@ export function mapTeamBToTeamAResult(
         { compound: "General PFAS Exposure", tier },
       ];
 
-  const decayCurve = generateDecayCurve(reiScore, DEFAULT_K);
+  const decayCurve = generateDecayCurve(reiScore, DEFAULT_K, Math.round(reiScore * 0.40));
 
   return {
     reiScore,

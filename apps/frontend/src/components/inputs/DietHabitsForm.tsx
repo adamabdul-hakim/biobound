@@ -6,24 +6,24 @@ import { Apple, AlertTriangle, ShieldCheck, Pill } from "lucide-react";
 
 // PFAS-INCREASING foods (scientific basis: bioaccumulation in seafood, packaging migration, etc.)
 const pfasRaisingFoods = [
-  { id: "microwave-popcorn", label: "Microwave popcorn", note: "PFAS-lined bags" },
-  { id: "fast-food", label: "Fast food (weekly+)", note: "Grease-resistant packaging" },
-  { id: "seafood-frequent", label: "Seafood (3x/week+)", note: "Bioaccumulation in fish" },
-  { id: "processed-meats", label: "Processed meats", note: "Packaging & processing" },
+  { id: "microwave-popcorn", label: "Microwave popcorn (1+ a week)", note: "PFAS-lined bags" },
+  { id: "fast-food", label: "Fast food (1+ a week)", note: "Grease-resistant packaging" },
+  { id: "seafood-frequent", label: "Seafood (3+ a week)", note: "Bioaccumulation in fish" },
+  { id: "processed-meats", label: "Processed meats (3+ a week)", note: "Packaging & processing" },
   { id: "canned-food", label: "Canned food (daily)", note: "Can lining migration" },
-  { id: "stain-resist-packaging", label: "Pizza boxes / takeout containers", note: "PFAS-treated paperboard" },
-  { id: "tap-water-unfiltered", label: "Unfiltered tap water for cooking", note: "Direct ingestion" },
+  { id: "stain-resist-packaging", label: "Pizza / takeout containers (weekly)", note: "PFAS-treated paperboard" },
+  { id: "tap-water-unfiltered", label: "Unfiltered tap water for cooking (daily)", note: "Direct ingestion" },
 ];
 
 // PFAS-REDUCING / protective foods
 const pfasReducingFoods = [
-  { id: "oats", label: "Oats / oatmeal", note: "Soluble fiber binds PFAS" },
-  { id: "beans-lentils", label: "Beans & lentils", note: "High fiber, bile binding" },
-  { id: "whole-wheat", label: "Whole grains", note: "Fiber supports clearance" },
-  { id: "flax-chia", label: "Flax / chia seeds", note: "Omega-3 & fiber" },
-  { id: "cruciferous", label: "Broccoli / cauliflower", note: "Detox pathways support" },
-  { id: "blueberries", label: "Berries", note: "Antioxidant support" },
-  { id: "psyllium", label: "Psyllium husk", note: "Strong bile-acid sequestrant" },
+  { id: "oats", label: "Oats / oatmeal (3+ a week)", note: "Soluble fiber binds PFAS" },
+  { id: "beans-lentils", label: "Beans & lentils (3+ a week)", note: "High fiber, bile binding" },
+  { id: "whole-wheat", label: "Whole grains (daily)", note: "Fiber supports clearance" },
+  { id: "flax-chia", label: "Flax / chia seeds (daily)", note: "Omega-3 & fiber" },
+  { id: "cruciferous", label: "Broccoli / cauliflower (3+ a week)", note: "Detox pathways support" },
+  { id: "blueberries", label: "Berries (3+ a week)", note: "Antioxidant support" },
+  { id: "psyllium", label: "Psyllium husk (daily)", note: "Strong bile-acid sequestrant" },
 ];
 
 const medicationOptions = [
