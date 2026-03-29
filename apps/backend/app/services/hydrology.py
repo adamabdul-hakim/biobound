@@ -1,4 +1,5 @@
 import json
+import re
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -20,6 +21,7 @@ class FilterCertificationResult:
     canonical_type: str | None
     pfas_certified: bool
     found_in_dataset: bool
+    matched_by: str | None = None
 
 
 def _load_epa_data() -> dict[str, dict]:
@@ -33,6 +35,27 @@ def _load_nsf_data() -> dict:
     data_path = Path(__file__).parent.parent / "data" / "nsf_certifications.json"
     with open(data_path, encoding="utf-8") as file:
         return json.load(file)
+
+
+@lru_cache(maxsize=1)
+def _load_nsf_model_data() -> dict:
+    data_path = Path(__file__).parent.parent / "data" / "nsf_certified_models.json"
+    try:
+        with open(data_path, encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        # Model-level data is optional until all standards are ingested.
+        return {"records": []}
+
+
+def _normalize_text(value: str | None) -> str:
+    if value is None:
+        return ""
+    return " ".join(value.strip().lower().split())
+
+
+def _normalize_model_token(value: str | None) -> str:
+    return re.sub(r"[^a-z0-9]", "", _normalize_text(value))
 
 
 def _normalize_filter_type(filter_type: str | None, aliases: dict[str, str]) -> str | None:
@@ -53,6 +76,18 @@ def _lookup_filter_certification(filter_brand: str | None, filter_type: str | No
         str(key).lower(): str(value)
         for key, value in nsf_data.get("type_aliases", {}).items()
     }
+    standards = nsf_data.get("pfas_standards", [])
+    known_standard_types = {
+        str(standard.get("type", "")).upper()
+        for standard in standards
+        if standard.get("type")
+    }
+
+    # Prefer model-level lookup when type is not an explicit standard code.
+    model_match = _lookup_model_certification(filter_brand=filter_brand, filter_model=filter_type)
+    if model_match is not None:
+        return model_match
+
     canonical_type = _normalize_filter_type(filter_type, aliases)
 
     if canonical_type is None:
@@ -62,22 +97,54 @@ def _lookup_filter_certification(filter_brand: str | None, filter_type: str | No
             found_in_dataset=False,
         )
 
-    standards = nsf_data.get("pfas_standards", [])
     for standard in standards:
-        if str(standard.get("type", "")).upper() == canonical_type:
+        if str(standard.get("type", "")).upper() == canonical_type and canonical_type in known_standard_types:
             return FilterCertificationResult(
                 canonical_type=canonical_type,
                 pfas_certified=bool(standard.get("pfas_certified", False)),
                 found_in_dataset=True,
+                matched_by="standard",
             )
 
-    # Keep brand parameter in signature for future per-model extension.
-    _ = filter_brand
     return FilterCertificationResult(
         canonical_type=canonical_type,
         pfas_certified=False,
         found_in_dataset=False,
     )
+
+
+def _lookup_model_certification(
+    filter_brand: str | None,
+    filter_model: str | None,
+) -> FilterCertificationResult | None:
+    model_token = _normalize_model_token(filter_model)
+    if not model_token:
+        return None
+
+    # Skip model lookup for explicit non-model selections.
+    if _normalize_text(filter_model) in {"none", "unknown"}:
+        return None
+
+    records = _load_nsf_model_data().get("records", [])
+    input_brand = _normalize_text(filter_brand)
+
+    for record in records:
+        record_model = _normalize_model_token(str(record.get("model", "")))
+        if record_model != model_token:
+            continue
+
+        record_brand = _normalize_text(str(record.get("brand", "")))
+        if input_brand and input_brand not in record_brand and record_brand not in input_brand:
+            continue
+
+        return FilterCertificationResult(
+            canonical_type=str(record.get("standard", "")).upper() or None,
+            pfas_certified=bool(record.get("pfas_certified", False)),
+            found_in_dataset=True,
+            matched_by="model",
+        )
+
+    return None
 
 
 def calculate_hydrology_risk(

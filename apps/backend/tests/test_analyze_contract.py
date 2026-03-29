@@ -131,6 +131,28 @@ def test_analyze_flags_nsf42_as_not_pfas_certified() -> None:
     assert "NSF-42" in body["filter_warning"]
 
 
+def test_analyze_uses_model_level_filter_certification() -> None:
+    client = TestClient(app)
+    response = client.post(
+        "/analyze",
+        json={
+            "zip_code": "10006",
+            "filter_model": {
+                "brand": "SOLVENTUM PURIFICATION INC.",
+                "type": "3MRO301",
+            },
+            "product_name_hint": "Sample Pan",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["water_data_status"] == "calculated"
+    assert body["water_effective_ppt"] == 4.42
+    assert body["water_risk_score"] == 6
+    assert body["filter_warning"] is None
+
+
 def test_analyze_scanner_score_changes_with_product_scan_text() -> None:
     client = TestClient(app)
 
