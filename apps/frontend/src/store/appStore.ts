@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { ReceiptScanResult } from "@/lib/receiptScan";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -25,6 +26,30 @@ export interface MitigationTier {
   actions: string[];
 }
 
+export interface MakeUpUse {
+  frequency: "never" | "rarely" | "weekly" | "daily";
+  productTypes: string[];
+  shampooProducts?: string[];
+}
+
+export interface HouseholdProfile {
+  hasChildrenUnder5: boolean;
+  numberOfChildren: number;
+  childrenCrawlOnFloor: boolean;
+}
+
+export interface LocationPfasEstimate {
+  source: "manual_demo" | "gemini" | "heuristic_fallback";
+  zip_code: string;
+  location_data?: Record<string, unknown>;
+  estimate?: {
+    estimated_total_pfas_ppt: number;
+    breakdown: Record<string, number>;
+    confidence: "low" | "medium" | "high";
+  };
+  raw_response?: string;
+}
+
 // ── State & Actions ──────────────────────────────────────────────────────────
 
 interface AppState {
@@ -34,6 +59,16 @@ interface AppState {
   cookwareUse: { brand: string; yearsOfUse: number } | null;
   filterModel: { brand: string; type: string } | null;
   dietHabits: { fiberSources: string[]; foods: string[]; medications: string[] } | null;
+  makeUpUse: MakeUpUse | null;
+  householdProfile: HouseholdProfile | null;
+
+  // PFAS Estimation
+  pfasEstimate: LocationPfasEstimate | null;
+  pfasEstimateLoading: boolean;
+  pfasEstimateError: string | null;
+
+  // Receipt scan
+  receiptScanResult: ReceiptScanResult | null;
 
   // API Outputs
   reiScore: number | null;
@@ -55,6 +90,16 @@ interface AppState {
   setCookwareUse: (cookware: { brand: string; yearsOfUse: number }) => void;
   setFilterModel: (filter: { brand: string; type: string }) => void;
   setDietHabits: (habits: { fiberSources: string[]; foods: string[]; medications: string[] }) => void;
+  setMakeUpUse: (use: MakeUpUse) => void;
+  setHouseholdProfile: (profile: HouseholdProfile) => void;
+
+  // Actions — PFAS Estimation
+  setPfasEstimate: (estimate: LocationPfasEstimate | null) => void;
+  setPfasEstimateLoading: (loading: boolean) => void;
+  setPfasEstimateError: (error: string | null) => void;
+
+  // Actions — Receipt scan
+  setReceiptScanResult: (result: ReceiptScanResult | null) => void;
 
   // Actions — Outputs
   setAnalyzeResult: (result: {
@@ -74,6 +119,9 @@ interface AppState {
   nextStep: () => void;
   prevStep: () => void;
   setReiScore: (score: number | null) => void;
+
+  // Actions — Reset
+  reset: () => void;
 }
 
 // ── Store ────────────────────────────────────────────────────────────────────
@@ -82,9 +130,19 @@ export const useAppStore = create<AppState>((set) => ({
   // Inputs — defaults
   zipCode: "",
   productScan: null,
-  cookwareUse: null,
+  cookwareUse: { brand: "0%", yearsOfUse: 0 },
   filterModel: null,
-  dietHabits: null,
+  dietHabits: { fiberSources: [], foods: [], medications: ["None"] },
+  makeUpUse: { frequency: "never", productTypes: [], shampooProducts: [] },
+  householdProfile: { hasChildrenUnder5: false, numberOfChildren: 0, childrenCrawlOnFloor: false },
+
+  // PFAS Estimation — defaults
+  pfasEstimate: null,
+  pfasEstimateLoading: false,
+  pfasEstimateError: null,
+
+  // Receipt scan — defaults
+  receiptScanResult: null,
 
   // Outputs — defaults
   reiScore: null,
@@ -106,6 +164,16 @@ export const useAppStore = create<AppState>((set) => ({
   setCookwareUse: (cookware) => set({ cookwareUse: cookware }),
   setFilterModel: (filter) => set({ filterModel: filter }),
   setDietHabits: (habits) => set({ dietHabits: habits }),
+  setMakeUpUse: (use) => set({ makeUpUse: use }),
+  setHouseholdProfile: (profile) => set({ householdProfile: profile }),
+
+  // PFAS Estimation setters
+  setPfasEstimate: (estimate) => set({ pfasEstimate: estimate }),
+  setPfasEstimateLoading: (loading) => set({ pfasEstimateLoading: loading }),
+  setPfasEstimateError: (error) => set({ pfasEstimateError: error }),
+
+  // Receipt scan setters
+  setReceiptScanResult: (result) => set({ receiptScanResult: result }),
 
   // Bulk output setter — called once after /api/analyze responds
   setAnalyzeResult: (result) => set({ ...result }),
@@ -114,7 +182,31 @@ export const useAppStore = create<AppState>((set) => ({
   setLoading: (loading) => set({ isLoading: loading }),
   setError: (error) => set({ error }),
   setCurrentStep: (step) => set({ currentStep: step }),
-  nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 5) })),
+  nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 7) })),
   prevStep: () => set((s) => ({ currentStep: Math.max(s.currentStep - 1, 1) })),
   setReiScore: (score) => set({ reiScore: score }),
+
+  reset: () => set({
+    zipCode: "",
+    productScan: null,
+    cookwareUse: { brand: "0%", yearsOfUse: 0 },
+    filterModel: null,
+    dietHabits: { fiberSources: [], foods: [], medications: ["None"] },
+    makeUpUse: { frequency: "never", productTypes: [], shampooProducts: [] },
+    householdProfile: { hasChildrenUnder5: false, numberOfChildren: 0, childrenCrawlOnFloor: false },
+    pfasEstimate: null,
+    pfasEstimateLoading: false,
+    pfasEstimateError: null,
+    receiptScanResult: null,
+    reiScore: null,
+    filterWarning: null,
+    pfasFlags: null,
+    decayCurve: null,
+    interventionModel: null,
+    medWarnings: null,
+    mitigationPlan: null,
+    isLoading: false,
+    error: null,
+    currentStep: 1,
+  }),
 }));

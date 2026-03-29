@@ -1,97 +1,73 @@
 "use client";
 
 import { useAppStore } from "@/store/appStore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const percentageOptions = [
-  "0%",
-  "10%",
-  "25%",
-  "50%",
-  "75%",
-  "100%",
+const cookwareTypes = [
+  { value: "none",       icon: "🥗", name: "None / no non-stick", risk: "No PFAS",       riskClass: "risk-low" },
+  { value: "10%",        icon: "🍳", name: "Minimal (~10%)",       risk: "Low exposure",  riskClass: "risk-low" },
+  { value: "25%",        icon: "🫕", name: "Some (~25%)",          risk: "Low–moderate",  riskClass: "risk-med" },
+  { value: "50%",        icon: "🍲", name: "Half (~50%)",          risk: "Moderate",      riskClass: "risk-med" },
+  { value: "75%",        icon: "🍳", name: "Most (~75%)",          risk: "High exposure", riskClass: "risk-high" },
+  { value: "100%",       icon: "⚠️", name: "All non-stick",        risk: "Very high",     riskClass: "risk-high" },
 ];
+
+const yearOptions = [0, 1, 2, 3, 5, 7, 10, 15, 20];
 
 export default function CookwareForm() {
   const { cookwareUse, setCookwareUse } = useAppStore();
-  const [percentage, setPercentage] = useState<string>(
-    cookwareUse?.brand || ""
-  );
-  const [yearsOfUse, setYearsOfUse] = useState<string>(
-    cookwareUse?.yearsOfUse?.toString() || "0"
-  );
+  const [percentage, setPercentage] = useState<string>(cookwareUse?.brand || "none");
+  const [yearsOfUse, setYearsOfUse] = useState<number>(cookwareUse?.yearsOfUse ?? 0);
 
-  const handleSave = () => {
-    if (percentage) {
-      setCookwareUse({
-        brand: percentage,
-        yearsOfUse: Math.max(0, parseInt(yearsOfUse, 10) || 0),
-      });
-    }
-  };
-
-  const isValid = percentage && parseInt(yearsOfUse, 10) >= 0;
+  useEffect(() => {
+    setCookwareUse({ brand: percentage, yearsOfUse });
+  }, [percentage, yearsOfUse, setCookwareUse]);
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <label className="block text-sm font-medium text-gray-700 mb-4">
-        Non-Stick Cookware Use
-      </label>
+    <div className="w-full space-y-6">
 
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm text-gray-600 mb-2">
-            Percentage of cookware that is non-stick:
-          </label>
-          <div className="grid grid-cols-3 gap-2">
-            {percentageOptions.map((opt) => (
-              <button
-                key={opt}
-                onClick={() => setPercentage(opt)}
-                className={`py-2 px-3 border rounded-lg transition ${
-                  percentage === opt
-                    ? "bg-blue-500 text-white border-blue-500"
-                    : "border-gray-300 text-gray-700 hover:border-blue-400"
-                }`}
-              >
-                {opt}
-              </button>
-            ))}
-          </div>
+      {/* Cookware type grid */}
+      <div>
+        <p className="text-sm font-semibold mb-3" style={{ color: "var(--text2)" }}>
+          What percentage of your cookware is non-stick coated?
+        </p>
+        <div className="cookware-grid">
+          {cookwareTypes.map((opt) => (
+            <div
+              key={opt.value}
+              className={`cookware-card${percentage === opt.value ? " selected" : ""}`}
+              onClick={() => setPercentage(opt.value)}
+            >
+              <div className="cookware-icon">{opt.icon}</div>
+              <div className="cookware-name">{opt.name}</div>
+              <div className={`cookware-risk ${opt.riskClass}`}>{opt.risk}</div>
+            </div>
+          ))}
         </div>
-
-        <div>
-          <label className="block text-sm text-gray-600 mb-2">
-            Years of use:
-          </label>
-          <input
-            type="number"
-            value={yearsOfUse}
-            onChange={(e) => setYearsOfUse(e.target.value)}
-            min="0"
-            max="100"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <button
-          onClick={handleSave}
-          disabled={!isValid}
-          className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-        >
-          Save Cookware Info
-        </button>
       </div>
 
-      {cookwareUse && (
-        <p className="text-sm text-green-600 mt-4">
-          ✓ Cookware info saved: {cookwareUse.brand} non-stick for{" "}
-          {cookwareUse.yearsOfUse} years
+      {/* Years of use */}
+      <div>
+        <p className="text-sm font-semibold mb-3" style={{ color: "var(--text2)" }}>
+          How many years have you used non-stick cookware?
         </p>
-      )}
+        <div className="grid grid-cols-3 gap-2">
+          {yearOptions.map((y) => (
+            <button
+              key={y}
+              onClick={() => setYearsOfUse(y)}
+              className={`py-3 px-3 rounded-lg font-bold transition-all active:scale-95 text-sm ${
+                yearsOfUse === y ? "btn-select-active" : "btn-select-idle"
+              }`}
+            >
+              {y === 0 ? "Never" : `${y}y`}
+            </button>
+          ))}
+        </div>
+      </div>
 
-      <p className="text-gray-500 text-sm mt-4">
-        This helps assess your long-term PFAS exposure from cookware.
+      <p className="text-xs leading-relaxed pl-3" style={{ color: "var(--text3)", borderLeft: "2px solid var(--border2)" }}>
+        Scratched & older non-stick pans release more PFAS. Cast iron, stainless, or ceramic are the safest alternatives.
       </p>
     </div>
   );

@@ -1,21 +1,45 @@
 "use client";
 
 import { useAppStore } from "@/store/appStore";
-import { ChevronLeft, ChevronRight, Loader } from "lucide-react";
+import { Loader } from "lucide-react";
 import ZipCodeInput from "./ZipCodeInput";
 import FilterAuditor from "./FilterAuditor";
-import ProductScanner from "./ProductScanner";
 import CookwareForm from "./CookwareForm";
 import DietHabitsForm from "./DietHabitsForm";
+import MakeUpUseForm from "./MakeUpUseForm";
+import ReceiptScanner from "./ReceiptScanner";
+import LocationPfasDisplay from "./LocationPfasDisplay";
 import { callIntegratedAnalyzeApi } from "@/lib/analyzeIntegration";
 import { useRouter } from "next/navigation";
 
 const steps = [
-  { title: "Zip Code", component: ZipCodeInput },
-  { title: "Water Filter", component: FilterAuditor },
-  { title: "Product Scan", component: ProductScanner },
-  { title: "Cookware Use", component: CookwareForm },
-  { title: "Diet & Habits", component: DietHabitsForm },
+  { title: "Location" },
+  { title: "Water Filter" },
+  { title: "Cookware" },
+  { title: "Diet & Habits" },
+  { title: "Personal Care" },
+  { title: "Product Scan", optional: true },
+];
+
+const stepComponents = [ZipCodeInput, FilterAuditor, CookwareForm, DietHabitsForm, MakeUpUseForm, ReceiptScanner];
+
+const stepHeadings = [
+  <>Where do you get your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>tap water</em>?</>,
+  <>What water filter <em style={{ fontStyle: "italic", color: "var(--accent)" }}>do you use</em>?</>,
+  <>How much of your cookware <em style={{ fontStyle: "italic", color: "var(--accent)" }}>is non-stick</em>?</>,
+  <>Which foods do you <em style={{ fontStyle: "italic", color: "var(--accent)" }}>eat regularly</em>?</>,
+  <>Your personal care <em style={{ fontStyle: "italic", color: "var(--accent)" }}>product exposure</em></>,
+  <>Scan your <em style={{ fontStyle: "italic", color: "var(--accent)" }}>everyday products</em></>,
+];
+
+const stepLeads = [
+  "Drinking water is the most variable PFAS source — it can range from near-zero to critically contaminated depending on your location.",
+  "Standard pitcher filters don't remove PFAS. NSF-53 or NSF-58 certified filters are the only effective options.",
+  "Heat accelerates PFAS leaching. Scratched non-stick pans can release significant PFAS into every meal.",
+  "PFAS bioaccumulates in fish, leaches from packaging, and builds up through certain everyday food habits.",
+  "PFAS hides in waterproof cosmetics, dry shampoo, and hair products for smoothness and water resistance.",
+
+  "Upload a grocery receipt or paste product names — we OCR the image then Gemini AI flags each item's PFAS risk.",
 ];
 
 export default function InputForm() {
@@ -24,9 +48,10 @@ export default function InputForm() {
     currentStep,
     zipCode,
     filterModel,
-    productScan,
     cookwareUse,
     dietHabits,
+    makeUpUse,
+    receiptScanResult,
     nextStep,
     prevStep,
     setAnalyzeResult,
@@ -35,7 +60,7 @@ export default function InputForm() {
     setError,
   } = useAppStore();
 
-  const CurrentComponent = steps[currentStep - 1]?.component || ZipCodeInput;
+  const CurrentComponent = stepComponents[currentStep - 1] ?? ZipCodeInput;
 
   const canAdvance = () => {
     if (currentStep === 1) return /^\d{5}$/.test(zipCode);
@@ -43,19 +68,11 @@ export default function InputForm() {
     return true;
   };
 
-  const canAnalyze = () => {
-    return (
-      /^\d{5}$/.test(zipCode) &&
-      filterModel?.type !== undefined &&
-      cookwareUse !== null &&
-      dietHabits !== null
-    );
-  };
+  const canAnalyze = () =>
+    /^\d{5}$/.test(zipCode) && filterModel?.type !== undefined;
 
   const handleNextStep = () => {
-    if (canAdvance()) {
-      nextStep();
-    }
+    if (canAdvance()) nextStep();
   };
 
   const handleAnalyze = async () => {
@@ -63,107 +80,107 @@ export default function InputForm() {
       setError("Please complete all required fields");
       return;
     }
-
     setLoading(true);
     setError(null);
-
     try {
-      const payload = {
+      const result = await callIntegratedAnalyzeApi({
         zipCode,
-        productScan,
+        productScan: null,
         cookwareUse,
         filterModel,
         dietHabits,
-      };
-
-      const result = await callIntegratedAnalyzeApi(payload);
+        makeUpUse,
+        receiptScanResult,
+      });
       setAnalyzeResult(result);
-
-      // Navigate to results page
       router.push("/results");
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Analysis failed. Please try again."
-      );
+      setError(err instanceof Error ? err.message : "Analysis failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
+  const idx = currentStep - 1;
+
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      {/* Progress bar */}
-      <div className="mb-8">
-        <div className="flex justify-between mb-2">
-          {steps.map((step, idx) => (
-            <div
-              key={idx}
-              className={`text-xs font-medium ${
-                idx + 1 <= currentStep ? "text-blue-600" : "text-gray-400"
-              }`}
-            >
-              Step {idx + 1}
-            </div>
-          ))}
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+    <div className="w-full p-6 md:p-8">
+
+      {/* Progress dots */}
+      <div className="progress-dots">
+        {steps.map((_, i) => (
           <div
-            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-            style={{ width: `${(currentStep / steps.length) * 100}%` }}
+            key={i}
+            className={`dot${i < idx ? " done" : i === idx ? " active" : ""}`}
           />
-        </div>
+        ))}
       </div>
 
-      {/* Step title */}
-      <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-        {steps[currentStep - 1]?.title}
+      {/* Eyebrow + serif heading + lead */}
+      <p className="eyebrow" style={{ marginBottom: 12 }}>
+        Step {currentStep} of {steps.length} · {steps[idx]?.title}
+      </p>
+      <h2 className="heading-serif" style={{ fontSize: "clamp(22px,3vw,30px)", marginBottom: 10 }}>
+        {stepHeadings[idx]}
       </h2>
+      <p style={{ fontSize: 14, color: "var(--text2)", lineHeight: 1.7, marginBottom: 28 }}>
+        {stepLeads[idx]}
+      </p>
 
-      {/* Current step component */}
-      <div className="mb-8">
+      {/* Step card */}
+      <div className="card-bb" style={{ marginBottom: 24 }}>
         <CurrentComponent />
+        {currentStep === 1 && (
+          <div className="mt-6 pt-5" style={{ borderTop: "0.5px solid var(--border)" }}>
+            <LocationPfasDisplay />
+          </div>
+        )}
       </div>
 
-      {/* Navigation buttons */}
-      <div className="flex items-center justify-between gap-4">
+      {/* Navigation */}
+      <div className="nav-buttons">
         <button
           onClick={prevStep}
           disabled={currentStep === 1 || isLoading}
-          className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+          className="btn-ghost-bb"
+          style={{ opacity: currentStep === 1 || isLoading ? 0.4 : 1, cursor: currentStep === 1 || isLoading ? "not-allowed" : "pointer" }}
         >
-          <ChevronLeft className="w-4 h-4" />
-          Back
+          ← Back
         </button>
 
-        <div className="text-sm text-gray-600">
-          {currentStep} of {steps.length}
-        </div>
-
         {currentStep < steps.length ? (
-          <button
-            onClick={handleNextStep}
-            disabled={!canAdvance() || isLoading}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-          >
-            Next
-            <ChevronRight className="w-4 h-4" />
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {/* When the next step is optional, offer a direct skip to results */}
+            {steps[currentStep]?.optional && (
+              <button
+                onClick={handleAnalyze}
+                disabled={!canAnalyze() || isLoading}
+                className="btn-ghost-bb"
+                style={{ opacity: !canAnalyze() || isLoading ? 0.4 : 1, cursor: !canAnalyze() || isLoading ? "not-allowed" : "pointer" }}
+              >
+                Skip to Results
+              </button>
+            )}
+            <button
+              onClick={handleNextStep}
+              disabled={!canAdvance() || isLoading}
+              className="btn-primary"
+              style={{ opacity: !canAdvance() || isLoading ? 0.4 : 1, cursor: !canAdvance() || isLoading ? "not-allowed" : "pointer" }}
+            >
+              Next: {steps[currentStep]?.title} →
+            </button>
+          </div>
         ) : (
           <button
             onClick={handleAnalyze}
             disabled={!canAnalyze() || isLoading}
-            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+            className="btn-primary"
+            style={{ opacity: !canAnalyze() || isLoading ? 0.4 : 1, cursor: !canAnalyze() || isLoading ? "not-allowed" : "pointer" }}
           >
             {isLoading ? (
-              <>
-                <Loader className="w-4 h-4 animate-spin" />
-                Analyzing...
-              </>
+              <><Loader className="w-4 h-4 animate-spin" /> Analyzing...</>
             ) : (
-              <>
-                <ChevronRight className="w-4 h-4" />
-                View Results
-              </>
+              <>View Results →</>
             )}
           </button>
         )}

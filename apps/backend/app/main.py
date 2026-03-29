@@ -5,14 +5,25 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.core.errors import build_error_response, status_to_error_code
 from app.core.metrics import metrics_collector
 from app.routes.analyze import router as analyze_router
 from app.routes.process_image import router as process_image_router
+from app.routes.estimate import router as estimate_router
 
 app = FastAPI(title=settings.app_name, version=settings.api_version)
+
+# Add CORS middleware to allow requests from frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins; restrict in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.middleware("http")
@@ -83,6 +94,17 @@ async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONR
 
 app.include_router(analyze_router)
 app.include_router(process_image_router)
+app.include_router(estimate_router)
+
+
+@app.get("/", tags=["root"])
+def root() -> dict[str, str]:
+    return {
+        "message": "✅ BioBound Backend is Running",
+        "service": "PFAS Exposure Assessment API",
+        "version": settings.api_version,
+        "status": "healthy"
+    }
 
 
 @app.get("/health", tags=["health"])

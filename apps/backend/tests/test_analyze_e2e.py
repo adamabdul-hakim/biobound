@@ -9,6 +9,7 @@ from uuid import UUID
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.services.ocr import OCRResult, OCRTextLine
 
 
 def test_analyze_with_valid_product_hint() -> None:
@@ -28,9 +29,16 @@ def test_analyze_with_valid_product_hint() -> None:
         "product_name",
         "detected_chemicals",
         "risk_score",
+        "rei_formula_version",
+        "module_scores",
         "confidence_interval",
+        "water_risk_score",
+        "water_effective_ppt",
+        "water_data_status",
+        "filter_warning",
         "decay_data",
         "medical_warnings",
+        "safety",
         "meta",
     }
 
@@ -43,6 +51,11 @@ def test_analyze_with_valid_product_hint() -> None:
     # Verify risk score bounds
     assert isinstance(body["risk_score"], int)
     assert 0 <= body["risk_score"] <= 100
+    assert body["module_scores"]["composite"] == body["risk_score"]
+    assert body["rei_formula_version"].startswith("v2-module-weighted")
+    assert 0 <= body["water_risk_score"] <= 100
+    assert body["water_effective_ppt"] >= 0.0
+    assert body["water_data_status"] in {"calculated", "no-data", "missing-zip"}
 
     # Verify confidence interval bounds
     assert isinstance(body["confidence_interval"], float)
@@ -59,6 +72,7 @@ def test_analyze_with_valid_product_hint() -> None:
 
     # Verify medical warnings
     assert isinstance(body["medical_warnings"], list)
+    assert "zero_cost_actions" in body["safety"]
 
     # Verify metadata with request correlation
     assert body["meta"]["contract_version"] == "v1"
@@ -93,13 +107,23 @@ def test_analyze_with_base64_image() -> None:
         "2mP8/8/wHwAFBQIAX8jx0gAAAABJRU5ErkJggg=="
     )
 
-    response = client.post(
-        "/analyze",
-        json={
-            "image_base64": sample_png_b64,
-            "product_name_hint": "Test Product",
-        },
-    )
+    with patch(
+        "app.routes.analyze.extract_text_from_image",
+        return_value=OCRResult(
+            raw_text="PTFE label",
+            text_blocks=[OCRTextLine(text="PTFE label", confidence=0.9)],
+            labels=[],
+            confidence=0.9,
+            provider="google",
+        ),
+    ):
+        response = client.post(
+            "/analyze",
+            json={
+                "image_base64": sample_png_b64,
+                "product_name_hint": "Test Product",
+            },
+        )
 
     assert response.status_code == 200
     body = response.json()
@@ -228,9 +252,13 @@ def test_analyze_full_orchestration_sequence() -> None:
     assert body["product_name"] == "Non-Stick Cookware"
     assert isinstance(body["detected_chemicals"], list)
     assert 0 <= body["risk_score"] <= 100
+    assert body["module_scores"]["composite"] == body["risk_score"]
     assert 0.0 <= body["confidence_interval"] <= 1.0
+    assert 0 <= body["water_risk_score"] <= 100
+    assert body["water_effective_ppt"] >= 0.0
     assert isinstance(body["decay_data"], list) and len(body["decay_data"]) > 0
     assert isinstance(body["medical_warnings"], list)
+    assert "contraindications" in body["safety"]
     assert "request_id" in body["meta"]
     assert "contract_version" in body["meta"]
 
@@ -288,10 +316,66 @@ def test_analyze_returns_500_on_ocr_failure() -> None:
     client = TestClient(app)
 
     with patch("app.routes.analyze.extract_text_from_image", side_effect=RuntimeError("boom")):
-        response = client.post("/analyze", json={"product_name_hint": "Test"})
+        response = client.post(
+            "/analyze",
+            json={
+                "product_name_hint": "Test",
+                "image_base64": "invalid-but-present",
+            },
+        )
 
     assert response.status_code == 500
     body = response.json()
     assert body["error"]["code"] == "INTERNAL_ERROR"
     assert body["error"]["message"] == "OCR processing failed"
     assert "request_id" in body["error"]
+
+
+def test_analyze_skips_ocr_when_image_missing() -> None:
+    client = TestClient(app)
+
+    with patch("app.routes.analyze.extract_text_from_image") as mock_extract:
+        response = client.post("/analyze", json={"product_name_hint": "Text Only"})
+
+    assert response.status_code == 200
+    assert response.json()["product_name"] == "Text Only"
+    mock_extract.assert_not_called()
+
+
+def test_module2_scenarios_scanner_score_ordering() -> None:
+    client = TestClient(app)
+
+    no_scan = client.post(
+        "/analyze",
+        json={"product_name_hint": "Unknown"},
+    )
+    scan_only = client.post(
+        "/analyze",
+        json={"product_scan": "PTFE PFOA coated product"},
+    )
+    cookware_only = client.post(
+        "/analyze",
+        json={"cookware_use": {"brand": "75%", "years_of_use": 8}},
+    )
+    combined = client.post(
+        "/analyze",
+        json={
+            "product_scan": "PTFE PFOA coated product",
+            "cookware_use": {"brand": "75%", "years_of_use": 8},
+        },
+    )
+
+    assert no_scan.status_code == 200
+    assert scan_only.status_code == 200
+    assert cookware_only.status_code == 200
+    assert combined.status_code == 200
+
+    no_scan_score = no_scan.json()["module_scores"]["scanner"]
+    scan_only_score = scan_only.json()["module_scores"]["scanner"]
+    cookware_only_score = cookware_only.json()["module_scores"]["scanner"]
+    combined_score = combined.json()["module_scores"]["scanner"]
+
+    assert scan_only_score >= no_scan_score
+    assert cookware_only_score >= no_scan_score
+    assert combined_score >= scan_only_score
+    assert combined_score >= cookware_only_score

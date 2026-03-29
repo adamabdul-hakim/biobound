@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { useAppStore } from "@/store/appStore";
+import { useAuthStore } from "@/store/authStore";
 import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
 import FilterWarningBanner from "@/components/outputs/FilterWarningBanner";
 import PfasFlagList from "@/components/outputs/PfasFlagList";
@@ -9,12 +11,17 @@ import InterventionScenarios from "@/components/outputs/InterventionScenarios";
 import MedWarningList from "@/components/outputs/MedWarningList";
 import MitigationPlanTiles from "@/components/outputs/MitigationPlanTiles";
 import AdvocacyLetter from "@/components/outputs/AdvocacyLetter";
+import GeminiRecommendations from "@/components/outputs/GeminiRecommendations";
 import ErrorBanner from "@/components/ui/ErrorBanner";
+import ThemeToggle from "@/components/ui/ThemeToggle";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 
 export default function ResultsPage() {
   const router = useRouter();
+  const { isLoggedIn, saveAssessment, user } = useAuthStore();
+  const [saved, setSaved] = useState(false);
+
   const {
     reiScore,
     filterWarning,
@@ -25,26 +32,36 @@ export default function ResultsPage() {
     mitigationPlan,
     zipCode,
     filterModel,
+    cookwareUse,
+    dietHabits,
+    makeUpUse,
     error,
     setError,
   } = useAppStore();
 
+  function handleSave() {
+    if (!reiScore) return;
+    saveAssessment({
+      reiScore,
+      zipCode,
+      riskLevel: reiScore < 33 ? "low" : reiScore < 67 ? "moderate" : "high",
+      topRiskFactor: pfasFlags?.[0]?.compound ?? undefined,
+    });
+    setSaved(true);
+  }
+
   if (reiScore === null) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white p-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            No Results Available
-          </h1>
-          <p className="text-gray-600 mb-6">
-            Please complete the assessment form first.
+      <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }} className="min-h-screen">
+        <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", padding: "120px 24px" }}>
+          <p style={{ fontFamily: "var(--mono)", fontSize: 40, marginBottom: 20 }}>—</p>
+          <h1 className="heading-serif" style={{ fontSize: 36, marginBottom: 16 }}>No Assessment Yet</h1>
+          <p style={{ fontSize: 15, color: "var(--text2)", marginBottom: 36, lineHeight: 1.65 }}>
+            Complete the assessment to discover your personalized PFAS exposure insights.
           </p>
-          <button
-            onClick={() => router.push("/")}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Back to Assessment
-          </button>
+          <Link href="/audit" className="btn-primary" style={{ textDecoration: "none", fontSize: 15 }}>
+            Start the audit →
+          </Link>
         </div>
       </main>
     );
@@ -56,103 +73,214 @@ export default function ResultsPage() {
     return "danger";
   };
 
+  const statusColor = reiScore < 33 ? "var(--safe)" : reiScore < 67 ? "var(--warn)" : "var(--danger)";
+  const statusLabel = reiScore < 33 ? "Low Exposure" : reiScore < 67 ? "Moderate Exposure" : "High Exposure";
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white p-8">
+    <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }} className="min-h-screen">
+
+      {/* ── NAV ── */}
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "16px 32px",
+        background: "var(--nav-bg)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "0.5px solid var(--border)",
+      }}>
+        <Link href="/" style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em", textDecoration: "none" }}>
+          SafeSource
+        </Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <ThemeToggle />
+          {isLoggedIn && (
+            <Link href="/dashboard" style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)", textDecoration: "none" }}>
+              Dashboard
+            </Link>
+          )}
+          <Link href="/audit" style={{
+            fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)",
+            border: "0.5px solid var(--border2)", borderRadius: 20,
+            padding: "6px 16px", textDecoration: "none",
+          }}>
+            ← New Audit
+          </Link>
+        </div>
+      </nav>
+
       <ErrorBanner error={error} onClose={() => setError(null)} />
 
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <button
-            onClick={() => router.push("/")}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4 transition"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Assessment
-          </button>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Your PFAS Exposure Results
+      {/* ── HEADER ── */}
+      <div style={{ paddingTop: 100, paddingBottom: 32, paddingLeft: 24, paddingRight: 24 }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <p className="eyebrow" style={{ marginBottom: 10 }}>Your Forever Scale Result</p>
+          <h1 className="heading-serif" style={{ fontSize: "clamp(28px,4vw,48px)", marginBottom: 8 }}>
+            Your PFAS Exposure Profile
           </h1>
-          <p className="text-lg text-gray-600">
-            Personalized analysis for ZIP {zipCode}
+          <p style={{ fontSize: 14, color: "var(--text2)" }}>
+            Comprehensive analysis for ZIP {zipCode}
           </p>
         </div>
+      </div>
 
-        {/* Primary Score Card */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-8">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Your REI Score
-              </h2>
-              <ForeverScaleGauge
-                score={reiScore}
-                status={getStatus(reiScore)}
-              />
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg text-sm text-blue-800">
-                <p className="font-medium mb-2">What This Means:</p>
-                <p>
-                  {reiScore < 33
-                    ? "Your PFAS exposure is relatively low, but continued monitoring is recommended."
-                    : reiScore < 67
-                      ? "Your PFAS exposure is moderate. Review the mitigation strategies below."
-                      : "Your PFAS exposure is high. Take immediate action using the recommended strategies."}
+      {/* ── MAIN GRID ── */}
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 80px" }}>
+        <div className="lg:grid lg:grid-cols-3 lg:gap-8" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+
+          {/* ── SCORE CARD (sticky) ── */}
+          <div>
+            <div style={{
+              background: "var(--surface)",
+              border: "0.5px solid var(--border)",
+              borderRadius: 20,
+              padding: "32px 28px",
+              position: "sticky",
+              top: 80,
+            }}>
+              <p style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--text3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 20 }}>
+                Body Burden Score
+              </p>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <ForeverScaleGauge score={reiScore} status={getStatus(reiScore)} />
+              </div>
+
+              {/* Scale bar */}
+              <div style={{ marginTop: 24 }}>
+                <div style={{
+                  background: "linear-gradient(to right, var(--safe), var(--warn), var(--danger))",
+                  borderRadius: 6, height: 6, position: "relative", marginBottom: 8,
+                }}>
+                  <div style={{
+                    position: "absolute", top: -20, left: `${reiScore}%`, transform: "translateX(-50%)",
+                    fontFamily: "var(--mono)", fontSize: 10, color: statusColor, whiteSpace: "nowrap",
+                  }}>
+                    ▼ {reiScore}
+                  </div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--mono)", fontSize: 10, color: "var(--text3)" }}>
+                  <span>0 · Clean</span>
+                  <span>50 · Avg</span>
+                  <span>100 · Critical</span>
+                </div>
+              </div>
+
+              <div style={{
+                marginTop: 20, padding: "14px 16px",
+                background: "var(--surface2)",
+                borderRadius: 12,
+                borderLeft: `3px solid ${statusColor}`,
+              }}>
+                <p style={{ fontFamily: "var(--mono)", fontSize: 11, color: statusColor, marginBottom: 6, textTransform: "uppercase" }}>
+                  {statusLabel}
                 </p>
+                <p style={{ fontSize: 13, color: "var(--text2)", lineHeight: 1.6 }}>
+                  {reiScore < 33
+                    ? "Your PFAS exposure is below average. Maintain current protective habits."
+                    : reiScore < 67
+                      ? "Your exposure warrants attention. Review the mitigation strategies below."
+                      : "High exposure detected. Prioritize the recommended interventions."}
+                </p>
+              </div>
+
+              {/* Save to profile */}
+              <div style={{ marginTop: 16 }}>
+                {isLoggedIn ? (
+                  saved ? (
+                    <div style={{
+                      padding: "10px 14px",
+                      background: "rgba(96,216,144,0.1)",
+                      border: "0.5px solid rgba(96,216,144,0.3)",
+                      borderRadius: 10, textAlign: "center",
+                      fontFamily: "var(--mono)", fontSize: 12, color: "var(--safe)",
+                    }}>
+                      ✓ Saved to your dashboard
+                    </div>
+                  ) : (
+                    <button
+                      onClick={handleSave}
+                      style={{
+                        width: "100%", padding: "10px 0",
+                        background: "rgba(200,240,96,0.08)",
+                        border: "0.5px solid rgba(200,240,96,0.3)",
+                        borderRadius: 10, cursor: "pointer",
+                        fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
+                      }}
+                    >
+                      Save to my profile →
+                    </button>
+                  )
+                ) : (
+                  <Link
+                    href="/login?redirect=/dashboard"
+                    style={{
+                      display: "block", textAlign: "center",
+                      padding: "10px 14px",
+                      background: "var(--surface2)",
+                      border: "0.5px solid var(--border2)",
+                      borderRadius: 10,
+                      fontFamily: "var(--mono)", fontSize: 11, color: "var(--text2)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Save results to profile →
+                  </Link>
+                )}
               </div>
             </div>
           </div>
 
-          {/* Output Components */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Filter Warning */}
-            {filterWarning && (
-              <FilterWarningBanner message={filterWarning} />
+          {/* ── OUTPUT COMPONENTS ── */}
+          <div className="lg:col-span-2" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+
+            {filterWarning && <FilterWarningBanner message={filterWarning} />}
+
+            <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
+              <PfasFlagList flags={pfasFlags} />
+            </div>
+
+            <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
+              {/* Show all scenarios overlaid; fallback to single decay curve */}
+              <DecayChart scenarios={interventionModel} data={decayCurve} />
+            </div>
+
+            <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
+              <InterventionScenarios scenarios={interventionModel} />
+            </div>
+
+            {medWarnings && medWarnings.length > 0 && (
+              <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
+                <MedWarningList warnings={medWarnings} />
+              </div>
             )}
 
-            {/* PFAS Flags */}
-            <section>
-              <PfasFlagList flags={pfasFlags} />
-            </section>
-
-            {/* Decay Chart */}
-            <section>
-              <DecayChart data={decayCurve} />
-            </section>
-
-            {/* Intervention Scenarios */}
-            <section>
-              <InterventionScenarios scenarios={interventionModel} />
-            </section>
-
-            {/* Med Warnings */}
-            <section>
-              <MedWarningList warnings={medWarnings} />
-            </section>
-
-            {/* Mitigation Plan */}
-            <section>
+            <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
               <MitigationPlanTiles plan={mitigationPlan} />
-            </section>
+            </div>
 
-            {/* Advocacy Letter */}
-            <section className="bg-white border border-gray-300 rounded-lg p-6">
-              <AdvocacyLetter
-                zipCode={zipCode}
-                reiScore={reiScore}
-                filterType={filterModel?.type || "unknown"}
-              />
-            </section>
+            <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
+              <GeminiRecommendations reiScore={reiScore} />
+            </div>
+
+            <div style={{ background: "var(--surface)", border: "0.5px solid var(--border)", borderRadius: 16, padding: 24 }}>
+              <AdvocacyLetter zipCode={zipCode} reiScore={reiScore} filterType={filterModel?.type || "unknown"} />
+            </div>
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="mt-12 text-center text-sm text-gray-600 border-t pt-8">
-          <p>
-            This assessment is based on current EPA data and your inputs. For
-            medical concerns, consult your healthcare provider.
+        {/* ── FOOTER ── */}
+        <footer style={{ marginTop: 60, paddingTop: 28, borderTop: "0.5px solid var(--border)", textAlign: "center" }}>
+          <p style={{ fontSize: 12, color: "var(--text3)", marginBottom: 16, lineHeight: 1.7 }}>
+            SafeSource is an educational tool. Estimates use EPA, EFSA and NIH population data and do not constitute medical advice.
           </p>
-        </div>
+          <button
+            onClick={() => router.push("/audit")}
+            style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--text2)", background: "none", border: "none", cursor: "pointer" }}
+          >
+            ← Run another assessment
+          </button>
+        </footer>
       </div>
+
     </main>
   );
 }

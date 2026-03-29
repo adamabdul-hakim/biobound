@@ -50,7 +50,10 @@ def test_analyze_timeout_path_returns_500_envelope() -> None:
         "app.routes.analyze.extract_text_from_image",
         side_effect=RuntimeError("OCR timed out after 0.01s"),
     ):
-        response = client.post("/analyze", json={"product_name_hint": "Slow OCR"})
+        response = client.post(
+            "/analyze",
+            json={"product_name_hint": "Slow OCR", "image_base64": "invalid-but-present"},
+        )
 
     assert response.status_code == 500
     body = response.json()
@@ -73,3 +76,21 @@ def test_load_smoke_analyze_multiple_requests() -> None:
     assert all(code == 200 for code in statuses)
     # Basic smoke threshold; keeps this stable in CI without being brittle.
     assert elapsed_ms < 5000
+
+
+def test_analyze_image_requires_real_ocr_provider() -> None:
+    client = TestClient(app)
+
+    with patch("app.routes.analyze.settings.ocr_provider", "mock"):
+        response = client.post(
+            "/analyze",
+            json={
+                "product_name_hint": "Image Test",
+                "image_base64": "dGVzdA==",
+            },
+        )
+
+    assert response.status_code == 503
+    body = response.json()
+    assert body["error"]["code"] == "SERVICE_UNAVAILABLE"
+    assert body["error"]["message"] == "OCR provider is not ready for analyze image processing"
