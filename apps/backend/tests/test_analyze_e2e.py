@@ -3,6 +3,8 @@
 Tests the full pipeline: OCR -> Detection -> Risk -> Decay -> Warnings.
 """
 
+import json
+from pathlib import Path
 from unittest.mock import patch
 from uuid import UUID
 
@@ -10,6 +12,12 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 from app.services.ocr import OCRResult, OCRTextLine
+
+
+def _load_fixture(name: str) -> dict:
+    fixtures_dir = Path(__file__).parent / "fixtures"
+    with open(fixtures_dir / name, encoding="utf-8") as file:
+        return json.load(file)
 
 
 def test_analyze_with_valid_product_hint() -> None:
@@ -379,3 +387,36 @@ def test_module2_scenarios_scanner_score_ordering() -> None:
     assert cookware_only_score >= no_scan_score
     assert combined_score >= scan_only_score
     assert combined_score >= cookware_only_score
+
+
+def test_analyze_golden_full_flow_fixture() -> None:
+    client = TestClient(app)
+    payload = _load_fixture("analyze_golden_payload.json")
+
+    response = client.post("/analyze", json=payload)
+
+    assert response.status_code == 200
+    body = response.json()
+
+    assert "risk_score" in body
+    assert "filter_warning" in body
+    assert "detected_chemicals" in body
+    assert "decay_data" in body
+    assert "medical_warnings" in body
+    assert "module_scores" in body
+    assert "safety" in body
+
+    assert body["product_name"] == "Everyday Non-Stick Pan"
+    assert isinstance(body["detected_chemicals"], list)
+    assert len(body["detected_chemicals"]) > 0
+    assert isinstance(body["decay_data"], list)
+    assert len(body["decay_data"]) > 0
+    assert isinstance(body["medical_warnings"], list)
+    assert len(body["medical_warnings"]) > 0
+
+    assert set(body["module_scores"].keys()) == {"hydrology", "scanner", "decay", "composite"}
+    assert body["module_scores"]["composite"] == body["risk_score"]
+
+    assert isinstance(body["safety"]["contraindications"], list)
+    assert len(body["safety"]["contraindications"]) > 0
+    assert body["safety"]["recommendation_safe"] is False
