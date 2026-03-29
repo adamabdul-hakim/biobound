@@ -2,7 +2,7 @@
 
 Usage example:
     python scripts/build_nsf_model_dataset.py \
-        --input-csv ./data/nsf_58_export.csv \
+        --input-csv ./data/nsf_58_export.csv ./data/nsf_53_export_1.xlsx \
         --standard NSF-58 \
         --retrieved-by adama
 """
@@ -197,26 +197,42 @@ def _dedupe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return deduped
 
 
+def _load_existing_records(output_json: Path) -> list[dict[str, Any]]:
+    if not output_json.exists():
+        return []
+
+    try:
+        with output_json.open("r", encoding="utf-8") as handle:
+            existing = json.load(handle)
+    except json.JSONDecodeError:
+        return []
+
+    records = existing.get("records", []) if isinstance(existing, dict) else []
+    return records if isinstance(records, list) else []
+
+
 def build_dataset(
-    input_csv: Path,
+    input_files: list[Path],
     output_json: Path,
     standard: str,
     retrieved_by: str,
     source_url: str | None,
 ) -> dict[str, Any]:
-    rows = _read_rows(input_csv)
-    source_document = input_csv.name
+    records: list[dict[str, Any]] = _load_existing_records(output_json)
 
-    records: list[dict[str, Any]] = []
-    for row in rows:
-        record = _build_record(
-            row=row,
-            standard=standard,
-            source_document=source_document,
-            source_url=source_url,
-        )
-        if record is not None:
-            records.append(record)
+    for input_file in input_files:
+        rows = _read_rows(input_file)
+        source_document = input_file.name
+
+        for row in rows:
+            record = _build_record(
+                row=row,
+                standard=standard,
+                source_document=source_document,
+                source_url=source_url,
+            )
+            if record is not None:
+                records.append(record)
 
     deduped_records = _dedupe_records(records)
 
@@ -225,7 +241,7 @@ def build_dataset(
             "name": "NSF Certified Filter Models",
             "generated_at": datetime.now(UTC).isoformat(),
             "retrieved_by": retrieved_by,
-            "input_csv": str(input_csv),
+            "input_files": [str(path) for path in input_files],
             "standard_filter": standard,
             "source_url": source_url,
             "record_count": len(deduped_records),
@@ -243,7 +259,12 @@ def build_dataset(
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input-csv", required=True, help="Path to NSF CSV export")
+    parser.add_argument(
+        "--input-csv",
+        required=True,
+        nargs="+",
+        help="One or more paths to NSF CSV/XLSX exports",
+    )
     parser.add_argument(
         "--output-json",
         default="app/data/nsf_certified_models.json",
@@ -264,14 +285,16 @@ def main() -> int:
     parser = _build_parser()
     args = parser.parse_args()
 
-    input_csv = Path(args.input_csv).resolve()
+    input_files = [Path(item).resolve() for item in args.input_csv]
     output_json = Path(args.output_json).resolve()
 
-    if not input_csv.exists():
-        parser.error(f"Input CSV not found: {input_csv}")
+    missing = [path for path in input_files if not path.exists()]
+    if missing:
+        missing_text = ", ".join(str(path) for path in missing)
+        parser.error(f"Input file(s) not found: {missing_text}")
 
     dataset = build_dataset(
-        input_csv=input_csv,
+        input_files=input_files,
         output_json=output_json,
         standard=args.standard,
         retrieved_by=args.retrieved_by,
