@@ -48,10 +48,26 @@ class AnalyzeMeta(BaseModel):
     request_id: UUID = Field(default_factory=uuid4)
 
 
+class ModuleScores(BaseModel):
+    hydrology: int = Field(ge=0, le=100)
+    scanner: int = Field(ge=0, le=100)
+    decay: int = Field(ge=0, le=100)
+    composite: int = Field(ge=0, le=100)
+
+
+class SafetySummary(BaseModel):
+    contraindications: list[str]
+    recommendation_safe: bool
+    equity_adjustments_applied: bool
+    zero_cost_actions: list[str]
+
+
 class AnalyzeResponse(BaseModel):
     product_name: str
     detected_chemicals: list[str]
     risk_score: int = Field(ge=0, le=100)
+    rei_formula_version: str
+    module_scores: ModuleScores
     confidence_interval: float = Field(ge=0.0, le=1.0)
     water_risk_score: int = Field(ge=0, le=100)
     water_effective_ppt: float = Field(ge=0.0)
@@ -59,6 +75,7 @@ class AnalyzeResponse(BaseModel):
     filter_warning: str | None = None
     decay_data: list[DecayPoint]
     medical_warnings: list[str]
+    safety: SafetySummary
     meta: AnalyzeMeta
 
 

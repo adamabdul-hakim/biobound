@@ -7,7 +7,13 @@ from fastapi import APIRouter, HTTPException, Request
 
 from app.core.config import settings
 from app.core.rate_limit import analyze_rate_limiter
-from app.models.schemas import AnalyzeMeta, AnalyzeRequest, AnalyzeResponse
+from app.models.schemas import (
+    AnalyzeMeta,
+    AnalyzeRequest,
+    AnalyzeResponse,
+    ModuleScores,
+    SafetySummary,
+)
 from app.services.decay import evaluate_medical_warnings, simulate_decay
 from app.services.hydrology import calculate_hydrology_risk
 from app.services.ocr import OCRResult, extract_text_from_image
@@ -157,9 +163,21 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
                 filter_type=payload.filter_model.type if payload.filter_model else None,
             )
 
-            # Shift source-of-truth risk composition to backend-owned modules.
+            decay_score = _compute_decay_score(payload)
+
+            # Backend-owned REI composition from module contributions.
             final_risk_score = int(
-                min(100, max(0, round((risk_result.risk_score * 0.6) + (hydrology_result.water_score * 0.4))))
+                min(
+                    100,
+                    max(
+                        0,
+                        round(
+                            (risk_result.risk_score * 0.5)
+                            + (hydrology_result.water_score * 0.3)
+                            + (decay_score * 0.2)
+                        ),
+                    ),
+                )
             )
             _log_request(
                 request_id,
@@ -169,6 +187,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
                     "risk_score": final_risk_score,
                     "product_risk_score": risk_result.risk_score,
                     "water_risk_score": hydrology_result.water_score,
+                    "decay_score": decay_score,
                     "water_data_status": hydrology_result.data_status,
                 },
             )
@@ -207,12 +226,31 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
         # Stage 5: Medical Warnings
         _log_request(request_id, "warnings_start", "processing")
         try:
+            contraindication = _derive_contraindication(payload)
             warnings_result = evaluate_medical_warnings(
                 detected_chemicals=risk_result.top_contributors,
                 risk_score=final_risk_score,
-                contraindication=None,
+                contraindication=contraindication,
             )
             medical_warnings = warnings_result.warnings
+
+            safety_summary = SafetySummary(
+                contraindications=[contraindication] if contraindication else [],
+                recommendation_safe=warnings_result.recommendation_safe,
+                equity_adjustments_applied=hydrology_result.data_status != "calculated",
+                zero_cost_actions=[
+                    "Drink and cook with filtered water whenever possible",
+                    "Prefer stainless steel or cast iron cookware",
+                    "Reduce use of grease-resistant packaging",
+                ],
+            )
+
+            module_scores = ModuleScores(
+                hydrology=hydrology_result.water_score,
+                scanner=risk_result.risk_score,
+                decay=decay_score,
+                composite=final_risk_score,
+            )
             _log_request(
                 request_id,
                 "warnings_success",
@@ -234,6 +272,8 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
             product_name=payload.product_name_hint or "Unknown Product",
             detected_chemicals=risk_result.top_contributors,
             risk_score=final_risk_score,
+            rei_formula_version="v2-module-weighted-0.5-0.3-0.2",
+            module_scores=module_scores,
             confidence_interval=risk_result.confidence_interval,
             water_risk_score=hydrology_result.water_score,
             water_effective_ppt=hydrology_result.effective_ppt,
@@ -241,6 +281,7 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
             filter_warning=hydrology_result.filter_warning,
             decay_data=decay_result.decay_data,
             medical_warnings=medical_warnings,
+            safety=safety_summary,
             meta=AnalyzeMeta(request_id=uuid.UUID(request_id)),
         )
 
@@ -262,3 +303,29 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
 def process_image(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
     # Alias endpoint for backwards compatibility with design doc
     return analyze(payload, request)
+
+
+def _compute_decay_score(payload: AnalyzeRequest) -> int:
+    if payload.diet_habits is None:
+        return 50
+
+    fiber_bonus = min(20, len(payload.diet_habits.fiber_sources) * 5)
+    processed_penalty = 8 if any(
+        "processed" in food.lower() for food in payload.diet_habits.foods
+    ) else 0
+    medications = [m for m in payload.diet_habits.medications if m.lower() != "none"]
+    medication_penalty = min(15, len(medications) * 3)
+
+    score = 50 + fiber_bonus - processed_penalty - medication_penalty
+    return max(0, min(100, score))
+
+
+def _derive_contraindication(payload: AnalyzeRequest) -> str | None:
+    if payload.diet_habits is None:
+        return None
+
+    meds = {m.lower() for m in payload.diet_habits.medications}
+    interacting = {"metformin", "statins", "blood pressure meds"}
+    if meds & interacting:
+        return "Potential fiber-medication timing interaction"
+    return None

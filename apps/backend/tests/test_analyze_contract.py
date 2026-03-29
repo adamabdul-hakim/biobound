@@ -13,6 +13,8 @@ def test_analyze_contract_shape() -> None:
         "product_name",
         "detected_chemicals",
         "risk_score",
+        "rei_formula_version",
+        "module_scores",
         "confidence_interval",
         "water_risk_score",
         "water_effective_ppt",
@@ -20,17 +22,27 @@ def test_analyze_contract_shape() -> None:
         "filter_warning",
         "decay_data",
         "medical_warnings",
+        "safety",
         "meta",
     }
 
     assert body["product_name"] == "Sample Pan"
     assert isinstance(body["detected_chemicals"], list)
     assert 0 <= body["risk_score"] <= 100
+    assert body["rei_formula_version"].startswith("v2-module-weighted")
+    assert set(body["module_scores"].keys()) == {"hydrology", "scanner", "decay", "composite"}
+    assert body["module_scores"]["composite"] == body["risk_score"]
     assert 0.0 <= body["confidence_interval"] <= 1.0
     assert 0 <= body["water_risk_score"] <= 100
     assert body["water_effective_ppt"] >= 0.0
     assert body["water_data_status"] in {"calculated", "no-data", "missing-zip"}
     assert isinstance(body["medical_warnings"], list)
+    assert set(body["safety"].keys()) == {
+        "contraindications",
+        "recommendation_safe",
+        "equity_adjustments_applied",
+        "zero_cost_actions",
+    }
 
     assert body["meta"]["contract_version"] == "v1"
     assert "request_id" in body["meta"]

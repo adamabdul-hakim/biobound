@@ -25,6 +25,13 @@ export interface TeamBAnalyzeResponse {
   product_name: string;
   detected_chemicals: string[];
   risk_score: number;
+  rei_formula_version: string;
+  module_scores: {
+    hydrology: number;
+    scanner: number;
+    decay: number;
+    composite: number;
+  };
   confidence_interval: number;
   water_risk_score: number;
   water_effective_ppt: number;
@@ -32,6 +39,12 @@ export interface TeamBAnalyzeResponse {
   filter_warning: string | null;
   decay_data: TeamBDecayPoint[];
   medical_warnings: string[];
+  safety: {
+    contraindications: string[];
+    recommendation_safe: boolean;
+    equity_adjustments_applied: boolean;
+    zero_cost_actions: string[];
+  };
   meta: {
     contract_version: "v1";
     request_id: string;

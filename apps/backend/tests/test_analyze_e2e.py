@@ -29,6 +29,8 @@ def test_analyze_with_valid_product_hint() -> None:
         "product_name",
         "detected_chemicals",
         "risk_score",
+        "rei_formula_version",
+        "module_scores",
         "confidence_interval",
         "water_risk_score",
         "water_effective_ppt",
@@ -36,6 +38,7 @@ def test_analyze_with_valid_product_hint() -> None:
         "filter_warning",
         "decay_data",
         "medical_warnings",
+        "safety",
         "meta",
     }
 
@@ -48,6 +51,8 @@ def test_analyze_with_valid_product_hint() -> None:
     # Verify risk score bounds
     assert isinstance(body["risk_score"], int)
     assert 0 <= body["risk_score"] <= 100
+    assert body["module_scores"]["composite"] == body["risk_score"]
+    assert body["rei_formula_version"].startswith("v2-module-weighted")
     assert 0 <= body["water_risk_score"] <= 100
     assert body["water_effective_ppt"] >= 0.0
     assert body["water_data_status"] in {"calculated", "no-data", "missing-zip"}
@@ -67,6 +72,7 @@ def test_analyze_with_valid_product_hint() -> None:
 
     # Verify medical warnings
     assert isinstance(body["medical_warnings"], list)
+    assert "zero_cost_actions" in body["safety"]
 
     # Verify metadata with request correlation
     assert body["meta"]["contract_version"] == "v1"
@@ -246,11 +252,13 @@ def test_analyze_full_orchestration_sequence() -> None:
     assert body["product_name"] == "Non-Stick Cookware"
     assert isinstance(body["detected_chemicals"], list)
     assert 0 <= body["risk_score"] <= 100
+    assert body["module_scores"]["composite"] == body["risk_score"]
     assert 0.0 <= body["confidence_interval"] <= 1.0
     assert 0 <= body["water_risk_score"] <= 100
     assert body["water_effective_ppt"] >= 0.0
     assert isinstance(body["decay_data"], list) and len(body["decay_data"]) > 0
     assert isinstance(body["medical_warnings"], list)
+    assert "contraindications" in body["safety"]
     assert "request_id" in body["meta"]
     assert "contract_version" in body["meta"]
 
