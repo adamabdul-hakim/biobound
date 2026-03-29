@@ -1,7 +1,7 @@
 "use client";
 
 import { PfasFlag } from "@/store/appStore";
-import { AlertCircle, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 
 interface PfasFlagListProps {
   flags: PfasFlag[] | null;

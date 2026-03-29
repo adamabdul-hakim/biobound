@@ -66,7 +66,7 @@ export default function FilterAuditor() {
           <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start gap-2">
             <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-yellow-700">
-              Non-certified filters may not remove PFAS. We'll factor this into
+              Non-certified filters may not remove PFAS. We&apos;ll factor this into
               your score.
             </p>
           </div>

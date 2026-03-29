@@ -3,22 +3,14 @@
 import InputForm from "@/components/inputs/InputForm";
 import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
 import { useAppStore } from "@/store/appStore";
-import { useEffect, useState } from "react";
 import { calculateWaterScore } from "@/lib/scoring";
 
 export default function Home() {
   const { zipCode, filterModel, reiScore, currentStep } = useAppStore();
-  const [previewScore, setPreviewScore] = useState<number | null>(null);
-
-  // Update preview score when zip or filter changes (Phase 2: Task 2.3)
-  useEffect(() => {
-    if (zipCode && filterModel?.type && currentStep >= 2) {
-      const result = calculateWaterScore(zipCode, filterModel.type);
-      setPreviewScore(result.score);
-    } else {
-      setPreviewScore(null);
-    }
-  }, [zipCode, filterModel, currentStep]);
+  const previewScore =
+    zipCode && filterModel?.type && currentStep >= 2
+      ? calculateWaterScore(zipCode, filterModel.type).score
+      : null;
 
   const displayScore = reiScore ?? previewScore ?? 0;
 

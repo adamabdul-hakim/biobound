@@ -6,6 +6,11 @@ export interface ScoreResult {
   status: string;
 }
 
+interface EpaEntry {
+  totalPpt: number | null;
+  status: string;
+}
+
 /**
  * Calculate water quality score based on EPA UCMR 5 data
  * Rule: If filterType is NOT NSF-53 or NSF-58, use raw EPA ppt value
@@ -17,7 +22,7 @@ export function calculateWaterScore(
   filterType: string
 ): ScoreResult {
   // Look up EPA data for zip code
-  const epaEntry = (epaData as Record<string, any>)[zipCode];
+  const epaEntry = (epaData as Record<string, EpaEntry>)[zipCode];
 
   if (!epaEntry || epaEntry.status === "no-data" || epaEntry.totalPpt === null) {
     return {

@@ -38,7 +38,7 @@ export default function ZipCodeInput() {
       />
       {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       <p className="text-gray-500 text-sm mt-2">
-        We'll check EPA water quality data for your area.
+        We&apos;ll check EPA water quality data for your area.
       </p>
     </div>
   );
