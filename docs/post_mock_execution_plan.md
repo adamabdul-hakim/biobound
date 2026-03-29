@@ -1,115 +1,142 @@
-# Post-Mock Execution Plan
+# Post-Mock Execution Plan (Teammate Update)
 
-Branch: `planning/post-mock-next-steps`
+Branch: `planning/post-mock-next-steps`  
+Updated: 2026-03-28
 
-This plan is derived from:
-- `designdoc_A.md`
-- `designdoc_B.md`
-- `REAMDE.md`
-- existing docs under `docs/`
+## Objective
 
-## Current Gap Summary
+Ship a demo-ready build where `/analyze` is backend-owned and aligned with the architecture:
+- Module 1 Hydrology (EPA + filter verification)
+- Module 2 Forensic Scanner (scan + cookware)
+- Module 3 Bio-Decay (diet + meds)
+- REI Engine composition
+- Safety layer outputs
 
-1. Frontend and backend are integrated, but input payload is still reduced before reaching Team B (`zip/filter/diet/cookware/makeup` are not fully used by backend scoring).
-2. Hydrology Sentinel (EPA + NSF verification) is still effectively frontend-local/partial, not a robust backend module with contract-tested output.
-3. OCR is currently mock-first; Google Vision production path is not operationally validated in this repo state.
-4. Team A design includes `makeUpUse`, but current integrated payload/store contract does not fully implement it end-to-end.
-5. External data ingestion flows (EPA UCMR5 refresh, NSF source sync) are not productionized.
+## Completed So Far
 
-## Priority 0 (Immediate, 2-4 hours)
+1. Contract v2 input wiring is live end-to-end.
+- Frontend proxy forwards `zipCode`, `productScan`, `cookwareUse`, `filterModel`, `dietHabits`, `makeUpUse`.
+- Backend request schema accepts full payload.
 
-### 1) Lock integrated request contract v2 (frontend + backend)
-- Define canonical request schema that includes all design doc inputs:
-  - `zipCode`
-  - `productScan`
-  - `cookwareUse`
-  - `filterModel`
-  - `dietHabits`
-  - `makeUpUse`
-- Files to update:
-  - `apps/backend/app/models/schemas.py`
-  - `apps/frontend/src/app/api/analyze/route.ts`
-  - `apps/frontend/src/lib/analyzeIntegration.ts`
-- Add contract tests for required/optional handling.
+2. Frontend no longer uses local preview scoring for primary REI.
+- Score path is backend-driven.
 
-### 2) Stop dropping context in frontend proxy
-- Current proxy sends mostly `product_name_hint` and optional `image_base64`.
-- Map full frontend payload to backend analyze request fields.
-- Add request validation and clear `422` errors for missing/invalid fields.
+3. Hydrology module is backend-owned.
+- Added backend EPA dataset mapping and filter warning output.
+- Added hydrology tests.
 
-### 3) Add makeUpUse to Team A state and submit flow
-- Add state + form capture + submit wiring.
-- Files likely impacted:
-  - `apps/frontend/src/store/appStore.ts`
-  - `apps/frontend/src/components/inputs/InputForm.tsx`
-  - add/update input component for makeup use.
+4. OCR path hardened for analyze image flow.
+- No mock fallback for `/analyze` image processing.
+- Readiness checks added for Google/Tesseract.
+- Readiness helper script added: `apps/backend/scripts/check_ocr_readiness.py`.
 
-## Priority 1 (Core Features, 4-8 hours)
+5. REI transparency contract added.
+- `/analyze` now returns `rei_formula_version`, `module_scores`, and `safety` object.
 
-### 4) Implement Hydrology Sentinel as backend module
-- Create backend service for water/filter risk:
-  - Input: `zipCode`, `filterModel`
-  - Output: water risk contribution + filter warning
-- Move scoring source of truth from frontend-only fallback to backend.
-- Add endpoint if needed (`/water-risk`) or fully embed in `/analyze` orchestration.
+## Remaining Concrete Steps
 
-### 5) EPA dataset pipeline hardening
-- Keep static JSON for hackathon runtime reliability, but add explicit ingest/update script.
-- Add script + docs:
-  - source normalization
-  - missing-zip behavior
-  - deterministic mapping rules
-- Validate with fixtures and regression tests.
+### Step 2: Complete Module 2 Signal Ownership (Scanner + Cookware)
+Owner: Backend  
+ETA: 0.5 day
 
-### 6) NSF filter verification dataset integration
-- Add local certification map or source sync job.
-- Ensure filter warning logic is deterministic and tested.
+Tasks:
+- Use `product_scan` and `cookware_use` directly in detection/scoring input assembly.
+- Add cookware-derived exposure modifier (frequency/years) in scanner module score.
+- Keep `product_name_hint` as optional fallback only.
 
-## Priority 2 (Production Readiness, 3-6 hours)
+Definition of done:
+- Changing `cookware_use` materially changes `module_scores.scanner`.
+- Contract and e2e tests cover no-scan, scan-only, cookware-only, and combined paths.
 
-### 7) Real OCR path operationalization
-- Keep `mock` default for demos, but validate Google path in staging mode:
-  - env var configuration
-  - auth path check
-  - timeout/retry behavior
-- Add explicit smoke checklist for `OCR_PROVIDER=google`.
+### Step 3: Complete Module 3 Signal Ownership (Diet + Meds)
+Owner: Backend  
+ETA: 0.5 day
 
-### 8) Observability completion
-- Extend `/metrics` with stage-level counters if feasible.
-- Ensure `request_id` is surfaced in frontend errors consistently.
-- Add dashboard query cookbook in docs.
+Tasks:
+- Move decay and intervention modifiers to explicit diet/medication inputs.
+- Convert current placeholder contraindication logic into deterministic rules table.
+- Ensure `safety.contraindications` and `medical_warnings` are consistent.
 
-### 9) CI split for monorepo
-- Keep backend CI current.
-- Add frontend CI job (`apps/frontend` lint/build) to prevent drift.
-- Add integration smoke script in CI for `/api/analyze` proxy contract.
+Definition of done:
+- `diet_habits.fiber_sources` and `medications` change `module_scores.decay` and warnings.
+- Unit tests for diet-only, meds-only, and conflicting scenarios.
 
-## Priority 3 (Submission/Final Polish, 1-3 hours)
+### Step 4: NSF Data Integration (Hydrology completion)
+Owner: Backend  
+ETA: 0.5 day
 
-### 10) Submission-ready release closure
-- Confirm demo script on latest main:
-  - success path
-  - 429 path
-  - backend unreachable path
-- Tag final release only after above gaps are resolved.
-- Update:
-  - `docs/teamA_handoff.md`
-  - `docs/demo_run_sheet.md`
-  - `docs/api_contract.md`
+Tasks:
+- Add local `nsf_certifications.json` source file.
+- Implement lookup service by `filterModel.brand/type`.
+- Replace simple type-only check with dataset-backed determination.
 
-## Suggested Execution Order
+Definition of done:
+- Filter warning logic uses certification data lookup.
+- Regression tests cover certified, uncertified, and unknown filters.
 
-1. Contract v2 schema + full payload wiring
-2. makeUpUse end-to-end
-3. Hydrology backend module + EPA/NSF contribution into `/analyze`
-4. tests + CI updates
-5. Google OCR operational smoke (non-blocking for demo)
-6. final docs + release
+### Step 5: Golden Flow Test (Architecture Proof)
+Owner: Backend + Frontend  
+ETA: 0.25 day
 
-## Definition of "Done" for Post-Mock Shift
+Tasks:
+- Add a single golden payload fixture that exercises all inputs.
+- Assert architecture-level outputs are present:
+  - `risk_score`
+  - `filter_warning`
+  - `detected_chemicals`
+  - `decay_data`
+  - `medical_warnings`
+  - `module_scores`
+  - `safety`
 
-- No critical scoring logic depends on frontend-only mock behavior.
-- `/analyze` uses full user context from Team A input payload.
-- EPA/NSF risk contributions are backend-owned and tested.
-- Frontend/Backend CI both green.
-- Demo run sheet validated on current `main`.
+Definition of done:
+- One integration test can be shown to judges as “full flow validation”.
+
+### Step 6: CI Guardrails (prevent drift)
+Owner: DevOps/Repo maintainer  
+ETA: 0.25 day
+
+Tasks:
+- Ensure frontend lint+build runs in CI under `apps/frontend`.
+- Add backend test command and optional smoke check in CI.
+
+Definition of done:
+- PRs fail if frontend or backend contract drifts.
+
+## 48-Hour Execution Sequence
+
+1. Finish Step 2 (Module 2 ownership).
+2. Finish Step 3 (Module 3 ownership).
+3. Finish Step 4 (NSF dataset-backed filter verification).
+4. Add Step 5 golden flow test.
+5. Add Step 6 CI guardrails.
+6. Re-run demo script and update handoff docs.
+
+## Validation Commands
+
+Backend:
+```bash
+cd apps/backend
+python -m pytest -q
+python scripts/check_ocr_readiness.py
+```
+
+Frontend:
+```bash
+cd apps/frontend
+npm run lint
+npm run build
+```
+
+## Teammate Status Template
+
+Use this in standup/Slack updates:
+
+```text
+Block: Step X - <name>
+Owner: <name>
+Status: <not started|in progress|done>
+PR/Commit: <link>
+Risk: <none|short description>
+Next action: <single concrete action>
+```
