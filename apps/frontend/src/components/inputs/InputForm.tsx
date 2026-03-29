@@ -42,7 +42,7 @@ export default function InputForm() {
 
   const canAdvance = () => {
     if (currentStep === 1) return /^\d{5}$/.test(zipCode);
-    if (currentStep === 2) return filterModel?.type !== undefined;
+    if (currentStep === 2) return (filterModel?.type ?? "").trim().length > 0;
     if (currentStep === 3) return true; // Product scan is optional
     if (currentStep === 4) return cookwareUse !== null;
     if (currentStep === 5) return dietHabits !== null;
@@ -53,7 +53,7 @@ export default function InputForm() {
   const canAnalyze = () => {
     return (
       /^\d{5}$/.test(zipCode) &&
-      filterModel?.type !== undefined &&
+      (filterModel?.type ?? "").trim().length > 0 &&
       cookwareUse !== null &&
       dietHabits !== null &&
       makeUpUse !== null

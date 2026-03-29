@@ -7,7 +7,6 @@ interface FilterOption {
   label: string;
   value: string;
   certified: boolean;
-  icon?: React.ReactNode;
 }
 
 const filterOptions: FilterOption[] = [
@@ -24,9 +23,29 @@ export default function FilterAuditor() {
   const handleSelect = (value: string) => {
     const option = filterOptions.find((o) => o.value === value);
     if (option) {
-      setFilterModel({ brand: "", type: value });
+      setFilterModel({
+        brand: filterModel?.brand ?? "",
+        type: value,
+      });
     }
   };
+
+  const handleBrandChange = (value: string) => {
+    setFilterModel({
+      brand: value,
+      type: filterModel?.type ?? "",
+    });
+  };
+
+  const handleModelChange = (value: string) => {
+    setFilterModel({
+      brand: filterModel?.brand ?? "",
+      type: value,
+    });
+  };
+
+  const isCustomModelEntry =
+    !!filterModel?.type && !filterOptions.some((option) => option.value === filterModel.type);
 
   const currentCertified = filterOptions.find(
     (o) => o.value === filterModel?.type
@@ -72,6 +91,38 @@ export default function FilterAuditor() {
         ))}
       </div>
 
+      <div className="mb-6 p-4 bg-slate-800/40 rounded-lg border border-teal-700/30">
+        <p className="text-sm text-gray-200 font-semibold mb-3">Model-Level Lookup (Recommended)</p>
+        <p className="text-xs text-gray-400 mb-4">
+          Enter the exact filter brand and model for real NSF dataset matching.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label className="block text-xs text-gray-300 mb-1">Filter Brand</label>
+            <input
+              value={filterModel?.brand ?? ""}
+              onChange={(event) => handleBrandChange(event.target.value)}
+              placeholder="e.g. SOLVENTUM PURIFICATION INC."
+              className="w-full rounded-md border border-teal-700/40 bg-slate-900/60 px-3 py-2 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs text-gray-300 mb-1">Filter Model</label>
+            <input
+              value={isCustomModelEntry ? filterModel?.type ?? "" : ""}
+              onChange={(event) => handleModelChange(event.target.value)}
+              placeholder="e.g. 3MRO301"
+              className="w-full rounded-md border border-teal-700/40 bg-slate-900/60 px-3 py-2 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <p className="mt-3 text-xs text-teal-300">
+          Tip: if you use quick options above, model lookup is skipped and standard-level logic is used.
+        </p>
+      </div>
+
       {filterModel?.type &&
         currentCertified === false &&
         filterModel?.type !== "unknown" && (
@@ -82,6 +133,14 @@ export default function FilterAuditor() {
             </p>
           </div>
         )}
+
+      {isCustomModelEntry && (
+        <div className="p-3 mb-4 bg-sky-900/30 border border-sky-700/50 rounded-lg">
+          <p className="text-xs text-sky-300">
+            Using model match: <strong>{filterModel?.brand || "Unknown brand"}</strong> / <strong>{filterModel?.type}</strong>
+          </p>
+        </div>
+      )}
 
       <div className="p-3 md:p-4 bg-teal-900/30 rounded-lg border border-teal-700/30">
         <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
