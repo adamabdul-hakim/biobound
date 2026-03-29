@@ -3,6 +3,14 @@
 import { useAppStore } from "@/store/appStore";
 import { AlertCircle, MapPin, Droplets, TrendingUp } from "lucide-react";
 
+type PfasDetectedEntry = { max_ppt?: number } | number;
+
+interface ManualLocationData {
+  system_name?: string;
+  contamination_site?: string;
+  pfas_detected?: Record<string, PfasDetectedEntry>;
+}
+
 export default function LocationPfasDisplay() {
   const { pfasEstimate, pfasEstimateLoading, pfasEstimateError } = useAppStore();
 
@@ -33,8 +41,9 @@ export default function LocationPfasDisplay() {
 
   // Demo / manual location data
   if (source === "manual_demo" && location_data) {
-    const sysName = (location_data as any).system_name || (location_data as any).contamination_site || "Water System";
-    const pfasData = (location_data as any).pfas_detected || {};
+    const manualData = location_data as ManualLocationData;
+    const sysName = manualData.system_name || manualData.contamination_site || "Water System";
+    const pfasData = manualData.pfas_detected || {};
 
     return (
       <div className="w-full animate-fade-up">
@@ -50,10 +59,12 @@ export default function LocationPfasDisplay() {
         {Object.keys(pfasData).length > 0 && (
           <div className="card-info mt-2 p-3">
             <p className="eyebrow mb-2" style={{ fontSize: 9 }}>PFAS Detected (ppt)</p>
-            {Object.entries(pfasData).map(([compound, data]: any) => (
+            {Object.entries(pfasData).map(([compound, data]) => (
               <div key={compound} className="flex items-center justify-between text-sm" style={{ marginBottom: 4 }}>
                 <span style={{ color: "var(--text2)" }}>{compound}</span>
-                <span style={{ fontFamily: "var(--mono)", color: "var(--accent)", fontWeight: 600 }}>{data.max_ppt ?? data}</span>
+                <span style={{ fontFamily: "var(--mono)", color: "var(--accent)", fontWeight: 600 }}>
+                  {typeof data === "number" ? data : (data.max_ppt ?? "n/a")}
+                </span>
               </div>
             ))}
           </div>

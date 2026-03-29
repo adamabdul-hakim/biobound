@@ -42,7 +42,7 @@ export default function DemoPage() {
             <em style={{ fontStyle: "italic", color: "var(--accent)" }}>pre-built</em> profile
           </h1>
           <p style={{ fontSize: 15, color: "var(--text2)", lineHeight: 1.7, maxWidth: 520, margin: "0 auto" }}>
-            Pick a persona below — we'll run the full PFAS exposure assessment with realistic data so you can explore the results without entering your own info.
+            Pick a persona below — we&apos;ll run the full PFAS exposure assessment with realistic data so you can explore the results without entering your own info.
           </p>
         </div>
       </div>

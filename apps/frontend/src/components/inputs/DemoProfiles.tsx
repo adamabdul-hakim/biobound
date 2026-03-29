@@ -77,7 +77,7 @@ const DEMO_PROFILES: DemoProfile[] = [
     label: "5-Year-Old Child",
     subtitle: "High-PFAS area, crawling exposure",
     icon: <Baby className="w-5 h-5" />,
-    description: "A young child in a contaminated area â€” simulates elevated dust ingestion from floor contact.",
+    description: "A young child in a contaminated area. Simulates elevated dust ingestion from floor contact.",
     accentColor: "rose",
     data: {
       zipCode: "45742",
@@ -97,12 +97,12 @@ const DEMO_PROFILES: DemoProfile[] = [
     label: "Family of 4",
     subtitle: "Lower-PFAS area, 2 young kids",
     icon: <Users className="w-5 h-5" />,
-    description: "A family of four in a lower-PFAS city â€” balanced diet, certified filter, 2 children under 5.",
+    description: "A family of four in a lower-PFAS city. Balanced diet, certified filter, 2 children under 5.",
     accentColor: "emerald",
     familyMembers: [
       { name: "Parent A (Mom)", age: "34", exposureNote: "Makeup weekly, conditioner daily", riskBadge: "moderate" },
       { name: "Parent B (Dad)", age: "36", exposureNote: "No makeup use, standard diet", riskBadge: "low" },
-      { name: "Child 1", age: "2", exposureNote: "Crawls on floors â€” dust ingestion", riskBadge: "high" },
+      { name: "Child 1", age: "2", exposureNote: "Crawls on floors, dust ingestion", riskBadge: "moderate" },
       { name: "Child 2", age: "4", exposureNote: "Active play, processed snacks", riskBadge: "moderate" },
     ],
     data: {

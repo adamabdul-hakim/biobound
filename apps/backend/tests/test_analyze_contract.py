@@ -128,7 +128,9 @@ def test_analyze_scanner_score_changes_with_product_scan_text() -> None:
 
     assert without_scan.status_code == 200
     assert with_scan.status_code == 200
-    assert with_scan.json()["module_scores"]["scanner"] >= without_scan.json()["module_scores"]["scanner"]
+    assert with_scan.json()["module_scores"]["scanner"] >= without_scan.json()[
+        "module_scores"
+    ]["scanner"]
 
 
 def test_analyze_scanner_score_changes_with_cookware_use() -> None:
@@ -151,4 +153,6 @@ def test_analyze_scanner_score_changes_with_cookware_use() -> None:
 
     assert low_exposure.status_code == 200
     assert high_exposure.status_code == 200
-    assert high_exposure.json()["module_scores"]["scanner"] >= low_exposure.json()["module_scores"]["scanner"]
+    assert high_exposure.json()["module_scores"]["scanner"] >= low_exposure.json()[
+        "module_scores"
+    ]["scanner"]

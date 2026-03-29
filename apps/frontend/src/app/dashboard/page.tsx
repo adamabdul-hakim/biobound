@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuthStore, type AssessmentRecord, type UserProfile } from "@/store/authStore";
@@ -555,17 +555,6 @@ function GuestCTA() {
 export default function DashboardPage() {
   const { user, isLoggedIn } = useAuthStore();
 
-  // Hydration guard — authStore uses localStorage which only runs client-side
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) {
-    return (
-      <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }} className="min-h-screen">
-        <div style={{ paddingTop: 100 }} />
-      </main>
-    );
-  }
-
   return (
     <main
       style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }}
@@ -618,7 +607,7 @@ export default function DashboardPage() {
           </h1>
           <p style={{ fontSize: 14, color: "var(--text2)", lineHeight: 1.65, maxWidth: 520 }}>
             PFAS reduction is a multi-month journey. Track your score over time, celebrate wins,
-            and learn from others who've made meaningful changes.
+            and learn from others who&apos;ve made meaningful changes.
           </p>
         </div>
 

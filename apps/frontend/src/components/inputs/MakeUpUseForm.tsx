@@ -37,12 +37,12 @@ export default function MakeUpUseForm() {
     makeUpUse?.productTypes ?? []
   );
   const [shampooProducts, setShampooProducts] = useState<string[]>(
-    (makeUpUse as any)?.shampooProducts ?? []
+    makeUpUse?.shampooProducts ?? []
   );
 
   // Auto-save whenever anything changes
   useEffect(() => {
-    setMakeUpUse({ frequency, productTypes, ...(({ shampooProducts } as any)) });
+    setMakeUpUse({ frequency, productTypes, shampooProducts });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [frequency, productTypes, shampooProducts]);
 

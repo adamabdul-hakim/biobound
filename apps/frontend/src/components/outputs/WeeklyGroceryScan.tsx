@@ -117,7 +117,7 @@ export default function WeeklyGroceryScan({ basePayload }: WeeklyGroceryScanProp
               >
                 <FileText className="w-4 h-4 text-teal-400 mb-2" />
                 <p className="font-semibold text-gray-100 text-sm">Enter product name</p>
-                <p className="text-xs text-gray-500 mt-1">e.g., "Teflon skillet"</p>
+                <p className="text-xs text-gray-500 mt-1">e.g., Teflon skillet</p>
               </button>
               <button
                 onClick={() => setMode("upload")}
@@ -137,7 +137,7 @@ export default function WeeklyGroceryScan({ basePayload }: WeeklyGroceryScanProp
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleScan()}
-                placeholder="Product name or ingredient (e.g., non-stick pan, canned tuna...)"
+                placeholder="Product name or ingredient (e.g., &quot;Teflon skillet&quot;, canned tuna...)"
                 className="w-full px-4 py-3 bg-slate-700/60 border border-teal-700/40 text-gray-100 placeholder-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm"
               />
               <div className="flex gap-2">

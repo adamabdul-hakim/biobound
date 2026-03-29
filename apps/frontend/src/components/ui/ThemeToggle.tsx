@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
 function applyTheme(theme: "dark" | "light") {
@@ -15,15 +15,15 @@ function applyTheme(theme: "dark" | "light") {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  useEffect(() => {
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window === "undefined") {
+      return "dark";
+    }
     const stored = localStorage.getItem("safesource-theme");
     const initialTheme = stored === "light" ? "light" : "dark";
-    setTheme(initialTheme);
-    // Ensure DOM is in sync (the ThemeScript may have already set it)
     applyTheme(initialTheme);
-  }, []);
+    return initialTheme;
+  });
 
   const toggle = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -40,10 +40,6 @@ interface ThemeToggleProps {
 
 export default function ThemeToggle({ style }: ThemeToggleProps) {
   const { theme, toggle } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return null;
 
   return (
     <button
