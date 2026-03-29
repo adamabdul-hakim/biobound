@@ -28,12 +28,12 @@ export default function HouseholdForm() {
 
   return (
     <div className="w-full space-y-6">
-      <label className="block text-sm font-bold text-gray-100 flex items-center gap-2">
-        <Baby className="w-4 h-4 text-teal-400" />
+      <label className="block text-sm font-bold flex items-center gap-2" style={{ color: "var(--text)" }}>
+        <Baby className="w-4 h-4" style={{ color: "var(--accent)" }} />
         Children in Your Household
       </label>
 
-      <p className="text-sm text-gray-400 leading-relaxed border-l-2 border-teal-700 pl-3">
+      <p className="text-sm leading-relaxed pl-3" style={{ color: "var(--text2)", borderLeft: "2px solid var(--border2)" }}>
         Children under 5 who crawl on floors and put hands/objects in their mouths face
         significantly higher PFAS exposure — up to 10× more dust ingestion than adults.
         This is factored into your household score.
@@ -41,7 +41,7 @@ export default function HouseholdForm() {
 
       {/* Yes/No */}
       <div>
-        <p className="text-sm font-semibold text-gray-300 mb-3">
+        <p className="text-sm font-semibold mb-3" style={{ color: "var(--text2)" }}>
           Do you have children under 5 years old at home?
         </p>
         <div className="grid grid-cols-2 gap-3">
@@ -49,10 +49,8 @@ export default function HouseholdForm() {
             <button
               key={String(val)}
               onClick={() => setHasChildren(val)}
-              className={`py-3 px-4 border-2 rounded-lg font-bold transition-all active:scale-95 ${
-                hasChildren === val
-                  ? "bg-teal-600 text-white border-teal-500 shadow-md shadow-teal-500/20"
-                  : "border-teal-700/30 text-gray-300 hover:border-teal-600 hover:bg-teal-900/30"
+              className={`py-3 px-4 rounded-lg font-bold transition-all active:scale-95 ${
+                hasChildren === val ? "btn-select-active" : "btn-select-idle"
               }`}
             >
               {val ? "Yes" : "No"}
@@ -65,16 +63,14 @@ export default function HouseholdForm() {
         <>
           {/* Number of children */}
           <div>
-            <p className="text-sm font-semibold text-gray-300 mb-3">How many children under 5?</p>
+            <p className="text-sm font-semibold mb-3" style={{ color: "var(--text2)" }}>How many children under 5?</p>
             <div className="grid grid-cols-4 gap-2">
               {[1, 2, 3, 4].map((n) => (
                 <button
                   key={n}
                   onClick={() => setCount(n)}
-                  className={`py-3 border-2 rounded-lg font-bold text-lg transition-all active:scale-95 ${
-                    count === n
-                      ? "bg-teal-600 text-white border-teal-500"
-                      : "border-teal-700/30 text-gray-300 hover:border-teal-600 hover:bg-teal-900/30"
+                  className={`py-3 rounded-lg font-bold text-lg transition-all active:scale-95 ${
+                    count === n ? "btn-select-active" : "btn-select-idle"
                   }`}
                 >
                   {n}
@@ -85,7 +81,7 @@ export default function HouseholdForm() {
 
           {/* Crawling */}
           <div>
-            <p className="text-sm font-semibold text-gray-300 mb-3">
+            <p className="text-sm font-semibold mb-3" style={{ color: "var(--text2)" }}>
               Do they crawl on floors / put things in their mouths regularly?
             </p>
             <div className="grid grid-cols-2 gap-3">
@@ -93,10 +89,8 @@ export default function HouseholdForm() {
                 <button
                   key={String(val)}
                   onClick={() => setCrawls(val)}
-                  className={`py-3 px-4 border-2 rounded-lg font-bold transition-all active:scale-95 ${
-                    crawls === val
-                      ? "bg-teal-600 text-white border-teal-500"
-                      : "border-teal-700/30 text-gray-300 hover:border-teal-600 hover:bg-teal-900/30"
+                  className={`py-3 px-4 rounded-lg font-bold transition-all active:scale-95 ${
+                    crawls === val ? "btn-select-active" : "btn-select-idle"
                   }`}
                 >
                   {val ? "Yes" : "Not really"}
@@ -106,9 +100,9 @@ export default function HouseholdForm() {
           </div>
 
           {crawls && (
-            <div className="p-3 bg-amber-900/30 border border-amber-700/40 rounded-lg flex items-start gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-amber-300 leading-relaxed">
+            <div className="card-warn p-3 flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "var(--warn)" }} />
+              <p className="text-xs leading-relaxed" style={{ color: "var(--warn)" }}>
                 Young children who crawl and mouth objects can ingest 10× the PFAS-contaminated
                 dust compared to adults. Your household score will reflect this elevated risk.
               </p>

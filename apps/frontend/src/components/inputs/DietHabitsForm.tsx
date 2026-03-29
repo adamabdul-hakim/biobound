@@ -73,16 +73,16 @@ export default function DietHabitsForm() {
 
   return (
     <div className="w-full space-y-8">
-      <label className="block text-sm font-bold text-gray-100 flex items-center gap-2">
-        <Apple className="w-4 h-4 text-teal-400" />
-        Diet & Habits
+      <label className="block text-sm font-bold mb-4 flex items-center gap-2" style={{ color: "var(--text)" }}>
+        <Apple className="w-4 h-4" style={{ color: "var(--accent)" }} />
+        Diet &amp; Habits
       </label>
 
       {/* PFAS-raising foods */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
-          <label className="text-sm font-semibold text-amber-300">
+          <AlertTriangle className="w-4 h-4 flex-shrink-0" style={{ color: "var(--warn)" }} />
+          <label className="text-sm font-semibold" style={{ color: "var(--warn)" }}>
             Foods that increase PFAS exposure — select all you eat regularly
           </label>
         </div>
@@ -91,34 +91,36 @@ export default function DietHabitsForm() {
             <button
               key={food.id}
               onClick={() => toggle(raisingFoods, setRaisingFoods, food.id)}
-              className={`w-full flex items-center justify-between p-3 rounded-lg border-2 text-left transition-all active:scale-[.99] ${
-                raisingFoods.includes(food.id)
-                  ? "border-amber-500 bg-amber-900/30"
-                  : "border-slate-600/50 hover:border-amber-700/50 hover:bg-amber-900/10"
+              className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all active:scale-[.99] ${
+                raisingFoods.includes(food.id) ? "btn-warn-active" : "btn-select-idle"
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className={`w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center ${
-                  raisingFoods.includes(food.id) ? "border-amber-400 bg-amber-500" : "border-slate-500"
-                }`}>
-                  {raisingFoods.includes(food.id) && <span className="text-white text-xs font-bold">✓</span>}
+                <div
+                  className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center"
+                  style={{
+                    borderColor: raisingFoods.includes(food.id) ? "var(--warn)" : "var(--border2)",
+                    background: raisingFoods.includes(food.id) ? "var(--warn)" : "transparent",
+                  }}
+                >
+                  {raisingFoods.includes(food.id) && <span style={{ color: "#0d0f0e" }} className="text-xs font-bold">✓</span>}
                 </div>
-                <span className="text-gray-200 font-medium text-sm">{food.label}</span>
+                <span className="font-medium text-sm">{food.label}</span>
               </div>
-              <span className="text-xs text-gray-500 italic hidden sm:inline">{food.note}</span>
+              <span className="text-xs italic hidden sm:inline" style={{ color: "var(--text3)" }}>{food.note}</span>
             </button>
           ))}
         </div>
         {raisingFoods.length === 0 && (
-          <p className="text-xs text-gray-500 mt-2 pl-1">None selected — these all raise PFAS body burden.</p>
+          <p className="text-xs mt-2 pl-1" style={{ color: "var(--text3)" }}>None selected — these all raise PFAS body burden.</p>
         )}
       </div>
 
       {/* PFAS-reducing foods */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-          <label className="text-sm font-semibold text-emerald-300">
+          <ShieldCheck className="w-4 h-4 flex-shrink-0" style={{ color: "var(--safe)" }} />
+          <label className="text-sm font-semibold" style={{ color: "var(--safe)" }}>
             Protective foods — select all you eat regularly
           </label>
         </div>
@@ -127,21 +129,23 @@ export default function DietHabitsForm() {
             <button
               key={food.id}
               onClick={() => toggle(reducingFoods, setReducingFoods, food.id)}
-              className={`w-full flex items-center justify-between p-3 rounded-lg border-2 text-left transition-all active:scale-[.99] ${
-                reducingFoods.includes(food.id)
-                  ? "border-emerald-500 bg-emerald-900/30"
-                  : "border-slate-600/50 hover:border-emerald-700/50 hover:bg-emerald-900/10"
+              className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all active:scale-[.99] ${
+                reducingFoods.includes(food.id) ? "btn-safe-active" : "btn-select-idle"
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className={`w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center ${
-                  reducingFoods.includes(food.id) ? "border-emerald-400 bg-emerald-500" : "border-slate-500"
-                }`}>
-                  {reducingFoods.includes(food.id) && <span className="text-white text-xs font-bold">✓</span>}
+                <div
+                  className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center"
+                  style={{
+                    borderColor: reducingFoods.includes(food.id) ? "var(--safe)" : "var(--border2)",
+                    background: reducingFoods.includes(food.id) ? "var(--safe)" : "transparent",
+                  }}
+                >
+                  {reducingFoods.includes(food.id) && <span style={{ color: "#0d0f0e" }} className="text-xs font-bold">✓</span>}
                 </div>
-                <span className="text-gray-200 font-medium text-sm">{food.label}</span>
+                <span className="font-medium text-sm">{food.label}</span>
               </div>
-              <span className="text-xs text-gray-500 italic hidden sm:inline">{food.note}</span>
+              <span className="text-xs italic hidden sm:inline" style={{ color: "var(--text3)" }}>{food.note}</span>
             </button>
           ))}
         </div>
@@ -150,8 +154,8 @@ export default function DietHabitsForm() {
       {/* Medications */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <Pill className="w-4 h-4 text-teal-400 flex-shrink-0" />
-          <label className="text-sm font-semibold text-gray-100">
+          <Pill className="w-4 h-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
+          <label className="text-sm font-semibold" style={{ color: "var(--text)" }}>
             Current medications — select all that apply
           </label>
         </div>
@@ -160,10 +164,8 @@ export default function DietHabitsForm() {
             <button
               key={med}
               onClick={() => toggleMedication(med)}
-              className={`py-2.5 px-3 border-2 rounded-lg font-medium text-sm transition-all active:scale-95 text-left ${
-                medications.includes(med)
-                  ? "border-teal-500 bg-teal-900/40 text-teal-200"
-                  : "border-slate-600/50 text-gray-400 hover:border-teal-700/50 hover:bg-teal-900/10"
+              className={`py-2.5 px-3 rounded-lg font-medium text-sm transition-all active:scale-95 text-left ${
+                medications.includes(med) ? "btn-select-active" : "btn-select-idle"
               }`}
             >
               {med}

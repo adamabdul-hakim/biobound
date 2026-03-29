@@ -120,11 +120,17 @@ const DEMO_PROFILES: DemoProfile[] = [
   },
 ];
 
-const accentStyles: Record<string, { card: string; btn: string; badge: string; risk: Record<string, string> }> = {
-  teal:    { card: "border-teal-500/50 hover:border-teal-400",    btn: "bg-teal-600 hover:bg-teal-500",    badge: "bg-teal-900/60 text-teal-300 border-teal-700/50", risk: { low: "bg-emerald-900/60 text-emerald-300", moderate: "bg-amber-900/60 text-amber-300", high: "bg-rose-900/60 text-rose-300" } },
-  amber:   { card: "border-amber-500/50 hover:border-amber-400",  btn: "bg-amber-600 hover:bg-amber-500",  badge: "bg-amber-900/60 text-amber-300 border-amber-700/50", risk: { low: "bg-emerald-900/60 text-emerald-300", moderate: "bg-amber-900/60 text-amber-300", high: "bg-rose-900/60 text-rose-300" } },
-  rose:    { card: "border-rose-500/50 hover:border-rose-400",    btn: "bg-rose-600 hover:bg-rose-500",    badge: "bg-rose-900/60 text-rose-300 border-rose-700/50", risk: { low: "bg-emerald-900/60 text-emerald-300", moderate: "bg-amber-900/60 text-amber-300", high: "bg-rose-900/60 text-rose-300" } },
-  emerald: { card: "border-emerald-500/50 hover:border-emerald-400", btn: "bg-emerald-600 hover:bg-emerald-500", badge: "bg-emerald-900/60 text-emerald-300 border-emerald-700/50", risk: { low: "bg-emerald-900/60 text-emerald-300", moderate: "bg-amber-900/60 text-amber-300", high: "bg-rose-900/60 text-rose-300" } },
+const accentColorMap: Record<string, string> = {
+  teal:    "var(--accent)",
+  amber:   "var(--warn)",
+  rose:    "var(--danger)",
+  emerald: "var(--safe)",
+};
+
+const riskStyle: Record<string, { bg: string; color: string }> = {
+  low:      { bg: "rgba(96,216,144,0.15)",  color: "var(--safe)" },
+  moderate: { bg: "rgba(240,160,48,0.15)",  color: "var(--warn)" },
+  high:     { bg: "rgba(255,92,58,0.15)",   color: "var(--danger)" },
 };
 
 export default function DemoProfiles() {
@@ -180,31 +186,31 @@ export default function DemoProfiles() {
   return (
     <div className="w-full">
       <div className="mb-5 text-center">
-        <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Try a Demo</p>
-        <h3 className="text-lg font-bold text-gray-300">See instant results for a pre-built profile</h3>
+        <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--mono)", color: "var(--text3)" }}>Try a Demo</p>
+        <h3 className="text-lg font-bold" style={{ color: "var(--text)" }}>See instant results for a pre-built profile</h3>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-3">
         {DEMO_PROFILES.map((profile) => {
-          const styles = accentStyles[profile.accentColor];
+          const accent = accentColorMap[profile.accentColor] ?? "var(--accent)";
           const isLoading = loading === profile.id;
           const isExpanded = expanded === profile.id;
 
           return (
-            <div key={profile.id} className={`bg-slate-800/70 border rounded-xl transition-all duration-200 ${styles.card}`}>
+            <div key={profile.id} style={{ background: "var(--surface2)", border: `0.5px solid ${accent}55`, borderRadius: 12 }}>
               {/* Profile card header */}
               <div className="p-4">
                 <div className="flex items-start gap-3">
-                  <div className={`p-2 rounded-lg border flex-shrink-0 ${styles.badge}`}>
+                  <div style={{ padding: 8, borderRadius: 8, border: `0.5px solid ${accent}44`, background: `${accent}14`, color: accent, flexShrink: 0 }}>
                     {profile.icon}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
-                      <p className="font-bold text-gray-100 text-sm">{profile.label}</p>
-                      {isLoading && <Loader className="w-3.5 h-3.5 text-gray-400 animate-spin flex-shrink-0" />}
+                      <p className="font-bold text-sm" style={{ color: "var(--text)" }}>{profile.label}</p>
+                      {isLoading && <Loader className="w-3.5 h-3.5 animate-spin flex-shrink-0" style={{ color: "var(--text3)" }} />}
                     </div>
-                    <p className="text-xs text-gray-400 mt-0.5">{profile.subtitle}</p>
-                    <p className="text-xs text-gray-500 mt-1.5 leading-relaxed line-clamp-2">{profile.description}</p>
+                    <p className="text-xs mt-0.5" style={{ color: "var(--text2)" }}>{profile.subtitle}</p>
+                    <p className="text-xs mt-1.5 leading-relaxed line-clamp-2" style={{ color: "var(--text3)" }}>{profile.description}</p>
                   </div>
                 </div>
 
@@ -212,7 +218,8 @@ export default function DemoProfiles() {
                 {profile.familyMembers && (
                   <button
                     onClick={() => setExpanded(isExpanded ? null : profile.id)}
-                    className="mt-3 w-full flex items-center justify-between text-xs text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+                    className="mt-3 w-full flex items-center justify-between text-xs font-semibold transition-colors"
+                    style={{ color: "var(--safe)", background: "none", border: "none", cursor: "pointer" }}
                   >
                     <span>See {profile.familyMembers.length} family members</span>
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
@@ -221,14 +228,20 @@ export default function DemoProfiles() {
 
                 {/* Expanded family members */}
                 {isExpanded && profile.familyMembers && (
-                  <div className="mt-3 space-y-2 border-t border-slate-700/50 pt-3">
+                  <div className="mt-3 space-y-2 pt-3" style={{ borderTop: "0.5px solid var(--border)" }}>
                     {profile.familyMembers.map((member, idx) => (
-                      <div key={idx} className="flex items-center justify-between bg-slate-900/40 rounded-lg px-3 py-2">
+                      <div key={idx} className="flex items-center justify-between px-3 py-2" style={{ background: "var(--bg)", borderRadius: 8 }}>
                         <div>
-                          <p className="text-xs font-semibold text-gray-200">{member.name} <span className="text-gray-500 font-normal">Â· age {member.age}</span></p>
-                          <p className="text-[11px] text-gray-500 mt-0.5">{member.exposureNote}</p>
+                          <p className="text-xs font-semibold" style={{ color: "var(--text)" }}>
+                            {member.name}{" "}
+                            <span style={{ color: "var(--text3)", fontWeight: 400 }}>· age {member.age}</span>
+                          </p>
+                        <p className="text-[11px] mt-0.5" style={{ color: "var(--text3)" }}>{member.exposureNote}</p>
                         </div>
-                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${styles.risk[member.riskBadge]}`}>
+                        <span
+                          className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ml-2"
+                          style={{ background: riskStyle[member.riskBadge].bg, color: riskStyle[member.riskBadge].color }}
+                        >
                           {member.riskBadge}
                         </span>
                       </div>
@@ -240,7 +253,8 @@ export default function DemoProfiles() {
                 <button
                   onClick={() => handleSelect(profile)}
                   disabled={loading !== null}
-                  className={`mt-3 w-full py-2 rounded-lg text-white text-sm font-bold transition-all active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed ${styles.btn}`}
+                  className="mt-3 w-full py-2 rounded-lg text-sm font-bold transition-all active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ background: accent, color: "#0d0f0e", border: "none", cursor: "pointer" }}
                 >
                   {isLoading ? "Running..." : "Run Assessment â†’"}
                 </button>
