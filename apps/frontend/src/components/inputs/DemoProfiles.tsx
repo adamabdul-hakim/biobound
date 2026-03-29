@@ -102,7 +102,7 @@ const DEMO_PROFILES: DemoProfile[] = [
     familyMembers: [
       { name: "Parent A (Mom)", age: "34", exposureNote: "Makeup weekly, conditioner daily", riskBadge: "moderate" },
       { name: "Parent B (Dad)", age: "36", exposureNote: "No makeup use, standard diet", riskBadge: "low" },
-      { name: "Child 1", age: "2", exposureNote: "Crawls on floors â€” dust ingestion", riskBadge: "high" },
+      { name: "Child 1", age: "2", exposureNote: "Crawls on floors â€" dust ingestion", riskBadge: "moderate" },
       { name: "Child 2", age: "4", exposureNote: "Active play, processed snacks", riskBadge: "moderate" },
     ],
     data: {
