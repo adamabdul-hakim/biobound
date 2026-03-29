@@ -28,6 +28,10 @@ DIRECT_PFAS_TERMS = {
     "PTFE": 0.95,
     "PFOA": 0.95,
     "PFOS": 0.95,
+    "PFNA": 0.92,
+    "PFHxS": 0.92,
+    "PFBS": 0.9,
+    "FEP": 0.88,
     "fluorotelomer": 0.90,
     "polyfluoroalkyl": 0.90,
     "perfluorinated": 0.85,
@@ -43,7 +47,20 @@ TRADE_NAMES = {
     "Scotchgard": "PFAS",
     "Gore-Tex": "PTFE",
     "Tefala": "PTFE",
+    "Tefal": "PTFE",
 }
+
+# Phrase and spacing variants commonly found in product labels and articles.
+PHRASE_PATTERNS = [
+    (r"\bpfhxs\b", "PFHxS", 0.92),
+    (r"\bpfna\b", "PFNA", 0.92),
+    (r"\bpfbs\b", "PFBS", 0.90),
+    (r"\bfep\b", "FEP", 0.88),
+    (r"\bfluoro[-\s]*telomer\b", "fluorotelomer", 0.90),
+    (r"\bper[-\s]*fluoro[-\s]*alkyl\b", "perfluoroalkyl", 0.88),
+    (r"\bpoly[-\s]*fluoro[-\s]*alkyl\b", "polyfluoroalkyl", 0.90),
+    (r"\bper[-\s]*and[-\s]*poly[-\s]*fluoro[-\s]*alkyl[-\s]*substances\b", "PFAS", 0.95),
+]
 
 # Suffix and prefix patterns for heuristic detection
 SUFFIX_PATTERNS = [
@@ -108,6 +125,18 @@ def detect_chemicals_scored(text: str) -> set[ChemicalMatch]:
                     term=canonical_term,
                     rule_source="trade_name",
                     confidence=0.85,
+                    matched_text=match.group(0),
+                )
+            )
+
+    # Rule 2b: Phrase/spacing variants
+    for pattern_str, canonical_term, confidence in PHRASE_PATTERNS:
+        for match in re.finditer(pattern_str, normalized):
+            matches.add(
+                ChemicalMatch(
+                    term=canonical_term,
+                    rule_source="direct_term",
+                    confidence=confidence,
                     matched_text=match.group(0),
                 )
             )

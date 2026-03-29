@@ -17,7 +17,7 @@ from app.models.schemas import (
 from app.services.decay import evaluate_medical_warnings, simulate_decay
 from app.services.hydrology import calculate_hydrology_risk
 from app.services.ocr import OCRResult, extract_text_from_image
-from app.services.pfas_hunter import detect_chemicals_scored
+from app.services.pfas_hunter import detect_chemicals_scored, rank_top_risk_contributors
 from app.services.risk import calculate_risk_score
 
 router = APIRouter(prefix="/analyze", tags=["analyze"])
@@ -104,6 +104,8 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
                 {
                     "blocks_found": len(ocr_result.text_blocks),
                     "provider": ocr_result.provider,
+                    "raw_text_length": len(ocr_result.raw_text),
+                    "ocr_preview": _ocr_preview(ocr_result.raw_text),
                 },
             )
         except (ValueError, TypeError) as e:
@@ -137,11 +139,16 @@ def analyze(payload: AnalyzeRequest, request: Request) -> AnalyzeResponse:
             text = _build_scanner_text(payload=payload, ocr_result=ocr_result)
 
             chemicals_scored = detect_chemicals_scored(text)
+            matched_terms = rank_top_risk_contributors(chemicals_scored, top_n=8)
             _log_request(
                 request_id,
                 "detection_success",
                 "completed",
-                {"chemicals_found": len(chemicals_scored)},
+                {
+                    "chemicals_found": len(chemicals_scored),
+                    "scanner_text_length": len(text),
+                    "matched_terms": matched_terms,
+                },
             )
         except Exception as e:
             _log_error(request_id, "detection", str(e), type(e).__name__)
@@ -343,6 +350,13 @@ def _compute_decay_score(payload: AnalyzeRequest) -> int:
 
     score = 45 + fiber_bonus + beneficial_bonus - adverse_penalty - medication_penalty
     return max(0, min(100, score))
+
+
+def _ocr_preview(raw_text: str) -> str:
+    if not raw_text:
+        return ""
+    compact = " ".join(raw_text.split())
+    return compact[:180]
 
 
 def _derive_contraindication(payload: AnalyzeRequest) -> str | None:
