@@ -4,7 +4,6 @@ from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
-
 EPA_SCORE_CEILING_PPT = 70.0
 
 
@@ -70,7 +69,10 @@ def _normalize_filter_type(filter_type: str | None, aliases: dict[str, str]) -> 
     return aliases.get(lowered, cleaned.upper())
 
 
-def _lookup_filter_certification(filter_brand: str | None, filter_type: str | None) -> FilterCertificationResult:
+def _lookup_filter_certification(
+    filter_brand: str | None,
+    filter_type: str | None,
+) -> FilterCertificationResult:
     nsf_data = _load_nsf_data()
     aliases = {
         str(key).lower(): str(value)
@@ -98,7 +100,10 @@ def _lookup_filter_certification(filter_brand: str | None, filter_type: str | No
         )
 
     for standard in standards:
-        if str(standard.get("type", "")).upper() == canonical_type and canonical_type in known_standard_types:
+        if (
+            str(standard.get("type", "")).upper() == canonical_type
+            and canonical_type in known_standard_types
+        ):
             return FilterCertificationResult(
                 canonical_type=canonical_type,
                 pfas_certified=bool(standard.get("pfas_certified", False)),
@@ -195,10 +200,16 @@ def _build_filter_warning(
         return "Filter model unknown. Use an NSF-53 or NSF-58 certified filter for PFAS reduction."
 
     if filter_type == "none":
-        return "No water filter selected. Use an NSF-53 or NSF-58 certified filter for PFAS reduction."
+        return (
+            "No water filter selected. Use an NSF-53 or NSF-58 certified "
+            "filter for PFAS reduction."
+        )
 
     if filter_result.found_in_dataset and filter_result.canonical_type == "NSF-42":
-        return "NSF-42 filters address taste and odor, not PFAS. Use NSF-53 or NSF-58 for PFAS reduction."
+        return (
+            "NSF-42 filters address taste and odor, not PFAS. Use NSF-53 or "
+            "NSF-58 for PFAS reduction."
+        )
 
     if not filter_result.found_in_dataset:
         return (

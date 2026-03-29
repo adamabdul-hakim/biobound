@@ -148,7 +148,10 @@ def _build_record(
         return None
 
     product_type = _value_from_candidates(row, ["producttype", "type"])
-    replacement_module_raw = _value_from_candidates(row, ["replacementmodule", "replacementmodules"])
+    replacement_module_raw = _value_from_candidates(
+        row,
+        ["replacementmodule", "replacementmodules"],
+    )
     claims_raw = _value_from_candidates(row, ["claims", "claim", "claimsreduction"])
     gpd_raw = _value_from_candidates(row, ["dailyproductionrategpd", "dailyproductionrate"])
 
@@ -276,7 +279,11 @@ def _build_parser() -> argparse.ArgumentParser:
         choices=["NSF-42", "NSF-53", "NSF-58"],
         help="Certification standard represented by the input file",
     )
-    parser.add_argument("--retrieved-by", required=True, help="Name/identifier of dataset retriever")
+    parser.add_argument(
+        "--retrieved-by",
+        required=True,
+        help="Name/identifier of dataset retriever",
+    )
     parser.add_argument("--source-url", default=None, help="Official source URL for traceability")
     return parser
 

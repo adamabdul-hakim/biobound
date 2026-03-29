@@ -345,7 +345,9 @@ def _compute_decay_score(payload: AnalyzeRequest) -> int:
         "blood pressure meds": 6,
     }
     medication_penalty = sum(
-        weight for medication, weight in medication_risk_weights.items() if medication in medications
+        weight
+        for medication, weight in medication_risk_weights.items()
+        if medication in medications
     )
 
     score = 45 + fiber_bonus + beneficial_bonus - adverse_penalty - medication_penalty
@@ -372,7 +374,9 @@ def _derive_contraindication(payload: AnalyzeRequest) -> str | None:
     if "metformin" in meds and fiber_count >= 2:
         return "High-fiber intake may require metformin timing review"
 
-    if "statins" in meds and "psyllium husk" in {f.lower() for f in payload.diet_habits.fiber_sources}:
+    if "statins" in meds and "psyllium husk" in {
+        f.lower() for f in payload.diet_habits.fiber_sources
+    }:
         return "Psyllium may affect statin absorption timing"
 
     interacting = {"metformin", "statins", "blood pressure meds"}
