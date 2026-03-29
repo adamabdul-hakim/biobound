@@ -7,8 +7,8 @@ import ThemeToggle from "@/components/ui/ThemeToggle";
 const stats = [
   { num: "97%",  desc: "of Americans have detectable PFAS blood levels" },
   { num: "12K+", desc: "distinct PFAS compounds in everyday products" },
-  { num: "5 yrs", desc: "half-life of PFOS — it stays in your body for decades" },
-  { num: "3 min", desc: "to calculate your personal exposure profile" },
+  { num: "5 yrs", desc: "half-life of PFOS. It stays in your body for decades" },
+  { num: "Act", desc: "SafeSource helps you fight back with a personalized action plan" },
 ];
 
 const steps = [
