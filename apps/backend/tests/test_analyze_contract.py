@@ -152,3 +152,74 @@ def test_analyze_scanner_score_changes_with_cookware_use() -> None:
     assert low_exposure.status_code == 200
     assert high_exposure.status_code == 200
     assert high_exposure.json()["module_scores"]["scanner"] >= low_exposure.json()["module_scores"]["scanner"]
+
+
+def test_analyze_decay_score_changes_with_diet_inputs() -> None:
+    client = TestClient(app)
+
+    low_fiber = client.post(
+        "/analyze",
+        json={
+            "diet_habits": {
+                "fiber_sources": [],
+                "foods": ["processed foods"],
+                "medications": ["none"],
+            },
+        },
+    )
+    high_fiber = client.post(
+        "/analyze",
+        json={
+            "diet_habits": {
+                "fiber_sources": ["oats", "lentils", "psyllium husk"],
+                "foods": ["organic produce"],
+                "medications": ["none"],
+            },
+        },
+    )
+
+    assert low_fiber.status_code == 200
+    assert high_fiber.status_code == 200
+    assert high_fiber.json()["module_scores"]["decay"] >= low_fiber.json()["module_scores"]["decay"]
+
+
+def test_analyze_medication_contraindication_populates_safety() -> None:
+    client = TestClient(app)
+
+    response = client.post(
+        "/analyze",
+        json={
+            "diet_habits": {
+                "fiber_sources": ["oats", "psyllium husk"],
+                "foods": ["organic produce"],
+                "medications": ["statins"],
+            },
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["safety"]["recommendation_safe"] is False
+    assert len(body["safety"]["contraindications"]) >= 1
+
+
+def test_analyze_fiber_medication_conflict_in_warnings() -> None:
+    client = TestClient(app)
+
+    response = client.post(
+        "/analyze",
+        json={
+            "diet_habits": {
+                "fiber_sources": ["oats", "beans", "lentils"],
+                "foods": ["processed foods"],
+                "medications": ["blood pressure meds"],
+            },
+            "product_name_hint": "PFOA",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    warnings = " ".join(body["medical_warnings"]).lower()
+    assert "contraindication" in warnings
+    assert body["safety"]["recommendation_safe"] is False
