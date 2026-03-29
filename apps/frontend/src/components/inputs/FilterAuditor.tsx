@@ -78,7 +78,7 @@ export default function FilterAuditor() {
           <div className="p-4 bg-amber-900/30 border-2 border-amber-700/50 rounded-lg flex items-start gap-3 mb-4 animate-in fade-in">
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-amber-300 font-medium">
-              Standard filters don't remove PFAS. Consider upgrading to <strong>NSF-53</strong> or <strong>NSF-58</strong>.
+              Standard filters don&apos;t remove PFAS. Consider upgrading to <strong>NSF-53</strong> or <strong>NSF-58</strong>.
             </p>
           </div>
         )}
