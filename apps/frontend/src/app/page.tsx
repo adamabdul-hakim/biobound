@@ -1,124 +1,136 @@
 "use client";
 
-import InputForm from "@/components/inputs/InputForm";
-import ForeverScaleGauge from "@/components/gauge/ForeverScaleGauge";
-import DemoProfiles from "@/components/inputs/DemoProfiles";
-import { useAppStore } from "@/store/appStore";
-import { Leaf, Shield, CheckCircle, Clock, Zap } from "lucide-react";
+import Link from "next/link";
 
-export default function Home() {
-  const { reiScore, zipCode, filterModel, cookwareUse, dietHabits, makeUpUse } = useAppStore();
-  const displayScore = reiScore ?? 0;
+const stats = [
+  { num: "97%",  desc: "of Americans have detectable PFAS blood levels" },
+  { num: "12K+", desc: "distinct PFAS compounds in everyday products" },
+  { num: "5 yrs", desc: "half-life of PFOS — it stays in your body for decades" },
+  { num: "3 min", desc: "to calculate your personal exposure profile" },
+];
 
-  // Check if user has entered all required data
-  const isDataComplete = 
-    /^\d{5}$/.test(zipCode) &&
-    filterModel?.type &&
-    cookwareUse !== null &&
-    dietHabits !== null &&
-    makeUpUse !== null;
+const steps = [
+  { n: "01", title: "Location", body: "We map your tap water against the EPA UCMR 5 database — contamination varies wildly by ZIP code." },
+  { n: "02", title: "Kitchen & Products", body: "Cookware, personal care products, and everyday staples are the other major exposure vectors we measure." },
+  { n: "03", title: "Your Score", body: "We calculate your REI (Relative Exposure Index) and show you exactly where your burden is coming from." },
+];
 
-  const getStatus = (score: number): string => {
-    if (score < 33) return "safe";
-    if (score < 67) return "caution";
-    return "danger";
-  };
-
+export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900">
-      {/* Simplified Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 py-12 md:py-20 px-4">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-600 rounded-full mix-blend-multiply filter blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-600 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
-        
-        <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-900/50 border border-teal-700 rounded-full mb-4">
-            <Leaf className="w-4 h-4 text-teal-400" />
-            <span className="text-sm font-semibold text-teal-300">Personalized Health Assessment</span>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-200 bg-clip-text text-transparent mb-3 leading-tight">
-            BioBound
+    <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }} className="min-h-screen">
+
+      {/* ── NAV ── */}
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "16px 32px",
+        background: "rgba(13,15,14,0.88)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "0.5px solid var(--border)",
+      }}>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 15, color: "var(--accent)", letterSpacing: "0.04em" }}>
+          BIO//BOUND
+        </span>
+        <Link href="/audit" style={{
+          fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)",
+          border: "0.5px solid var(--accent)", borderRadius: 20,
+          padding: "6px 16px", textDecoration: "none",
+          background: "rgba(200,240,96,0.08)",
+        }}>
+          Start audit →
+        </Link>
+      </nav>
+
+      {/* ── HERO ── */}
+      <section style={{ paddingTop: 140, paddingBottom: 80, paddingLeft: 24, paddingRight: 24 }}>
+        <div style={{ maxWidth: 680, margin: "0 auto" }} className="animate-fade-up">
+          <p className="eyebrow" style={{ marginBottom: 16 }}>The Forever Chemicals Audit</p>
+          <h1 className="heading-serif" style={{ fontSize: "clamp(38px,6vw,58px)", marginBottom: 24 }}>
+            Your body has been<br />
+            <em style={{ fontStyle: "italic", color: "var(--accent)" }}>accumulating</em> PFAS<br />
+            your whole life.
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Discover your PFAS exposure risk and get actionable steps to protect your health
+          <p style={{ fontSize: 17, color: "var(--text2)", lineHeight: 1.75, maxWidth: 560, marginBottom: 40 }}>
+            97% of Americans have detectable PFAS in their blood. These "forever chemicals" don't leave —
+            they build up over decades, linking to cancer, hormone disruption, and liver disease.
+            BioBound finds your biggest sources in under 3 minutes.
+          </p>
+          <Link href="/audit" className="btn-primary" style={{ fontSize: 16, padding: "18px 36px", borderRadius: 12, textDecoration: "none" }}>
+            Start my audit →
+          </Link>
+          <p style={{ fontSize: 11, color: "var(--text3)", marginTop: 14 }}>
+            Educational use only · Not a medical diagnostic
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content - Mobile First */}
-      <div className="max-w-6xl mx-auto px-4 py-8 md:py-16">
-        <div className="grid lg:grid-cols-4 gap-6 md:gap-8">
-          {/* Form Section - Full width on mobile, 2.5/4 on desktop */}
-          <div className="lg:col-span-3">
-            <div className="bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl p-6 md:p-8 border border-teal-700/30">
-              <InputForm />
+      {/* ── STATS GRID ── */}
+      <section style={{ padding: "0 24px 80px" }}>
+        <div style={{ maxWidth: 680, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+          {stats.map((s) => (
+            <div key={s.num} className="card-bb">
+              <p style={{ fontFamily: "var(--mono)", fontSize: 30, fontWeight: 500, color: "var(--accent)" }}>{s.num}</p>
+              <p style={{ fontSize: 12, color: "var(--text2)", marginTop: 6, lineHeight: 1.55 }}>{s.desc}</p>
             </div>
-          </div>
+          ))}
+        </div>
+      </section>
 
-          {/* Sidebar - Stacks below on mobile, right on desktop */}
-          <div className="lg:col-span-1 space-y-4 md:space-y-6">
-            {/* Score Card - Only show when data is complete */}
-            {isDataComplete && (
-              <div className="bg-gradient-to-br from-teal-900/60 to-emerald-900/60 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-teal-600/50 lg:sticky lg:top-8 animate-in fade-in duration-500">
-                <h2 className="text-lg font-bold text-gray-100 mb-4 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-teal-400" />
-                  Your REI Score
-                </h2>
-                <ForeverScaleGauge
-                  score={displayScore}
-                  status={getStatus(displayScore)}
-                />
-                <p className="text-xs text-gray-400 text-center mt-4 italic">
-                  Updates after analysis complete
-                </p>
+      {/* ── HOW IT WORKS ── */}
+      <section style={{ padding: "0 24px 100px" }}>
+        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+          <p className="eyebrow" style={{ marginBottom: 20 }}>How it works</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {steps.map((s) => (
+              <div key={s.n} style={{
+                display: "flex", gap: 24, padding: "24px 0",
+                borderBottom: "0.5px solid var(--border)",
+              }}>
+                <span style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--text3)", paddingTop: 3, minWidth: 24 }}>{s.n}</span>
+                <div>
+                  <p style={{ fontSize: 15, fontWeight: 500, color: "var(--text)", marginBottom: 6 }}>{s.title}</p>
+                  <p style={{ fontSize: 13, color: "var(--text2)", lineHeight: 1.6 }}>{s.body}</p>
+                </div>
               </div>
-            )}
-
-            {/* Info Cards - Compact on mobile */}
-            <div className="space-y-3">
-              <div className="bg-teal-900/40 rounded-xl p-3 md:p-4 border border-teal-700/30 hover:border-teal-600/50 transition-colors">
-                <h3 className="font-semibold text-gray-100 mb-2 flex items-center gap-2 text-sm">
-                  <Clock className="w-4 h-4 text-teal-400" />
-                  Time Needed
-                </h3>
-                <p className="text-xs md:text-sm text-gray-300">
-                  <span className="font-semibold text-teal-300">3-5 minutes</span> to complete
-                </p>
-              </div>
-
-              <div className="bg-emerald-900/40 rounded-xl p-3 md:p-4 border border-emerald-700/30 hover:border-emerald-600/50 transition-colors">
-                <h3 className="font-semibold text-gray-100 mb-2 flex items-center gap-2 text-sm">
-                  <Zap className="w-4 h-4 text-emerald-400" />
-                  What We Check
-                </h3>
-                <ul className="text-xs md:text-sm text-gray-300 space-y-0.5">
-                  <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-emerald-400" /> Water quality</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-emerald-400" /> Cookware use</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-emerald-400" /> Diet habits</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-emerald-400" /> Personal care</li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Demo Profiles */}
-      <div className="max-w-6xl mx-auto px-4 pb-10 md:pb-16">
-        <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-slate-700/50">
-          <DemoProfiles />
+      {/* ── CTA BANNER ── */}
+      <section style={{ padding: "0 24px 120px" }}>
+        <div style={{
+          maxWidth: 680, margin: "0 auto",
+          background: "var(--surface)",
+          border: "0.5px solid rgba(200,240,96,0.25)",
+          borderRadius: 20, padding: "48px 36px",
+          textAlign: "center",
+        }}>
+          <p className="heading-serif" style={{ fontSize: "clamp(26px,4vw,38px)", marginBottom: 16 }}>
+            Ready to know your number?
+          </p>
+          <p style={{ fontSize: 15, color: "var(--text2)", marginBottom: 32, lineHeight: 1.65 }}>
+            Takes 3 minutes. No account required. 100% private.
+          </p>
+          <Link href="/audit" className="btn-primary" style={{ fontSize: 16, padding: "18px 40px", borderRadius: 12, textDecoration: "none" }}>
+            Run my PFAS audit →
+          </Link>
         </div>
-      </div>
+      </section>
 
-      {/* Footer */}
-      <footer className="border-t border-teal-700/30 bg-slate-900/40 backdrop-blur-sm mt-0 py-6 md:py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center text-xs md:text-sm text-gray-400">
-          <p>Powered by EPA data • Science-backed insights • Private & anonymous</p>
-        </div>
+      {/* ── FOOTER ── */}
+      <footer style={{
+        borderTop: "0.5px solid var(--border)",
+        padding: "24px 32px",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        flexWrap: "wrap", gap: 12,
+      }}>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 13, color: "var(--accent)" }}>BIO//BOUND</span>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--text3)" }}>
+          Powered by EPA UCMR 5 data · Science-backed · Private
+        </span>
       </footer>
+
     </main>
   );
 }
