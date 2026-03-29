@@ -37,7 +37,11 @@ export async function scanReceipt(
 
   if (!response.ok) {
     const err = await response.json().catch(() => ({}));
-    throw new Error((err as any)?.detail ?? `Scan failed (${response.status})`);
+    const detail =
+      typeof err === "object" && err !== null && "detail" in err
+        ? String((err as { detail?: unknown }).detail ?? "")
+        : "";
+    throw new Error(detail || `Scan failed (${response.status})`);
   }
 
   return response.json() as Promise<ReceiptScanResult>;
