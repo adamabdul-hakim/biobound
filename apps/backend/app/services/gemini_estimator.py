@@ -216,3 +216,108 @@ def get_pfas_recommendations(
         "tier": tier,
         "recommendations": _FALLBACK_RECOMMENDATIONS.get(tier, _FALLBACK_RECOMMENDATIONS["moderate"]),
     }
+
+
+# ── Receipt / product OCR PFAS analysis ──────────────────────────────────────
+
+_KNOWN_PFAS_ITEMS: list[tuple[list[str], str, str, str, float | None]] = [
+    # (keywords, level, category, reason, ppt_estimate)
+    (["microwave popcorn", "popcorn bag"], "high", "packaging", "PFAS-coated microwave bags are a primary exposure source.", 45.0),
+    (["fast food", "burger", "fries", "nuggets", "mcdonald", "burger king", "wendy", "kfc"], "high", "packaging", "Grease-resistant fast food wrappers commonly contain PFAS.", 30.0),
+    (["pizza box", "pizza"], "high", "packaging", "PFAS-treated pizza boxes transfer chemicals to food.", 25.0),
+    (["dental floss", "floss"], "high", "personal_care", "Many brands use PTFE/PFAS coating for glide.", 15.0),
+    (["non-stick", "teflon", "nonstick"], "high", "cookware", "Non-stick coatings are a significant PFAS source when heated.", 40.0),
+    (["stain resist", "stain-resist", "scotchgard", "waterproof spray"], "high", "other", "PFAS-based stain-resistance treatments leach into contact surfaces.", 20.0),
+    (["canned soup", "canned food", "canned beans", "canned tuna", "canned corn"], "moderate", "packaging", "Can linings may contain PFAS that migrate into food.", 8.0),
+    (["processed meat", "hot dog", "sausage", "deli meat", "bologna", "salami"], "moderate", "food", "Packaging and processing involve PFAS-treated materials.", 6.0),
+    (["seafood", "salmon", "tuna", "shrimp", "fish", "tilapia", "cod"], "moderate", "food", "Bioaccumulation of PFAS in aquatic species is well-documented.", 10.0),
+    (["takeout", "takeaway", "grease paper", "sandwich wrap"], "moderate", "packaging", "Grease-resistant food paper often contains PFAS.", 12.0),
+    (["tap water", "unfiltered water"], "moderate", "water", "Unfiltered tap water can carry PFAS depending on location.", None),
+    (["shampoo", "conditioner", "hair spray", "dry shampoo", "keratin"], "moderate", "personal_care", "Many hair products use PFAS for smoothness and water resistance.", 5.0),
+    (["apple", "banana", "broccoli", "spinach", "kale", "carrot", "tomato", "lettuce", "cucumber"], "none", "food", "Fresh produce has negligible PFAS unless from contaminated soil.", 0.0),
+    (["oats", "oatmeal", "beans", "lentils", "chickpeas", "quinoa", "brown rice"], "low", "food", "Whole grains and legumes have low PFAS exposure and support clearance.", 1.0),
+    (["milk", "dairy", "cheese", "yogurt", "butter"], "low", "food", "Dairy may carry trace PFAS from feed and packaging.", 2.0),
+    (["bread", "pasta", "cereal"], "low", "food", "Packaged grain products carry low PFAS from packaging contact.", 2.0),
+    (["soap", "hand soap", "body wash", "lotion", "moisturizer"], "low", "personal_care", "Most bar soaps and basic lotions have low PFAS content.", 1.0),
+    (["vitamin", "supplement", "protein powder"], "low", "other", "Supplements are generally low risk but packaging may contribute.", 1.0),
+]
+
+
+def _fallback_receipt_analysis(ocr_text: str) -> Dict[str, Any]:
+    """Keyword-based PFAS item analysis when Gemini is unavailable."""
+    text_lower = ocr_text.lower()
+    found: list[Dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for keywords, level, category, reason, ppt in _KNOWN_PFAS_ITEMS:
+        for kw in keywords:
+            if kw in text_lower and kw not in seen:
+                seen.add(kw)
+                found.append({
+                    "item": kw.title(),
+                    "pfas_level": level,
+                    "ppt_estimate": ppt,
+                    "reason": reason,
+                    "category": category,
+                })
+                break
+
+    return {"source": "fallback", "items": found}
+
+
+def analyze_receipt_items(ocr_text: str) -> Dict[str, Any]:
+    """Analyze items extracted from a receipt or product list via Gemini.
+
+    Each returned item has: item, pfas_level, ppt_estimate, reason, category.
+    Falls back to keyword matching if Gemini is unavailable.
+    """
+    if not ocr_text or not ocr_text.strip():
+        return {"source": "no_text", "items": []}
+
+    prompt = (
+        "You are a PFAS toxicologist reviewing a grocery receipt or product list. "
+        "PFAS (per- and polyfluoroalkyl substances) are found in: microwave popcorn bags (high), "
+        "fast food / grease-resistant wrappers (high), non-stick cookware (high), "
+        "dental floss (high), canned foods (moderate), seafood / fish (moderate), "
+        "processed meats (moderate), hair products / dry shampoo (moderate), "
+        "fresh produce (none), whole grains and legumes (low-none).\n\n"
+        f"Receipt / product text to analyze:\n---\n{ocr_text[:3000]}\n---\n\n"
+        "For each distinct product or food item you can identify, estimate its PFAS exposure risk. "
+        "Ignore store names, addresses, prices, dates, totals, and transaction numbers.\n\n"
+        "Return ONLY a JSON array with no extra text. Each element must have exactly these keys:\n"
+        '  "item" (string): the product name as it appears\n'
+        '  "pfas_level" (string): one of "none", "low", "moderate", "high"\n'
+        '  "ppt_estimate" (number or null): estimated PFAS in ppt per serving, null if unknown\n'
+        '  "reason" (string): 1-sentence explanation\n'
+        '  "category" (string): one of "packaging", "food", "cookware", "personal_care", "water", "other"\n\n'
+        "Example: "
+        '[{"item":"Microwave Popcorn","pfas_level":"high","ppt_estimate":45,'
+        '"reason":"PFAS-coated microwave bags are a primary source.","category":"packaging"}]'
+    )
+
+    try:
+        raw = _call_gemini_api(prompt)
+        raw_stripped = raw.strip()
+        start = raw_stripped.find("[")
+        end = raw_stripped.rfind("]") + 1
+        if start >= 0 and end > start:
+            items = json.loads(raw_stripped[start:end])
+            if isinstance(items, list):
+                valid_levels = {"none", "low", "moderate", "high"}
+                valid_cats = {"packaging", "food", "cookware", "personal_care", "water", "other"}
+                cleaned = [
+                    {
+                        "item": str(it.get("item", "Unknown")),
+                        "pfas_level": it.get("pfas_level") if it.get("pfas_level") in valid_levels else "low",
+                        "ppt_estimate": it.get("ppt_estimate") if isinstance(it.get("ppt_estimate"), (int, float)) else None,
+                        "reason": str(it.get("reason", "")),
+                        "category": it.get("category") if it.get("category") in valid_cats else "other",
+                    }
+                    for it in items
+                    if isinstance(it, dict) and it.get("item")
+                ]
+                return {"source": "gemini", "items": cleaned}
+    except Exception as e:
+        logger.info("Gemini receipt analysis failed, using keyword fallback: %s", e)
+
+    return _fallback_receipt_analysis(ocr_text)
