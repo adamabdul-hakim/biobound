@@ -36,6 +36,9 @@
   --color-border-tertiary:  var(--border);
   --border-radius-lg: 1rem;
 
+  /* ── Gauge track ── */
+  --gauge-track: #2a3347;
+
   /* Legacy aliases so existing Tailwind utilities still work */
   --background: var(--bg);
   --foreground:  var(--text);
@@ -58,6 +61,7 @@
   --safe:     #137830;
   --btn-fg:   #f4f5f0;   /* light text on dark green button */
   --nav-bg:   rgba(244,245,240,0.92);
+  --gauge-track: #c8ccc5;
   --background: var(--bg);
   --foreground:  var(--text);
 }

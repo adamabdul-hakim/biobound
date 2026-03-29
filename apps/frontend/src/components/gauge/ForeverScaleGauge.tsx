@@ -108,11 +108,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
   return (
     <div style={{
       display: "flex", flexDirection: "column", alignItems: "center",
-      gap: "0.5rem", padding: "1.5rem 1rem 1rem",
-      background: "var(--color-background-primary)",
-      border: "0.5px solid var(--color-border-tertiary)",
-      borderRadius: "var(--border-radius-lg)",
-      maxWidth: "340px", margin: "0 auto",
+      gap: "0.5rem", padding: "0.5rem 0 0",
     }}>
       <svg
         viewBox="0 0 320 210"
@@ -125,7 +121,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
         <path
           d={`M ${CX - R_OUTER} ${CY} A ${R_OUTER} ${R_OUTER} 0 1 1 ${CX + R_OUTER} ${CY}`}
           fill="none"
-          stroke="#334155"
+          style={{ stroke: "var(--gauge-track)" }}
           strokeWidth="14"
           strokeLinecap="round"
         />
@@ -147,7 +143,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
             key={t.label}
             x1={t.x1} y1={t.y1}
             x2={t.x2} y2={t.y2}
-            stroke="var(--color-border-secondary)"
+            style={{ stroke: "var(--border2)" }}
             strokeWidth={t.major ? 1.5 : 0.75}
             suppressHydrationWarning={true}
           />
@@ -165,8 +161,8 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
               textAnchor="middle"
               dominantBaseline="central"
               fontSize="11"
-              fill="var(--color-text-secondary)"
-              fontFamily="var(--font-sans)"
+              fill="var(--text2)"
+              fontFamily="var(--sans)"
             >
               {val}
             </text>
@@ -182,15 +178,15 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
           strokeLinecap="round"
         />
         <circle cx={CX} cy={CY} r="6" fill={color} />
-        <circle cx={CX} cy={CY} r="3" fill="var(--color-background-primary)" />
+        <circle cx={CX} cy={CY} r="3" fill="var(--surface)" />
 
         {/* Score number */}
         <text
           x={CX} y={CY + 34}
           textAnchor="middle"
           fontSize="32" fontWeight="500"
-          fill="var(--color-text-primary)"
-          fontFamily="var(--font-sans)"
+          fill="var(--text)"
+          fontFamily="var(--sans)"
         >
           {animatedScore}
         </text>
@@ -198,16 +194,16 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
           x={CX} y={CY + 56}
           textAnchor="middle"
           fontSize="11"
-          fill="var(--color-text-secondary)"
-          fontFamily="var(--font-sans)"
+          fill="var(--text2)"
+          fontFamily="var(--sans)"
         >
           / 100
         </text>
 
         {/* Range labels */}
-        <text x="20"       y={CY + 18} fontSize="10" fill="#22c55e" fontFamily="var(--font-sans)" fontWeight="500">Safe</text>
-        <text x={CX}       y="20"      fontSize="10" fill="#eab308" fontFamily="var(--font-sans)" fontWeight="500" textAnchor="middle">Caution</text>
-        <text x={CX * 2 - 20} y={CY + 18} fontSize="10" fill="#ef4444" fontFamily="var(--font-sans)" fontWeight="500" textAnchor="end">Danger</text>
+        <text x="20"       y={CY + 18} fontSize="10" fill="var(--safe)"   fontFamily="var(--sans)" fontWeight="500">Safe</text>
+        <text x={CX}       y="20"      fontSize="10" fill="var(--warn)"   fontFamily="var(--sans)" fontWeight="500" textAnchor="middle">Caution</text>
+        <text x={CX * 2 - 20} y={CY + 18} fontSize="10" fill="var(--danger)" fontFamily="var(--sans)" fontWeight="500" textAnchor="end">Danger</text>
       </svg>
 
       {/* Status badge */}
@@ -224,7 +220,7 @@ export default function ForeverScaleGauge({ score, status }: ForeverScaleProps) 
       {/* Label */}
       <p style={{
         margin: 0, fontSize: "12px",
-        color: "var(--color-text-secondary)",
+        color: "var(--text2)",
         textAlign: "center",
         letterSpacing: "0.05em",
         textTransform: "uppercase",
