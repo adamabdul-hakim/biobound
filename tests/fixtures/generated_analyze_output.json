@@ -1,0 +1,37 @@
+[
+  {
+    "name": "unknown",
+    "request": {
+      "image_base64": "./tests/fixtures/veggie-grocery-recepit_orig.jpeg",
+      "ocr_provider": "mock"
+    },
+    "ocr": {
+      "raw_text": "./tests/fixtures/veggie-grocery-recepit_orig.jpeg",
+      "provider": "mock",
+      "confidence": 0.75
+    },
+    "detected_chemicals": [],
+    "risk": {
+      "risk_score": 0,
+      "confidence_interval": 0.0,
+      "detected_count": 0,
+      "top_contributors": [],
+      "rei_multiplier": 1.0,
+      "raw_score": 0.0
+    },
+    "decay_data": [
+      {
+        "year": 2026,
+        "level": 100
+      },
+      {
+        "year": 2030,
+        "level": 70
+      },
+      {
+        "year": 2034,
+        "level": 50
+      }
+    ]
+  }
+]

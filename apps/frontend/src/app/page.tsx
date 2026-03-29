@@ -114,8 +114,3 @@ export default function Home() {
     </main>
   );
 }
-        </div>
-      </footer>
-    </main>
-  );
-}

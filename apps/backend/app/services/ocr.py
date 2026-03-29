@@ -95,6 +95,60 @@ class GoogleVisionOCRProvider:
         )
 
 
+class GeminiOCRProvider:
+    name = "gemini"
+
+    def extract(self, image_bytes: bytes, mime_type: str | None = None) -> OCRResult:
+        """Extract text from image using Google Gemini Vision API."""
+        try:
+            import google.generativeai as genai
+        except Exception as exc:
+            raise RuntimeError("google-generativeai is not installed") from exc
+
+        from app.core.config import settings
+
+        if not settings.gemini_api_key:
+            raise RuntimeError("GEMINI_API_KEY environment variable is not set")
+
+        genai.configure(api_key=settings.gemini_api_key)
+        model = genai.GenerativeModel("gemini-2.0-flash")
+
+        # Determine MIME type
+        if mime_type is None:
+            mime_type = "image/jpeg"
+
+        # Create message with image
+        message = model.generate_content(
+            [
+                "Extract all text from this image. Return only the extracted text without any explanation or formatting.",
+                {
+                    "mime_type": mime_type,
+                    "data": base64.b64encode(image_bytes).decode("utf-8"),
+                },
+            ]
+        )
+
+        raw_text = message.text.strip() if message.text else ""
+
+        # Split into lines for text blocks
+        text_blocks = [
+            OCRTextLine(text=line.strip(), confidence=0.92)
+            for line in raw_text.splitlines()
+            if line.strip()
+        ]
+
+        if not text_blocks and raw_text:
+            text_blocks = [OCRTextLine(text=raw_text, confidence=0.92)]
+
+        return OCRResult(
+            raw_text=raw_text,
+            text_blocks=text_blocks,
+            labels=[],
+            confidence=_average_confidence(text_blocks) if text_blocks else 0.92,
+            provider=self.name,
+        )
+
+
 class TesseractOCRProvider:
     name = "tesseract"
 
@@ -171,11 +225,12 @@ def _provider_order(provider_override: str | None, allow_mock_fallback: bool) ->
     if selected == "mock" and not allow_mock_fallback:
         raise RuntimeError(
             "OCR provider 'mock' is not allowed for /analyze image processing. "
-            "Set OCR_PROVIDER to 'google' or 'tesseract'."
+            "Set OCR_PROVIDER to 'google', 'gemini', or 'tesseract'."
         )
 
     order = [selected]
     if selected == "google" and settings.ocr_enable_fallback_tesseract:
+        order.append("gemini")
         order.append("tesseract")
     if allow_mock_fallback:
         order.append("mock")
@@ -188,6 +243,10 @@ def assert_ocr_provider_ready(provider_name: str) -> None:
 
     if name == "google":
         _assert_google_ready()
+        return
+
+    if name == "gemini":
+        _assert_gemini_ready()
         return
 
     if name == "tesseract":
@@ -216,6 +275,18 @@ def _assert_google_ready() -> None:
         )
 
 
+def _assert_gemini_ready() -> None:
+    try:
+        import google.generativeai as genai  # noqa: F401
+    except Exception as exc:  # pragma: no cover - depends on optional dependency
+        raise RuntimeError("google-generativeai is not installed") from exc
+
+    from app.core.config import settings
+
+    if not settings.gemini_api_key:
+        raise RuntimeError("GEMINI_API_KEY environment variable is not set")
+
+
 def _assert_tesseract_ready() -> None:
     try:
         import pytesseract  # type: ignore
@@ -232,6 +303,7 @@ def _assert_tesseract_ready() -> None:
 def _provider_by_name(name: str) -> OCRProvider:
     providers: dict[str, OCRProvider] = {
         "google": GoogleVisionOCRProvider(),
+        "gemini": GeminiOCRProvider(),
         "tesseract": TesseractOCRProvider(),
         "mock": MockOCRProvider(),
     }

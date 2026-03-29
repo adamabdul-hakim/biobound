@@ -14,6 +14,7 @@ class Settings(BaseModel):
     ocr_enable_fallback_tesseract: bool = (
         os.getenv("OCR_ENABLE_FALLBACK_TESSERACT", "true").lower() == "true"
     )
+    gemini_api_key: str = os.getenv("GEMINI_API_KEY", "").strip()
     analyze_rate_limit_per_minute: int = int(os.getenv("ANALYZE_RATE_LIMIT_PER_MINUTE", "60"))
     metrics_max_samples: int = int(os.getenv("METRICS_MAX_SAMPLES", "1000"))
 

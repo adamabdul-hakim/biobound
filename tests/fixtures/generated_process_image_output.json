@@ -1,0 +1,26 @@
+[
+  {
+    "name": "unknown",
+    "request": {
+      "image_base64": "./tests/fixtures/veggie-grocery-recepit_orig.jpeg",
+      "ocr_provider": "mock"
+    },
+    "ocr": {
+      "raw_text": "./tests/fixtures/veggie-grocery-recepit_orig.jpeg",
+      "normalized_text": "./tests/fixtures/veggie-grocery-recepit_orig.jpeg",
+      "text_blocks": [
+        {
+          "text": "./tests/fixtures/veggie-grocery-recepit_orig.jpeg",
+          "confidence": 0.75
+        }
+      ],
+      "labels": [],
+      "confidence": 0.75,
+      "provider": "mock"
+    },
+    "expected": {
+      "provider": "mock",
+      "normalized_contains": "pfas-resistant cookware label"
+    }
+  }
+]
